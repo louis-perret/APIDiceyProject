@@ -1,3 +1,6 @@
+using Api.Repositories.DiceRepository;
+using Api.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//Dépendances en cascade pour AbstractDiceController.
+builder.Services.AddTransient<IDiceService, SimpleDiceService>();
+builder.Services.AddTransient<IDiceRepository, SimpleDiceRepository>();
 
 var app = builder.Build();
 
