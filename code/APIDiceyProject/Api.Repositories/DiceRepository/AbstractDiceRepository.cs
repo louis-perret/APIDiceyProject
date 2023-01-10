@@ -35,6 +35,28 @@ namespace Api.Repositories.DiceRepository
 
             return modelDices;
         }
+
+        public Dice? GetDiceById(int id)
+        {
+            var diceEntity = _context.dices.Where(dice => dice.NbFaces == id).FirstOrDefault();
+            
+            if(diceEntity != null)
+            {
+                return new Api.Model.SimpleDice(diceEntity.NbFaces);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Supprime tous les dés.
+        /// </summary>
+        /// <returns>True si correctement supprimés.</returns>
+        bool RemoveAllDices()
+        {
+            // vider bd;
+            return true;
+        }
         #endregion
     }
 }

@@ -47,14 +47,38 @@ namespace Api.Services
         {
             _logger = logger;
         }
+
         #endregion
 
         #region méthodes redéfinies
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Récupère la liste complète des dés en base.
+        /// </summary>
+        /// <returns> La liste complète des dés en base. </returns>
         public List<Dice> GetDices()
         {
             return _diceRepository.GetDices();
+        }
+
+        /// <summary>
+        /// Récupère un dé avec son nombre de faces.
+        /// </summary>
+        /// <param name="id">Nombre de faces</param>
+        /// <returns>Un dé potentiellement NULL</returns>
+        public Dice? GetDiceById(int id)
+        {
+            return _diceRepository.GetDiceById(id);
+        }
+
+        /// <summary>
+        /// Supprime tous les dés.
+        /// </summary>
+        /// <returns>True si correctement supprimés.</returns>
+        bool RemoveAllDices()
+        {
+            _diceRepository.RemoveAllDices();
+            return true;
         }
         #endregion
     }

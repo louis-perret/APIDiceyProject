@@ -17,5 +17,13 @@ namespace Api.Repositories.DiceRepository
         /// </summary>
         /// <returns> Les dés stockés en base. </returns>
         List<Dice> GetDices();
+
+        Dice? GetDiceById(int id);
+
+        /// <summary>
+        /// Supprime tous les dés.
+        /// </summary>
+        /// <returns>True si correctement supprimés.</returns>
+        bool RemoveAllDices();
     }
 }

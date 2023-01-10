@@ -24,24 +24,17 @@ namespace APIDiceyProject.Controllers
 
         #region constructeur
         /// <summary>
-        /// Constructeur à un argument.
-        /// </summary>
-        /// <param name="diceService"> Service contenant la logique CRUD des dés. </param>
-        protected AbstractDiceController(IDiceService diceService)
-        {
-            _diceService = diceService;
-        }
-
-        /// <summary>
         /// Constructeur complet.
         /// Utilise le constructeru à un argument.
         /// </summary>
         /// <param name="logger"> Logger de cette classe. </param>
-        /// <param name="diceServce"> Service contenant la logique CRUD des dés. </param>
-        protected AbstractDiceController(ILogger<AbstractDiceController> logger, IDiceService diceServce) : this(diceServce)
+        /// <param name="diceService"> Service contenant la logique CRUD des dés. </param>
+        protected AbstractDiceController(ILogger<AbstractDiceController> logger, IDiceService diceService)
         {
+            _diceService = diceService;
             _logger = logger;
         }
+
         #endregion
 
         #region routes
@@ -65,6 +58,32 @@ namespace APIDiceyProject.Controllers
 
 
             return Ok(dtoDices);
+        }
+        
+
+        [HttpGet("{id}")]
+        public IActionResult GetDiceById(int id)
+        {
+            var modelDice = _diceService.GetDiceById(id);
+            
+            if(modelDice == null)
+            {
+                return NotFound("There is no dice with this number of faces");
+            }
+
+            return Ok(new Api.DTOs.Dice(modelDice.NbFaces));
+        }
+
+        [HttpDelete]
+        public IActionResult RemoveAllDices()
+        {
+            if (_diceService.RemoveAllDices())
+            {
+                return Ok();
+            }
+
+            // logguer
+            return StatusCode(500);
         }
         #endregion
     }

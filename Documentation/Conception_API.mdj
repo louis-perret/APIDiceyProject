@@ -1862,7 +1862,7 @@
 											"visible": false,
 											"fillColor": "#ffebd8",
 											"font": "Arial;13;0",
-											"left": -96,
+											"left": -176,
 											"top": -32,
 											"height": 13
 										},
@@ -1874,9 +1874,9 @@
 											},
 											"fillColor": "#ffebd8",
 											"font": "Arial;13;3",
-											"left": 613,
+											"left": 573,
 											"top": 335,
-											"width": 153.5244140625,
+											"width": 204.10888671875,
 											"height": 13,
 											"text": "AbstractDiceController"
 										},
@@ -1889,7 +1889,7 @@
 											"visible": false,
 											"fillColor": "#ffebd8",
 											"font": "Arial;13;0",
-											"left": -96,
+											"left": -176,
 											"top": -32,
 											"width": 80.9072265625,
 											"height": 13,
@@ -1904,7 +1904,7 @@
 											"visible": false,
 											"fillColor": "#ffebd8",
 											"font": "Arial;13;0",
-											"left": -96,
+											"left": -176,
 											"top": -32,
 											"height": 13,
 											"horizontalAlignment": 1
@@ -1912,9 +1912,9 @@
 									],
 									"fillColor": "#ffebd8",
 									"font": "Arial;13;0",
-									"left": 608,
+									"left": 568,
 									"top": 328,
-									"width": 163.5244140625,
+									"width": 214.10888671875,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFjI28AzCzgC4="
@@ -1940,9 +1940,9 @@
 									},
 									"fillColor": "#ffebd8",
 									"font": "Arial;13;0",
-									"left": 608,
+									"left": 568,
 									"top": 353,
-									"width": 163.5244140625,
+									"width": 214.10888671875,
 									"height": 10
 								},
 								{
@@ -1966,20 +1966,56 @@
 											},
 											"fillColor": "#ffebd8",
 											"font": "Arial;13;0",
-											"left": 613,
+											"left": 573,
 											"top": 368,
-											"width": 153.5244140625,
+											"width": 204.10888671875,
 											"height": 13,
 											"text": "+GetDices(): IActionResult",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGFm/SnFNxjLoY=",
+											"_parent": {
+												"$ref": "AAAAAAGFjI28AzC4mTM="
+											},
+											"model": {
+												"$ref": "AAAAAAGFm/SnDdxg3Po="
+											},
+											"fillColor": "#ffebd8",
+											"font": "Arial;13;0",
+											"left": 573,
+											"top": 383,
+											"width": 204.10888671875,
+											"height": 13,
+											"text": "+GetDiceById(id: int): IActionResult",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGFnBEGv92dIJo=",
+											"_parent": {
+												"$ref": "AAAAAAGFjI28AzC4mTM="
+											},
+											"model": {
+												"$ref": "AAAAAAGFnBEGt92aG8E="
+											},
+											"fillColor": "#ffebd8",
+											"font": "Arial;13;0",
+											"left": 573,
+											"top": 398,
+											"width": 204.10888671875,
+											"height": 13,
+											"text": "+RemoveAllDices(): IActionResult",
 											"horizontalAlignment": 0
 										}
 									],
 									"fillColor": "#ffebd8",
 									"font": "Arial;13;0",
-									"left": 608,
+									"left": 568,
 									"top": 363,
-									"width": 163.5244140625,
-									"height": 23
+									"width": 214.10888671875,
+									"height": 53
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -1993,7 +2029,7 @@
 									"visible": false,
 									"fillColor": "#ffebd8",
 									"font": "Arial;13;0",
-									"left": -48,
+									"left": -88,
 									"top": -16,
 									"width": 10,
 									"height": 10
@@ -2010,7 +2046,7 @@
 									"visible": false,
 									"fillColor": "#ffebd8",
 									"font": "Arial;13;0",
-									"left": -48,
+									"left": -88,
 									"top": -16,
 									"width": 10,
 									"height": 10
@@ -2019,10 +2055,10 @@
 							"fillColor": "#ffebd8",
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 608,
+							"left": 568,
 							"top": 328,
-							"width": 163.5244140625,
-							"height": 58,
+							"width": 214.10888671875,
+							"height": 88,
 							"nameCompartment": {
 								"$ref": "AAAAAAGFjI28AzCyUSU="
 							},
@@ -2433,7 +2469,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 673,
-									"top": 409,
+									"top": 424,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -2454,7 +2490,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"left": 658,
-									"top": 409,
+									"top": 424,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -2475,7 +2511,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 702,
-									"top": 410,
+									"top": 425,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -2492,7 +2528,7 @@
 							"tail": {
 								"$ref": "AAAAAAGFjI4u+TEJUiI="
 							},
-							"points": "688:448;688:385",
+							"points": "688:448;688:415",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGFjI5YNTE1qMM="
@@ -2835,6 +2871,7 @@
 									"model": {
 										"$ref": "AAAAAAGFjJHkMDL9DOk="
 									},
+									"visible": false,
 									"fillColor": "#d8f2ff",
 									"font": "Arial;13;0",
 									"left": 984,
@@ -2869,7 +2906,6 @@
 							"nameCompartment": {
 								"$ref": "AAAAAAGFjJHkMDMAsGk="
 							},
-							"suppressReceptions": false,
 							"attributeCompartment": {
 								"$ref": "AAAAAAGFjJHkMDMFwbQ="
 							},
@@ -2903,7 +2939,7 @@
 										"$ref": "AAAAAAGFjJIzpjM38H8="
 									},
 									"font": "Arial;13;0",
-									"left": 806,
+									"left": 811,
 									"top": 339,
 									"width": 74.7880859375,
 									"height": 13,
@@ -2926,7 +2962,7 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 877,
+									"left": 882,
 									"top": 324,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -2947,7 +2983,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 877,
+									"left": 882,
 									"top": 369,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -2968,7 +3004,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 796,
+									"left": 806,
 									"top": 339,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -2989,7 +3025,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 799,
+									"left": 809,
 									"top": 325,
 									"height": 13,
 									"alpha": 0.7853981633974483,
@@ -3010,7 +3046,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 792,
+									"left": 802,
 									"top": 366,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -3116,7 +3152,7 @@
 							"tail": {
 								"$ref": "AAAAAAGFjI28AjCxPFk="
 							},
-							"points": "771:360;984:360",
+							"points": "781:360;984:360",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGFjJIzpzM8ib8="
@@ -3178,7 +3214,7 @@
 							"tail": {
 								"$ref": "AAAAAAGFjJKkkzOlYiE="
 							},
-							"points": "877:471;877:361"
+							"points": "877:471;877:361;881:361"
 						}
 					]
 				},
@@ -3248,6 +3284,53 @@
 									"_id": "AAAAAAGFjI9YYTFisXg=",
 									"_parent": {
 										"$ref": "AAAAAAGFjI8m5zFbl5s="
+									},
+									"type": "IActionResult",
+									"direction": "return"
+								}
+							]
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAGFm/SnDdxg3Po=",
+							"_parent": {
+								"$ref": "AAAAAAGFjI28ATCvyBw="
+							},
+							"name": "GetDiceById",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGFm/TdL9x23Rk=",
+									"_parent": {
+										"$ref": "AAAAAAGFm/SnDdxg3Po="
+									},
+									"name": "id",
+									"type": "int"
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGFm/TdMNx3i0Q=",
+									"_parent": {
+										"$ref": "AAAAAAGFm/SnDdxg3Po="
+									},
+									"type": "IActionResult",
+									"direction": "return"
+								}
+							]
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAGFnBEGt92aG8E=",
+							"_parent": {
+								"$ref": "AAAAAAGFjI28ATCvyBw="
+							},
+							"name": "RemoveAllDices",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGFnBFA692zRnI=",
+									"_parent": {
+										"$ref": "AAAAAAGFnBEGt92aG8E="
 									},
 									"type": "IActionResult",
 									"direction": "return"
@@ -3593,7 +3676,7 @@
 											"font": "Arial;13;0",
 											"left": 613,
 											"top": 285,
-											"width": 138.353515625,
+											"width": 149.91259765625,
 											"height": 13,
 											"text": "«interface»"
 										},
@@ -3607,7 +3690,7 @@
 											"font": "Arial;13;1",
 											"left": 613,
 											"top": 300,
-											"width": 138.353515625,
+											"width": 149.91259765625,
 											"height": 13,
 											"text": "IDiceService"
 										},
@@ -3643,7 +3726,7 @@
 									"font": "Arial;13;0",
 									"left": 608,
 									"top": 280,
-									"width": 148.353515625,
+									"width": 159.91259765625,
 									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFjJO6dDRQV7w="
@@ -3671,7 +3754,7 @@
 									"font": "Arial;13;0",
 									"left": 608,
 									"top": 318,
-									"width": 148.353515625,
+									"width": 159.91259765625,
 									"height": 10
 								},
 								{
@@ -3697,9 +3780,45 @@
 											"font": "Arial;13;0",
 											"left": 613,
 											"top": 333,
-											"width": 138.353515625,
+											"width": 149.91259765625,
 											"height": 13,
 											"text": "+GetDices(): List<Dice>",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGFm/WUy90DF9Y=",
+											"_parent": {
+												"$ref": "AAAAAAGFjJO6dDRVji4="
+											},
+											"model": {
+												"$ref": "AAAAAAGFm/WUxt0AAV8="
+											},
+											"fillColor": "#d8f2ff",
+											"font": "Arial;13;0",
+											"left": 613,
+											"top": 348,
+											"width": 149.91259765625,
+											"height": 13,
+											"text": "+GetDiceById(int id): Dice",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGFnBGibN4KZFU=",
+											"_parent": {
+												"$ref": "AAAAAAGFjJO6dDRVji4="
+											},
+											"model": {
+												"$ref": "AAAAAAGFnBGiZ94HesA="
+											},
+											"fillColor": "#d8f2ff",
+											"font": "Arial;13;0",
+											"left": 613,
+											"top": 363,
+											"width": 149.91259765625,
+											"height": 13,
+											"text": "+RemoveAllDices(): bool",
 											"horizontalAlignment": 0
 										}
 									],
@@ -3707,8 +3826,8 @@
 									"font": "Arial;13;0",
 									"left": 608,
 									"top": 328,
-									"width": 148.353515625,
-									"height": 23
+									"width": 159.91259765625,
+									"height": 53
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -3722,8 +3841,8 @@
 									"fillColor": "#d8f2ff",
 									"font": "Arial;13;0",
 									"left": 608,
-									"top": 351,
-									"width": 148.353515625,
+									"top": 381,
+									"width": 159.91259765625,
 									"height": 10
 								},
 								{
@@ -3748,8 +3867,8 @@
 							"containerChangeable": true,
 							"left": 608,
 							"top": 280,
-							"width": 148.353515625,
-							"height": 81,
+							"width": 159.91259765625,
+							"height": 111,
 							"nameCompartment": {
 								"$ref": "AAAAAAGFjJO6dDRPe3U="
 							},
@@ -4838,7 +4957,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 667,
-									"top": 381,
+									"top": 396,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -4859,7 +4978,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"left": 652,
-									"top": 381,
+									"top": 396,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -4880,7 +4999,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 696,
-									"top": 382,
+									"top": 397,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -4897,7 +5016,7 @@
 							"tail": {
 								"$ref": "AAAAAAGFjJPWZTR7mGY="
 							},
-							"points": "682:416;682:360",
+							"points": "682:416;682:390",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGFjJbbsjdEr9k="
@@ -4934,6 +5053,55 @@
 										"$ref": "AAAAAAGFjJQ4gjT2EiQ="
 									},
 									"type": "List<Dice>",
+									"direction": "return"
+								}
+							]
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAGFm/WUxt0AAV8=",
+							"_parent": {
+								"$ref": "AAAAAAGFjJO6czRMGhk="
+							},
+							"name": "GetDiceById",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGFm/XcL90WWRo=",
+									"_parent": {
+										"$ref": "AAAAAAGFm/WUxt0AAV8="
+									},
+									"name": "int id",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGFm/XcMN0XubE=",
+									"_parent": {
+										"$ref": "AAAAAAGFm/WUxt0AAV8="
+									},
+									"type": {
+										"$ref": "AAAAAAGFjJAGTDFsNhg="
+									},
+									"direction": "return"
+								}
+							]
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAGFnBGiZ94HesA=",
+							"_parent": {
+								"$ref": "AAAAAAGFjJO6czRMGhk="
+							},
+							"name": "RemoveAllDices",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGFnBG86N4dmxs=",
+									"_parent": {
+										"$ref": "AAAAAAGFnBGiZ94HesA="
+									},
+									"type": "bool",
 									"direction": "return"
 								}
 							]
@@ -5092,9 +5260,9 @@
 											},
 											"fillColor": "#d8f2ff",
 											"font": "Arial;13;0",
-											"left": 621,
-											"top": 437,
-											"width": 199.7734375,
+											"left": 613,
+											"top": 405,
+											"width": 211.33251953125,
 											"height": 13,
 											"text": "«interface»"
 										},
@@ -5106,9 +5274,9 @@
 											},
 											"fillColor": "#d8f2ff",
 											"font": "Arial;13;1",
-											"left": 621,
-											"top": 452,
-											"width": 199.7734375,
+											"left": 613,
+											"top": 420,
+											"width": 211.33251953125,
 											"height": 13,
 											"text": "IDiceRepository"
 										},
@@ -5121,8 +5289,8 @@
 											"visible": false,
 											"fillColor": "#d8f2ff",
 											"font": "Arial;13;0",
-											"left": -160,
-											"top": 208,
+											"left": -176,
+											"top": 144,
 											"width": 80.9072265625,
 											"height": 13,
 											"text": "(from Model5)"
@@ -5136,17 +5304,17 @@
 											"visible": false,
 											"fillColor": "#d8f2ff",
 											"font": "Arial;13;0",
-											"left": -160,
-											"top": 208,
+											"left": -176,
+											"top": 144,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"fillColor": "#d8f2ff",
 									"font": "Arial;13;0",
-									"left": 616,
-									"top": 432,
-									"width": 209.7734375,
+									"left": 608,
+									"top": 400,
+									"width": 221.33251953125,
 									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFjJZCgzaC648="
@@ -5172,9 +5340,9 @@
 									},
 									"fillColor": "#d8f2ff",
 									"font": "Arial;13;0",
-									"left": 616,
-									"top": 470,
-									"width": 209.7734375,
+									"left": 608,
+									"top": 438,
+									"width": 221.33251953125,
 									"height": 10
 								},
 								{
@@ -5198,20 +5366,56 @@
 											},
 											"fillColor": "#d8f2ff",
 											"font": "Arial;13;0",
-											"left": 621,
-											"top": 485,
-											"width": 199.7734375,
+											"left": 613,
+											"top": 453,
+											"width": 211.33251953125,
 											"height": 13,
 											"text": "+GetDices(): List<Api.Model.Dice>",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGFm/X8jN1EPD8=",
+											"_parent": {
+												"$ref": "AAAAAAGFjJZCgzaHmJI="
+											},
+											"model": {
+												"$ref": "AAAAAAGFm/X8hd1B3rY="
+											},
+											"fillColor": "#d8f2ff",
+											"font": "Arial;13;0",
+											"left": 613,
+											"top": 468,
+											"width": 211.33251953125,
+											"height": 13,
+											"text": "+GetDiceById(int id): Api.Model.Dice",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGFnBHdzd5Jr1g=",
+											"_parent": {
+												"$ref": "AAAAAAGFjJZCgzaHmJI="
+											},
+											"model": {
+												"$ref": "AAAAAAGFnBHdyd5Grk4="
+											},
+											"fillColor": "#d8f2ff",
+											"font": "Arial;13;0",
+											"left": 613,
+											"top": 483,
+											"width": 211.33251953125,
+											"height": 13,
+											"text": "+RemoveAllDices(): bool",
 											"horizontalAlignment": 0
 										}
 									],
 									"fillColor": "#d8f2ff",
 									"font": "Arial;13;0",
-									"left": 616,
-									"top": 480,
-									"width": 209.7734375,
-									"height": 23
+									"left": 608,
+									"top": 448,
+									"width": 221.33251953125,
+									"height": 53
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -5224,9 +5428,9 @@
 									},
 									"fillColor": "#d8f2ff",
 									"font": "Arial;13;0",
-									"left": 616,
-									"top": 503,
-									"width": 209.7734375,
+									"left": 608,
+									"top": 501,
+									"width": 221.33251953125,
 									"height": 10
 								},
 								{
@@ -5241,8 +5445,8 @@
 									"visible": false,
 									"fillColor": "#d8f2ff",
 									"font": "Arial;13;0",
-									"left": -80,
-									"top": 104,
+									"left": -88,
+									"top": 72,
 									"width": 10,
 									"height": 10
 								}
@@ -5250,10 +5454,10 @@
 							"fillColor": "#d8f2ff",
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 616,
-							"top": 432,
-							"width": 209.7734375,
-							"height": 81,
+							"left": 608,
+							"top": 400,
+							"width": 221.33251953125,
+							"height": 111,
 							"nameCompartment": {
 								"$ref": "AAAAAAGFjJZCgzaBf4U="
 							},
@@ -5758,7 +5962,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 708,
-									"top": 529,
+									"top": 528,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -5779,7 +5983,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"left": 693,
-									"top": 529,
+									"top": 528,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -5800,7 +6004,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 737,
-									"top": 530,
+									"top": 529,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -5817,7 +6021,7 @@
 							"tail": {
 								"$ref": "AAAAAAGFjJZn7DatRKw="
 							},
-							"points": "723:560;723:512",
+							"points": "723:560;723:510",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGFjJa9azcW4/I="
@@ -6690,6 +6894,53 @@
 										"$ref": "AAAAAAGFjJdC5zeDFFg="
 									},
 									"type": "List<Api.Model.Dice>",
+									"direction": "return"
+								}
+							]
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAGFm/X8hd1B3rY=",
+							"_parent": {
+								"$ref": "AAAAAAGFjJZCgjZ+1JY="
+							},
+							"name": "GetDiceById",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGFm/Y6md1XACY=",
+									"_parent": {
+										"$ref": "AAAAAAGFm/X8hd1B3rY="
+									},
+									"name": "int id",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGFm/Y6md1YfVU=",
+									"_parent": {
+										"$ref": "AAAAAAGFm/X8hd1B3rY="
+									},
+									"type": "Api.Model.Dice",
+									"direction": "return"
+								}
+							]
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAGFnBHdyd5Grk4=",
+							"_parent": {
+								"$ref": "AAAAAAGFjJZCgjZ+1JY="
+							},
+							"name": "RemoveAllDices",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGFnBIEPN5cs20=",
+									"_parent": {
+										"$ref": "AAAAAAGFnBHdyd5Grk4="
+									},
+									"type": "bool",
 									"direction": "return"
 								}
 							]
