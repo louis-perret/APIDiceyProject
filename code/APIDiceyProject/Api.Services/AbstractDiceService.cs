@@ -85,6 +85,11 @@ namespace Api.Services
         {
             throw new NotImplementedException();
         }
+
+        public bool AddDice(Dice dice)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

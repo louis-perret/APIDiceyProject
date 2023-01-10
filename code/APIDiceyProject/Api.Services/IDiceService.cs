@@ -31,5 +31,6 @@ namespace Api.Services
         /// </summary>
         /// <returns>True si correctement supprimés.</returns>
         bool RemoveAllDices();
+        bool AddDice(Dice dice);
     }
 }

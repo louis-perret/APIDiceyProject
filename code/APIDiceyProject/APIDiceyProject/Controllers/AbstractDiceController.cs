@@ -85,6 +85,17 @@ namespace APIDiceyProject.Controllers
             // logguer
             return StatusCode(500);
         }
+
+        [HttpPost]
+        public IActionResult AddDice(Api.DTOs.Dice dice)
+        {
+            if (_diceService.AddDice(dice.ToModel()))
+            {
+                return Ok();
+            }
+
+            return StatusCode(500);
+        }
         #endregion
     }
 }
