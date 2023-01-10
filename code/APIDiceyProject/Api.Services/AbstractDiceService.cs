@@ -80,6 +80,11 @@ namespace Api.Services
             _diceRepository.RemoveAllDices();
             return true;
         }
+
+        bool IDiceService.RemoveAllDices()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

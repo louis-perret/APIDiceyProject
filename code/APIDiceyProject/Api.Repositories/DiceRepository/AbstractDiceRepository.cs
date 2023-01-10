@@ -57,6 +57,11 @@ namespace Api.Repositories.DiceRepository
             // vider bd;
             return true;
         }
+
+        bool IDiceRepository.RemoveAllDices()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }
