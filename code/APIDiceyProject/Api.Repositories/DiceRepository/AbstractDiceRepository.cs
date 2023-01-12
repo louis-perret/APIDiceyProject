@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Api.Model;
+using ModelEntityExtensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api.Repositories.DiceRepository
 {
@@ -24,44 +26,40 @@ namespace Api.Repositories.DiceRepository
         /// <inheritdoc/>
         public List<Dice> GetDices()
         {
-            var dices = _context.dices.ToList();
-
-            var modelDices = new List<Api.Model.Dice>();
-
-            foreach(Api.Entities.Dice diceEntity in dices)
-            {
-                modelDices.Add(new Api.Model.SimpleDice(diceEntity.NbFaces));
-            }
-
-            return modelDices;
+            return _context.dices.ToList().ToModel();
         }
 
-        public Dice? GetDiceById(int id)
+        /// <inheritdoc/>
+        public Dice GetDiceById(int id)
         {
             var diceEntity = _context.dices.Where(dice => dice.NbFaces == id).FirstOrDefault();
-            
-            if(diceEntity != null)
-            {
-                return new Api.Model.SimpleDice(diceEntity.NbFaces);
-            }
 
-            return null;
+            if (diceEntity == null) throw new Exception("No dice with this ID");
+
+            return diceEntity.ToModel();
         }
 
-        /// <summary>
-        /// Supprime tous les dés.
-        /// </summary>
-        /// <returns>True si correctement supprimés.</returns>
-        bool RemoveAllDices()
+        /// <inheritdoc/>
+        public bool RemoveAllDices()
         {
-            // vider bd;
+            try
+            {
+                _context.dices.ExecuteDelete();
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
             return true;
         }
 
-        bool IDiceRepository.RemoveAllDices()
+        public bool AddDice(Dice dice)
         {
             throw new NotImplementedException();
         }
+
         #endregion
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Api.Services;
 using Microsoft.AspNetCore.Mvc;
+using ModelDTOExtensions;
 
 namespace APIDiceyProject.Controllers
 {
@@ -47,52 +48,39 @@ namespace APIDiceyProject.Controllers
         [Route("dices")]
         public IActionResult GetDices()
         {
-            List<Api.DTOs.Dice> dtoDices = new List<Api.DTOs.Dice>();
-
             var modelDices = _diceService.GetDices();
-            
-            foreach(Api.Model.Dice modelDice in modelDices)
-            {
-                dtoDices.Add(new Api.DTOs.Dice(modelDice.NbFaces));
-            }
-
-
-            return Ok(dtoDices);
+            return Ok(modelDices.ToDTO());
         }
         
 
         [HttpGet("{id}")]
         public IActionResult GetDiceById(int id)
         {
-            var modelDice = _diceService.GetDiceById(id);
-            
-            if(modelDice == null)
+            try
+            {
+                return Ok(_diceService.GetDiceById(id).ToDTO());
+            }
+            #region exceptions
+            catch (Exception e)
             {
                 return NotFound("There is no dice with this number of faces");
             }
-
-            return Ok(new Api.DTOs.Dice(modelDice.NbFaces));
+            #endregion
         }
 
         [HttpDelete]
         public IActionResult RemoveAllDices()
         {
-            if (_diceService.RemoveAllDices())
-            {
-                return Ok();
-            }
+            if (_diceService.RemoveAllDices()) return Ok();
 
-            // logguer
+            // logger
             return StatusCode(500);
         }
 
         [HttpPost]
         public IActionResult AddDice(Api.DTOs.Dice dice)
         {
-            if (_diceService.AddDice(dice.ToModel()))
-            {
-                return Ok();
-            }
+            if (_diceService.AddDice(dice.ToModel())) return Ok();
 
             return StatusCode(500);
         }

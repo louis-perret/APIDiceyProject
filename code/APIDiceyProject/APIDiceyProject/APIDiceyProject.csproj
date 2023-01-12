@@ -25,6 +25,7 @@
     <ProjectReference Include="..\Api.DTOs\Api.DTOs.csproj" />
     <ProjectReference Include="..\Api.Model\Api.Model.csproj" />
     <ProjectReference Include="..\Api.Services\Api.Services.csproj" />
+    <ProjectReference Include="..\ModelDTOExtensions\ModelDTOExtensions.csproj" />
   </ItemGroup>
 
 </Project>

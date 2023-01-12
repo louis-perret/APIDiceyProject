@@ -51,41 +51,34 @@ namespace Api.Services
         #endregion
 
         #region méthodes redéfinies
-
-        /// <summary>
-        /// Récupère la liste complète des dés en base.
-        /// </summary>
-        /// <returns> La liste complète des dés en base. </returns>
+        /// <inheritdoc/>
         public List<Dice> GetDices()
         {
             return _diceRepository.GetDices();
         }
 
-        /// <summary>
-        /// Récupère un dé avec son nombre de faces.
-        /// </summary>
-        /// <param name="id">Nombre de faces</param>
-        /// <returns>Un dé potentiellement NULL</returns>
-        public Dice? GetDiceById(int id)
+        /// <inheritdoc/>
+        public Dice GetDiceById(int id)
         {
             return _diceRepository.GetDiceById(id);
         }
 
-        /// <summary>
-        /// Supprime tous les dés.
-        /// </summary>
-        /// <returns>True si correctement supprimés.</returns>
-        bool RemoveAllDices()
+        /// <inheritdoc/>
+        public bool RemoveAllDices()
         {
-            _diceRepository.RemoveAllDices();
+            try
+            {
+                _diceRepository.RemoveAllDices();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+                
             return true;
         }
 
-        bool IDiceService.RemoveAllDices()
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <inheritdoc/>
         public bool AddDice(Dice dice)
         {
             throw new NotImplementedException();

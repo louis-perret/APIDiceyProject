@@ -17,11 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Entities", "Api.Entitie
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.DTOs", "Api.DTOs\Api.DTOs.csproj", "{9F037A85-750B-48F5-A41E-53CD47E5B543}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelDTOExtensions", "ModelDTOExtensions\ModelDTOExtensions.csproj", "{4B4740A3-880E-423C-8D0D-106715C34F0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelDTOExtensions", "ModelDTOExtensions\ModelDTOExtensions.csproj", "{4B4740A3-880E-423C-8D0D-106715C34F0E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9F037A85-750B-48F5-A41E-53CD47E5B543} = {9F037A85-750B-48F5-A41E-53CD47E5B543}
 		{E1E2B59B-6125-4AA3-AD0C-0D7D7A2AE915} = {E1E2B59B-6125-4AA3-AD0C-0D7D7A2AE915}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelEntityExtensions", "ModelEntityExtensions\ModelEntityExtensions.csproj", "{82A4E896-85D3-42E4-8387-969149A281C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{4B4740A3-880E-423C-8D0D-106715C34F0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B4740A3-880E-423C-8D0D-106715C34F0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B4740A3-880E-423C-8D0D-106715C34F0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82A4E896-85D3-42E4-8387-969149A281C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82A4E896-85D3-42E4-8387-969149A281C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82A4E896-85D3-42E4-8387-969149A281C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82A4E896-85D3-42E4-8387-969149A281C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

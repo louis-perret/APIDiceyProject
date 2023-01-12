@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Api.DTOs\Api.DTOs.csproj" />
+    <ProjectReference Include="..\Api.Model\Api.Model.csproj" />
+  </ItemGroup>
+
 </Project>
