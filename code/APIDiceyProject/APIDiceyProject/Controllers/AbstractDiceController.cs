@@ -1,4 +1,5 @@
 ﻿using Api.Services;
+using Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using ModelDTOExtensions;
 
@@ -47,38 +48,29 @@ namespace APIDiceyProject.Controllers
         [HttpGet]
         public async Task<IActionResult> GetDices()
         {
-            var modelDices = _diceService.GetDices();
-            return Ok((await modelDices).ToDTO());
+            return Ok((await _diceService.GetDices()).ToDTO());
         }
         
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetDiceById(int id)
         {
-            try
+            var dice = await _diceService.GetDiceById(id);
+            if(dice == null)
             {
-                var dice = await _diceService.GetDiceById(id);
-                if(dice == null)
-                {
-                    return NotFound("There is already a dice with this number of faces");
-                }
-                return Ok(_diceService.GetDiceById(id));
+                return NotFound("There is already a dice with this number of faces");
+                //Redirect? => question sur comment faire.
             }
-            #region exceptions
-            catch (Exception)
-            {
-                return StatusCode(500,"An error has occured");
-            }
-            #endregion
+            return Ok(_diceService.GetDiceById(id));
         }
 
         [HttpDelete]
         public async Task<IActionResult> RemoveAllDices()
         {
             if (await _diceService.RemoveAllDices()) return Ok();
-
+            
             // logger
-            return StatusCode(500);
+            return Problem("Could not delete dices.", statusCode: 500);
         }
 
         [HttpDelete("{id}")]
@@ -86,14 +78,12 @@ namespace APIDiceyProject.Controllers
         {
             try
             {
-                if (await _diceService.RemoveDiceById(id))
-                    return Ok();
-                else
-                    return BadRequest("No dice with this number of faces exists");
+                if (await _diceService.RemoveDiceById(id)) return Ok();
+                else return BadRequest("No dice with this number of faces exists");
             }
-            catch (Exception)
+            catch (EntityFrameworkException)
             {
-                return StatusCode(500);
+                return Problem("Could not remove the dice with the given id from the database");
             }
         }
 
@@ -105,10 +95,11 @@ namespace APIDiceyProject.Controllers
                 if (await _diceService.AddDice(dice.ToModel())) return CreatedAtAction(nameof(GetDices), dice.NbFaces, dice);
                 return BadRequest("No dice with this number of faces exists");
             }
-            catch (Exception)
+            catch(EntityFrameworkException)
             {
-                return StatusCode(500);
+                return Problem("Could not insert given object in database.", statusCode: 500);   
             }
+
         }
         #endregion
     }

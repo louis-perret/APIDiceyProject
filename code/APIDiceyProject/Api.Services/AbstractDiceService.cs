@@ -76,27 +76,13 @@ namespace Api.Services
         /// <inheritdoc/>
         public async Task<bool> AddDice(Dice dice)
         {
-            try
-            {
-                return await _diceRepository.AddDice(dice);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return await _diceRepository.AddDice(dice);
         }
 
         /// <inheritdoc/>
         public async Task<bool> RemoveDiceById(int id)
         {
-            try
-            {
-                return await _diceRepository.RemoveDiceById(id);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return await _diceRepository.RemoveDiceById(id);
         }
         #endregion
     }
