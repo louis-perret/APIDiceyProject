@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Api.Model\Api.Model.csproj" />
     <ProjectReference Include="..\Api.Repositories\Api.Repositories.csproj" />
+    <ProjectReference Include="..\Exceptions\Exceptions.csproj" />
   </ItemGroup>
 
 </Project>
