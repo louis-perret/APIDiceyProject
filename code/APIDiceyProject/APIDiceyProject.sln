@@ -5,17 +5,25 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIDiceyProject", "APIDiceyProject\APIDiceyProject.csproj", "{6C8C638A-5DCD-4A5C-97EA-F68D87B7C8E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Services", "Api.Services\Api.Services.csproj", "{E5CD4F77-CF2D-4E59-AA4B-64C110E1002B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Services", "Api.Services\Api.Services.csproj", "{E5CD4F77-CF2D-4E59-AA4B-64C110E1002B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Model", "Api.Model\Api.Model.csproj", "{E1E2B59B-6125-4AA3-AD0C-0D7D7A2AE915}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Model", "Api.Model\Api.Model.csproj", "{E1E2B59B-6125-4AA3-AD0C-0D7D7A2AE915}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Repositories", "Api.Repositories\Api.Repositories.csproj", "{FB75F8CF-922B-49D1-A621-8B87A49EE4F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Repositories", "Api.Repositories\Api.Repositories.csproj", "{FB75F8CF-922B-49D1-A621-8B87A49EE4F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.EF", "Api.EF\Api.EF.csproj", "{5F55600D-965B-4024-8DFE-782CC8DAEB51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.EF", "Api.EF\Api.EF.csproj", "{5F55600D-965B-4024-8DFE-782CC8DAEB51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Entities", "Api.Entities\Api.Entities.csproj", "{155B673E-2747-460E-90EA-81BF2EFBBD7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Entities", "Api.Entities\Api.Entities.csproj", "{155B673E-2747-460E-90EA-81BF2EFBBD7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.DTOs", "Api.DTOs\Api.DTOs.csproj", "{9F037A85-750B-48F5-A41E-53CD47E5B543}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.DTOs", "Api.DTOs\Api.DTOs.csproj", "{9F037A85-750B-48F5-A41E-53CD47E5B543}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelDTOExtensions", "ModelDTOExtensions\ModelDTOExtensions.csproj", "{4B4740A3-880E-423C-8D0D-106715C34F0E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9F037A85-750B-48F5-A41E-53CD47E5B543} = {9F037A85-750B-48F5-A41E-53CD47E5B543}
+		{E1E2B59B-6125-4AA3-AD0C-0D7D7A2AE915} = {E1E2B59B-6125-4AA3-AD0C-0D7D7A2AE915}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelEntityExtensions", "ModelEntityExtensions\ModelEntityExtensions.csproj", "{82A4E896-85D3-42E4-8387-969149A281C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +59,14 @@ Global
 		{9F037A85-750B-48F5-A41E-53CD47E5B543}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F037A85-750B-48F5-A41E-53CD47E5B543}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F037A85-750B-48F5-A41E-53CD47E5B543}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B4740A3-880E-423C-8D0D-106715C34F0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B4740A3-880E-423C-8D0D-106715C34F0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B4740A3-880E-423C-8D0D-106715C34F0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B4740A3-880E-423C-8D0D-106715C34F0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82A4E896-85D3-42E4-8387-969149A281C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82A4E896-85D3-42E4-8387-969149A281C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82A4E896-85D3-42E4-8387-969149A281C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82A4E896-85D3-42E4-8387-969149A281C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,7 @@
+using Api.EF;
 using Api.Repositories.DiceRepository;
 using Api.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 

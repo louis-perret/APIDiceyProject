@@ -1,5 +1,6 @@
 ﻿using Api.Services;
 using Microsoft.AspNetCore.Mvc;
+using ModelDTOExtensions;
 
 namespace APIDiceyProject.Controllers
 {
@@ -24,24 +25,17 @@ namespace APIDiceyProject.Controllers
 
         #region constructeur
         /// <summary>
-        /// Constructeur à un argument.
-        /// </summary>
-        /// <param name="diceService"> Service contenant la logique CRUD des dés. </param>
-        protected AbstractDiceController(IDiceService diceService)
-        {
-            _diceService = diceService;
-        }
-
-        /// <summary>
         /// Constructeur complet.
         /// Utilise le constructeru à un argument.
         /// </summary>
         /// <param name="logger"> Logger de cette classe. </param>
-        /// <param name="diceServce"> Service contenant la logique CRUD des dés. </param>
-        protected AbstractDiceController(ILogger<AbstractDiceController> logger, IDiceService diceServce) : this(diceServce)
+        /// <param name="diceService"> Service contenant la logique CRUD des dés. </param>
+        protected AbstractDiceController(ILogger<AbstractDiceController> logger, IDiceService diceService)
         {
+            _diceService = diceService;
             _logger = logger;
         }
+
         #endregion
 
         #region routes
@@ -51,20 +45,70 @@ namespace APIDiceyProject.Controllers
         /// </summary>
         /// <returns> La liste complète des dés. </returns>
         [HttpGet]
-        [Route("dices")]
         public IActionResult GetDices()
         {
-            List<Api.DTOs.Dice> dtoDices = new List<Api.DTOs.Dice>();
-
             var modelDices = _diceService.GetDices();
-            
-            foreach(Api.Model.Dice modelDice in modelDices)
+            return Ok(modelDices.ToDTO());
+        }
+        
+
+        [HttpGet("{id}")]
+        public IActionResult GetDiceById(int id)
+        {
+            try
             {
-                dtoDices.Add(new Api.DTOs.Dice(modelDice.NbFaces));
+                var dice = _diceService.GetDiceById(id);
+                if(dice == null)
+                {
+                    return NotFound("There is already a dice with this number of faces");
+                }
+                return Ok(_diceService.GetDiceById(id));
             }
+            #region exceptions
+            catch (Exception e)
+            {
+                return StatusCode(500,"An error has occured");
+            }
+            #endregion
+        }
 
+        [HttpDelete]
+        public IActionResult RemoveAllDices()
+        {
+            if (_diceService.RemoveAllDices()) return Ok();
 
-            return Ok(dtoDices);
+            // logger
+            return StatusCode(500);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult RemoveDiceById(int id)
+        {
+            try
+            {
+                if (_diceService.RemoveDiceById(id))
+                    return Ok();
+                else
+                    return BadRequest("No dice with this number of faces exists");
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult AddDice(Api.DTOs.Dice dice)
+        {
+            try
+            {
+                if (_diceService.AddDice(dice.ToModel())) return CreatedAtAction(nameof(GetDices), dice.NbFaces, dice);
+                return BadRequest("No dice with this number of faces exists");
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
         }
         #endregion
     }

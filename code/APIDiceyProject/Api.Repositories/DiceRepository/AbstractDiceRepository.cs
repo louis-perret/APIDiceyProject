@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Api.Model;
+using ModelEntityExtensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api.Repositories.DiceRepository
 {
@@ -24,17 +26,71 @@ namespace Api.Repositories.DiceRepository
         /// <inheritdoc/>
         public List<Dice> GetDices()
         {
-            var dices = _context.dices.ToList();
+            return _context.dices.ToList().ToModel();
+        }
 
-            var modelDices = new List<Api.Model.Dice>();
+        /// <inheritdoc/>
+        public Dice? GetDiceById(int id)
+        {
+            var diceEntity = _context.dices.Where(dice => dice.NbFaces == id).FirstOrDefault();
 
-            foreach(Api.Entities.Dice diceEntity in dices)
+            if (diceEntity == null) return null;
+
+            return diceEntity.ToModel();
+        }
+
+        /// <inheritdoc/>
+        public bool RemoveAllDices()
+        {
+            try
             {
-                modelDices.Add(new Api.Model.SimpleDice(diceEntity.NbFaces));
+                _context.dices.ExecuteDelete();
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw;
             }
 
-            return modelDices;
+            return true;
         }
+
+        public bool AddDice(Dice diceAdd)
+        {
+            try
+            {
+                if (_context.dices.Where(dice => dice.NbFaces == diceAdd.NbFaces).FirstOrDefault()==null && diceAdd.NbFaces >0)
+                {
+                    _context.dices.Add(diceAdd.ToEntity());
+                    _context.SaveChanges();
+                    return true;
+                }
+                else 
+                    return false;
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool RemoveDiceById(int id)
+        {
+            try
+            {
+                var dice = _context.dices.Where(dice => dice.NbFaces == id).FirstOrDefault();
+                if (dice == null)
+                    return false;
+                _context.dices.Remove(dice);
+                _context.SaveChanges();
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+            return true;
+        }
+
         #endregion
     }
 }

@@ -47,14 +47,60 @@ namespace Api.Services
         {
             _logger = logger;
         }
+
         #endregion
 
         #region méthodes redéfinies
-
         /// <inheritdoc/>
         public List<Dice> GetDices()
         {
             return _diceRepository.GetDices();
+        }
+
+        /// <inheritdoc/>
+        public Dice? GetDiceById(int id)
+        {
+            return _diceRepository.GetDiceById(id);
+        }
+
+        /// <inheritdoc/>
+        public bool RemoveAllDices()
+        {
+            try
+            {
+                _diceRepository.RemoveAllDices();
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+                
+            return true;
+        }
+
+        /// <inheritdoc/>
+        public bool AddDice(Dice dice)
+        {
+            try
+            {
+                return _diceRepository.AddDice(dice);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool RemoveDiceById(int id)
+        {
+            try
+            {
+                return _diceRepository.RemoveDiceById(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
         #endregion
     }
