@@ -60,7 +60,7 @@ namespace APIDiceyProject.Controllers
                 var dice = _diceService.GetDiceById(id);
                 if(dice == null)
                 {
-                    return NotFound("There is no dice with this number of faces");
+                    return NotFound("There is already a dice with this number of faces");
                 }
                 return Ok(_diceService.GetDiceById(id));
             }
