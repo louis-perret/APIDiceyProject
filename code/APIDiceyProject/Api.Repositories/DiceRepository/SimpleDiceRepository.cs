@@ -12,7 +12,7 @@ namespace Api.Repositories.DiceRepository
     /// </summary>
     public class SimpleDiceRepository : AbstractDiceRepository
     {
-        public SimpleDiceRepository() : base()
+        public SimpleDiceRepository(ApiDbContext context) : base(context)
         {
         }
     }

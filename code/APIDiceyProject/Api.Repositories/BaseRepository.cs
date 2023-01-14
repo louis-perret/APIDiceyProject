@@ -16,14 +16,14 @@ namespace Api.Repositories
         /// <summary>
         /// DbContext de l'API.
         /// </summary>
-        protected Api_DbContext _context;
+        protected ApiDbContext _context;
 
         /// <summary>
         /// Constructeur instanciant l'Api_DbContext voulu.
         /// </summary>
-        public BaseRepository()
+        public BaseRepository(ApiDbContext context)
         {
-            _context = new Api_DbContext_Stubbed();
+            _context = context;
         }
     }
 }
