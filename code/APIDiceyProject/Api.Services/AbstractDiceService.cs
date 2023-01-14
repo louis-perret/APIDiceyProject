@@ -70,7 +70,7 @@ namespace Api.Services
             {
                 _diceRepository.RemoveAllDices();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }

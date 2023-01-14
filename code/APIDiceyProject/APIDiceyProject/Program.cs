@@ -16,6 +16,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IDiceService, SimpleDiceService>();
 builder.Services.AddTransient<IDiceRepository, SimpleDiceRepository>();
 
+//Dépendances pour BaseRepository
+builder.Services.AddDbContext<ApiDbContextStubbed>();
+builder.Services.AddScoped<ApiDbContext, ApiDbContextStubbed>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

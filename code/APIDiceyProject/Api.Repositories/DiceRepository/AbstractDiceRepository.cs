@@ -16,7 +16,7 @@ namespace Api.Repositories.DiceRepository
     public class AbstractDiceRepository : BaseRepository, IDiceRepository
     {
         #region constructeur
-        public AbstractDiceRepository() : base()
+        public AbstractDiceRepository(ApiDbContext context) : base(context)
         {
         }
         #endregion

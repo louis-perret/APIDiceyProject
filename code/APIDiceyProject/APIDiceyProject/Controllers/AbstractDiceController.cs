@@ -65,7 +65,7 @@ namespace APIDiceyProject.Controllers
                 return Ok(_diceService.GetDiceById(id));
             }
             #region exceptions
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(500,"An error has occured");
             }
