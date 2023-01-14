@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace Api.DTOs
         /// <summary>
         /// Nombre de faces du dé.
         /// </summary>
+        [Required]
         public int NbFaces { get; set; }
 
         /// <summary>
