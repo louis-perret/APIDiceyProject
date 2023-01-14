@@ -17,7 +17,7 @@ Création de la base de données (Reset à chaque foi pour l'instant => pas de m
 
 Se déplacer dans APIDiceyProject/APIDiceyProject (Le project contenant les controllers de l'API RESTful).
 
-dotnet ef migrations add test --project ../Api.EF --context Api_DbContext_Stubbed
+dotnet ef migrations add test --project ../Api.EF --context ApiDbContextStubbed
 
-dotnet ef database update test --project ../Api.EF --context Api_DbContext_Stubbed
+dotnet ef database update test --project ../Api.EF --context ApiDbContextStubbed
 
