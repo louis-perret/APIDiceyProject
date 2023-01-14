@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Api.EF\Api.EF.csproj" />
+    <ProjectReference Include="..\Api.Entities\Api.Entities.csproj" />
+    <ProjectReference Include="..\Api.Model\Api.Model.csproj" />
+    <ProjectReference Include="..\ModelEntityExtensions\ModelEntityExtensions.csproj" />
+  </ItemGroup>
+
+</Project>
