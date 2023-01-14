@@ -22,7 +22,6 @@ namespace Api.EF
         #endregion
 
         #region constructeurs
-
         /// <summary>
         /// Constructeur vide.
         /// </summary>
