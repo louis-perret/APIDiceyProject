@@ -1,6 +1,7 @@
 using Api.EF;
 using Api.Repositories.DiceRepository;
 using Api.Services;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,9 @@ builder.Services.AddTransient<IDiceRepository, SimpleDiceRepository>();
 //Dépendances pour BaseRepository
 builder.Services.AddDbContext<ApiDbContextStubbed>();
 builder.Services.AddScoped<ApiDbContext, ApiDbContextStubbed>();
+
+//Versionnage de l'API
+builder.Services.AddApiVersioning(v => v.ApiVersionReader = new UrlSegmentApiVersionReader());
 
 var app = builder.Build();
 
