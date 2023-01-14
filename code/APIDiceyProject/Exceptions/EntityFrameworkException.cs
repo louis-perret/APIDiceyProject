@@ -8,5 +8,8 @@ namespace Exceptions
 {
     public class EntityFrameworkException : Exception
     {
+        public EntityFrameworkException(string? message) : base(message)
+        {
+        }
     }
 }
