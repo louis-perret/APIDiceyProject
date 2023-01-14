@@ -48,7 +48,10 @@ namespace APIDiceyProject.Controllers
         [HttpGet]
         public async Task<IActionResult> GetDices()
         {
-            return Ok((await _diceService.GetDices()).ToDTO());
+            var dices = await _diceService.GetDices();
+
+            _logger?.LogInformation("GetDices : requête effectuée avec succès. List de dés de taille " + dices.Count() + " retournée.");
+            return Ok(dices.ToDTO());
         }
         
 
@@ -58,18 +61,26 @@ namespace APIDiceyProject.Controllers
             var dice = await _diceService.GetDiceById(id);
             if(dice == null)
             {
+                _logger?.LogInformation("GetDicesById : requête effectuée avec succès. Dé d'ID " + id + " demandé par l'utilisateur n'existe pas en base.");
                 return NotFound("There is already a dice with this number of faces");
                 //Redirect? => question sur comment faire.
             }
+
+            _logger?.LogInformation("GetDicesById : requête effectée avec succès. Dé d'ID " + id + "est retourné à l'utilisateur.");
             return Ok(_diceService.GetDiceById(id));
         }
 
         [HttpDelete]
         public async Task<IActionResult> RemoveAllDices()
         {
-            if (await _diceService.RemoveAllDices()) return Ok();
-            
-            // logger
+            if (await _diceService.RemoveAllDices())
+            {
+                _logger?.LogInformation("RemoveAllDices : Requête effectuée avec succès. Tous les dés ont été supprimés.");
+
+                return Ok();
+            }
+
+            _logger?.LogError("RemoveAllDices : Les dés n'ont pas pu être supprimé par la base de données. ");
             return Problem("Could not delete dices.", statusCode: 500);
         }
 
@@ -78,11 +89,20 @@ namespace APIDiceyProject.Controllers
         {
             try
             {
-                if (await _diceService.RemoveDiceById(id)) return Ok();
-                else return BadRequest("No dice with this number of faces exists");
+                if (await _diceService.RemoveDiceById(id))
+                {
+                    _logger?.LogInformation("RemoveDiceById : Requête effectuée avec succès. Le dé d'identifiant " + id + "a bien été suprrimé");
+                    return Ok();
+                }
+                else
+                {
+                    _logger?.LogInformation("RemoveDiceById : Requête effectuée avec succès. Le dé d'identifiant " + id + " n'existe pas en base. Suppression impossible.");
+                    return BadRequest("No dice with this number of faces exists");
+                }
             }
             catch (EntityFrameworkException)
             {
+                _logger?.LogError("RemoveDiceById : Erreur EntityFramework. Le dé d'identifiant " + id + " n'a pas pu être supprimé.");
                 return Problem("Could not remove the dice with the given id from the database");
             }
         }
@@ -92,11 +112,19 @@ namespace APIDiceyProject.Controllers
         {
             try
             {
-                if (await _diceService.AddDice(dice.ToModel())) return CreatedAtAction(nameof(GetDices), dice.NbFaces, dice);
+                if (await _diceService.AddDice(dice.ToModel()))
+                {
+                    _logger?.LogInformation("AddDice : requête effectuée avec succès. Le dé d'id " + dice.NbFaces + " a bien été ajouté.");
+                    return CreatedAtAction(nameof(GetDices), dice.NbFaces, dice);
+                }
+
+                _logger?.LogInformation("AddDice : requête effectuée avec succès. Le dé d'id " + dice.NbFaces + " existe déjà en base. Le dé n'a pu être ajouté.");
+
                 return BadRequest("No dice with this number of faces exists");
             }
             catch(EntityFrameworkException)
             {
+                _logger?.LogError("AddDice : Erreur EntityFramework. Le dé d'identifiant " + dice.NbFaces + " n'a pas pu être ajouté.");
                 return Problem("Could not insert given object in database.", statusCode: 500);   
             }
 
