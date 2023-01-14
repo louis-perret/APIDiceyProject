@@ -45,19 +45,19 @@ namespace APIDiceyProject.Controllers
         /// </summary>
         /// <returns> La liste complète des dés. </returns>
         [HttpGet]
-        public IActionResult GetDices()
+        public async Task<IActionResult> GetDices()
         {
             var modelDices = _diceService.GetDices();
-            return Ok(modelDices.ToDTO());
+            return Ok((await modelDices).ToDTO());
         }
         
 
         [HttpGet("{id}")]
-        public IActionResult GetDiceById(int id)
+        public async Task<IActionResult> GetDiceById(int id)
         {
             try
             {
-                var dice = _diceService.GetDiceById(id);
+                var dice = await _diceService.GetDiceById(id);
                 if(dice == null)
                 {
                     return NotFound("There is already a dice with this number of faces");
@@ -73,20 +73,20 @@ namespace APIDiceyProject.Controllers
         }
 
         [HttpDelete]
-        public IActionResult RemoveAllDices()
+        public async Task<IActionResult> RemoveAllDices()
         {
-            if (_diceService.RemoveAllDices()) return Ok();
+            if (await _diceService.RemoveAllDices()) return Ok();
 
             // logger
             return StatusCode(500);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult RemoveDiceById(int id)
+        public async Task<IActionResult> RemoveDiceById(int id)
         {
             try
             {
-                if (_diceService.RemoveDiceById(id))
+                if (await _diceService.RemoveDiceById(id))
                     return Ok();
                 else
                     return BadRequest("No dice with this number of faces exists");
@@ -98,11 +98,11 @@ namespace APIDiceyProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddDice(Api.DTOs.Dice dice)
+        public async Task<IActionResult> AddDice(Api.DTOs.Dice dice)
         {
             try
             {
-                if (_diceService.AddDice(dice.ToModel())) return CreatedAtAction(nameof(GetDices), dice.NbFaces, dice);
+                if (await _diceService.AddDice(dice.ToModel())) return CreatedAtAction(nameof(GetDices), dice.NbFaces, dice);
                 return BadRequest("No dice with this number of faces exists");
             }
             catch (Exception)

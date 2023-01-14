@@ -1,10 +1,4 @@
-﻿using Api.EF;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Api.Model;
+﻿using Api.Model;
 using ModelEntityExtensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,15 +18,15 @@ namespace Api.Repositories.DiceRepository
         #region méthodes redéfinies
 
         /// <inheritdoc/>
-        public List<Dice> GetDices()
+        public async Task<List<Dice>> GetDices()
         {
-            return _context.dices.ToList().ToModel();
+            return (await _context.dices.ToListAsync()).ToModel();
         }
 
         /// <inheritdoc/>
-        public Dice? GetDiceById(int id)
+        public async Task<Dice?> GetDiceById(int id)
         {
-            var diceEntity = _context.dices.Where(dice => dice.NbFaces == id).FirstOrDefault();
+            var diceEntity = await _context.dices.Where(dice => dice.NbFaces == id).FirstOrDefaultAsync();
 
             if (diceEntity == null) return null;
 
@@ -40,12 +34,12 @@ namespace Api.Repositories.DiceRepository
         }
 
         /// <inheritdoc/>
-        public bool RemoveAllDices()
+        public async Task<bool> RemoveAllDices()
         {
             try
             {
-                _context.dices.ExecuteDelete();
-                _context.SaveChanges();
+                await _context.dices.ExecuteDeleteAsync();
+                await _context.SaveChangesAsync();
             }
             catch (Exception)
             {
@@ -55,14 +49,15 @@ namespace Api.Repositories.DiceRepository
             return true;
         }
 
-        public bool AddDice(Dice diceAdd)
+        /// <inheritdoc/>
+        public async Task<bool> AddDice(Dice diceAdd)
         {
             try
             {
-                if (_context.dices.Where(dice => dice.NbFaces == diceAdd.NbFaces).FirstOrDefault()==null && diceAdd.NbFaces >0)
+                if (await _context.dices.Where(dice => dice.NbFaces == diceAdd.NbFaces).FirstOrDefaultAsync() == null && diceAdd.NbFaces >0)
                 {
-                    _context.dices.Add(diceAdd.ToEntity());
-                    _context.SaveChanges();
+                    await _context.dices.AddAsync(diceAdd.ToEntity());
+                    await _context.SaveChangesAsync();
                     return true;
                 }
                 else 
@@ -74,15 +69,16 @@ namespace Api.Repositories.DiceRepository
             }
         }
 
-        public bool RemoveDiceById(int id)
+        /// <inheritdoc/>
+        public async Task<bool> RemoveDiceById(int id)
         {
             try
             {
-                var dice = _context.dices.Where(dice => dice.NbFaces == id).FirstOrDefault();
+                var dice = await _context.dices.Where(dice => dice.NbFaces == id).FirstOrDefaultAsync();
                 if (dice == null)
                     return false;
-                _context.dices.Remove(dice);
-                _context.SaveChanges();
+                await Task.FromResult(_context.dices.Remove(dice));
+                await _context.SaveChangesAsync();
             }
             catch(Exception)
             {
