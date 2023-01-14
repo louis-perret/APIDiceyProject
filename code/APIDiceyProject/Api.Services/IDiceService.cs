@@ -24,7 +24,7 @@ namespace Api.Services
         /// </summary>
         /// <param name="id">Nombre de faces</param>
         /// <returns>Un dé potentiellement NULL</returns>
-        Dice GetDiceById(int id);
+        Dice? GetDiceById(int id);
 
         /// <summary>
         /// Supprime tous les dés.
@@ -38,5 +38,6 @@ namespace Api.Services
         /// <param name="dice"> Dé à enregistrer. </param>
         /// <returns> Vrai si l'instertion a pu s'effectuer, faux autrement. </returns>
         bool AddDice(Dice dice);
+        bool RemoveDiceById(int id);
     }
 }

@@ -23,7 +23,7 @@ namespace Api.Repositories.DiceRepository
         /// </summary>
         /// <param name="id"> Nombre de faces du dé voulu. </param>
         /// <returns></returns>
-        Dice GetDiceById(int id);
+        Dice? GetDiceById(int id);
 
         /// <summary>
         /// Supprime tous les dés.
@@ -37,5 +37,6 @@ namespace Api.Repositories.DiceRepository
         /// <param name="dice"> Le dé à ajouter. </param>
         /// <returns> Vrai si le dé a pu être ajouté, faux autrement. </returns>
         bool AddDice(Dice dice);
+        bool RemoveDiceById(int id);
     }
 }

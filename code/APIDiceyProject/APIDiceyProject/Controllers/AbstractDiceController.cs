@@ -45,7 +45,6 @@ namespace APIDiceyProject.Controllers
         /// </summary>
         /// <returns> La liste complète des dés. </returns>
         [HttpGet]
-        [Route("dices")]
         public IActionResult GetDices()
         {
             var modelDices = _diceService.GetDices();
@@ -58,12 +57,17 @@ namespace APIDiceyProject.Controllers
         {
             try
             {
-                return Ok(_diceService.GetDiceById(id).ToDTO());
+                var dice = _diceService.GetDiceById(id);
+                if(dice == null)
+                {
+                    return NotFound("There is no dice with this number of faces");
+                }
+                return Ok(_diceService.GetDiceById(id));
             }
             #region exceptions
             catch (Exception e)
             {
-                return NotFound("There is no dice with this number of faces");
+                return StatusCode(500,"An error has occured");
             }
             #endregion
         }
@@ -77,12 +81,34 @@ namespace APIDiceyProject.Controllers
             return StatusCode(500);
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult RemoveDiceById(int id)
+        {
+            try
+            {
+                if (_diceService.RemoveDiceById(id))
+                    return Ok();
+                else
+                    return BadRequest("No dice with this number of faces exists");
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+
         [HttpPost]
         public IActionResult AddDice(Api.DTOs.Dice dice)
         {
-            if (_diceService.AddDice(dice.ToModel())) return Ok();
-
-            return StatusCode(500);
+            try
+            {
+                if (_diceService.AddDice(dice.ToModel())) return CreatedAtAction(nameof(GetDices), dice.NbFaces, dice);
+                return BadRequest("No dice with this number of faces exists");
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
         }
         #endregion
     }

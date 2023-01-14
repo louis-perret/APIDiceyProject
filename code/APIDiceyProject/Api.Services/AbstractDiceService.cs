@@ -58,7 +58,7 @@ namespace Api.Services
         }
 
         /// <inheritdoc/>
-        public Dice GetDiceById(int id)
+        public Dice? GetDiceById(int id)
         {
             return _diceRepository.GetDiceById(id);
         }
@@ -70,9 +70,9 @@ namespace Api.Services
             {
                 _diceRepository.RemoveAllDices();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return false;
+                throw;
             }
                 
             return true;
@@ -81,7 +81,26 @@ namespace Api.Services
         /// <inheritdoc/>
         public bool AddDice(Dice dice)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _diceRepository.AddDice(dice);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool RemoveDiceById(int id)
+        {
+            try
+            {
+                return _diceRepository.RemoveDiceById(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
         #endregion
     }

@@ -30,11 +30,11 @@ namespace Api.Repositories.DiceRepository
         }
 
         /// <inheritdoc/>
-        public Dice GetDiceById(int id)
+        public Dice? GetDiceById(int id)
         {
             var diceEntity = _context.dices.Where(dice => dice.NbFaces == id).FirstOrDefault();
 
-            if (diceEntity == null) throw new Exception("No dice with this ID");
+            if (diceEntity == null) return null;
 
             return diceEntity.ToModel();
         }
@@ -49,15 +49,46 @@ namespace Api.Repositories.DiceRepository
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
 
             return true;
         }
 
-        public bool AddDice(Dice dice)
+        public bool AddDice(Dice diceAdd)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (_context.dices.Where(dice => dice.NbFaces == diceAdd.NbFaces).FirstOrDefault()==null && diceAdd.NbFaces >0)
+                {
+                    _context.dices.Add(diceAdd.ToEntity());
+                    _context.SaveChanges();
+                    return true;
+                }
+                else 
+                    return false;
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool RemoveDiceById(int id)
+        {
+            try
+            {
+                var dice = _context.dices.Where(dice => dice.NbFaces == id).FirstOrDefault();
+                if (dice == null)
+                    return false;
+                _context.dices.Remove(dice);
+                _context.SaveChanges();
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+            return true;
         }
 
         #endregion
