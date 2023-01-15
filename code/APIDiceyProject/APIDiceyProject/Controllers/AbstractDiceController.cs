@@ -57,7 +57,11 @@ namespace APIDiceyProject.Controllers.V1
             return Ok(dices.ToDTO());
         }
         
-
+        /// <summary>
+        /// Récupère un dé en fonction de son nombre de faces.
+        /// </summary>
+        /// <param name="id">Nombre de faces du dé à récupérer.</param>
+        /// <returns>Le dé si trouvé, sinon une BadRequest.</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetDiceById(int id)
         {
@@ -73,6 +77,10 @@ namespace APIDiceyProject.Controllers.V1
             return Ok(dice.ToDTO());
         }
 
+        /// <summary>
+        /// Supprime tous les dés.
+        /// </summary>
+        /// <returns>Un code de retour de 200 si effectué, 500 sinon.</returns>
         [HttpDelete]
         public async Task<IActionResult> RemoveAllDices()
         {
@@ -86,6 +94,11 @@ namespace APIDiceyProject.Controllers.V1
             return Problem("Could not delete dices.", statusCode: 500);
         }
 
+        /// <summary>
+        /// Supprime un dé.
+        /// </summary>
+        /// <param name="id">Nombre de faces du dé à supprimer.</param>
+        /// <returns>Code de retour de 200 si effectué, 400 ou 500 autrement.</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveDiceById(int id)
         {
@@ -109,6 +122,11 @@ namespace APIDiceyProject.Controllers.V1
             }
         }
 
+        /// <summary>
+        /// Ajoute un dé.
+        /// </summary>
+        /// <param name="dice">Dé à ajouter.</param>
+        /// <returns>Code de retour de 201 si ajouté, 400 ou 500 autrement.</returns>
         [HttpPost]
         public async Task<IActionResult> AddDice(Api.DTOs.Dice dice)
         {
@@ -117,7 +135,7 @@ namespace APIDiceyProject.Controllers.V1
                 if (await _diceService.AddDice(dice.ToModel()))
                 {
                     _logger?.LogInformation("AddDice : requête effectuée avec succès. Le dé d'id " + dice.NbFaces + " a bien été ajouté.");
-                    return CreatedAtAction(nameof(GetDices), dice.NbFaces, dice);
+                    return CreatedAtAction(nameof(AddDice), dice.NbFaces, dice);
                 }
 
                 _logger?.LogInformation("AddDice : requête effectuée avec succès. Le dé d'id " + dice.NbFaces + " existe déjà en base. Le dé n'a pu être ajouté.");
