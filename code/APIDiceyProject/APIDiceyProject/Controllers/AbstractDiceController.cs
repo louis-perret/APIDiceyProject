@@ -70,7 +70,7 @@ namespace APIDiceyProject.Controllers.V1
             }
 
             _logger?.LogInformation("GetDicesById : requête effectée avec succès. Dé d'ID " + id + "est retourné à l'utilisateur.");
-            return Ok(_diceService.GetDiceById(id));
+            return Ok(dice.ToDTO());
         }
 
         [HttpDelete]
@@ -82,7 +82,6 @@ namespace APIDiceyProject.Controllers.V1
 
                 return Ok();
             }
-
             _logger?.LogError("RemoveAllDices : Les dés n'ont pas pu être supprimé par la base de données. ");
             return Problem("Could not delete dices.", statusCode: 500);
         }
@@ -106,7 +105,7 @@ namespace APIDiceyProject.Controllers.V1
             catch (EntityFrameworkException)
             {
                 _logger?.LogError("RemoveDiceById : Erreur EntityFramework. Le dé d'identifiant " + id + " n'a pas pu être supprimé.");
-                return Problem("Could not remove the dice with the given id from the database");
+                return Problem("Could not remove the dice with the given id from the database", statusCode:500);
             }
         }
 
