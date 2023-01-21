@@ -2,7 +2,9 @@
 using ApiGRPCDiceyProject.Client;
 using Grpc.Net.Client;
 
-using var channel = GrpcChannel.ForAddress("https://localhost:7042");
+var httpHandler = new HttpClientHandler();
+httpHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+using var channel = GrpcChannel.ForAddress("https://localhost:7088", new GrpcChannelOptions { HttpHandler = httpHandler });
 var client = new ThrowService.ThrowServiceClient(channel);
 var reply = await client.GetThrowByIdAsync(
                   new Request() { SearchId = "1" });
