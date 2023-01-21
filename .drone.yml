@@ -1,7 +1,7 @@
 kind: pipeline
 type: docker
 name: default
-
+ 
 trigger:
   event:
     - push
@@ -13,24 +13,23 @@ steps:
       - name: docs
         path: /Documentation
     commands:
-	    - cd code/APIDiceyProject/
-	    - dotnet restore APIDiceyProject.sln
-	    - dotnet build APIDiceyProject.sln -c Release --no-restore
-	    - dotnet publish APIDiceyProject.sln -c Release --no-restore -o CI_PROJECT_DIR/build/release
+      - cd code/APIDiceyProject
+      - dotnet restore APIDiceyProject.sln
+      - dotnet build APIDiceyProject.sln -c Release --no-restore
+      - dotnet publish APIDiceyProject.sln -c Release --no-restore -o CI_PROJECT_DIR/build/release
 
-  - name : tests
+  - name: tests
     image: mcr.microsoft.com/dotnet/sdk:6.0
     commands:
-	    - cd code/APIDiceyProject
-	    - dotnet restore DiceyProject.sln
-	    - dotnet test DiceyProject.sln --no-restore
+      - cd code/APIDiceyProject
+      - dotnet restore APIDiceyProject.sln
+      - dotnet test APIDiceyProject.sln --no-restore
     depends_on: [build]
-
 
   - name: code-analysis
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dronesonarplugin-dotnet6
     commands:
-      - cd code/APIDiceyProject
+      - cd Sources/
       - dotnet restore APIDiceyProject.sln
       - dotnet sonarscanner begin /k:APIDiceyProject /d:sonar.host.url=$${PLUGIN_SONAR_HOST} /d:sonar.coverageReportPaths="coveragereport/SonarQube.xml" /d:sonar.coverage.exclusions="Tests/**" /d:sonar.login=$${PLUGIN_SONAR_TOKEN} 
       - dotnet build APIDiceyProject.sln -c Release --no-restore
@@ -47,11 +46,24 @@ steps:
         from_secret: SECRET_SONAR_LOGIN
     depends_on: [tests]
 
+  - name: generate-and-deploy-docs
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-docdeployer
+    failure: ignore
+    volumes:
+      - name: docs
+        path: /Documentation
+    commands:
+      #- cd Documentation/doxygen
+      #- doxygen Doxyfile
+      - /entrypoint.sh
+    when:
+      branch:
+        - master
+    depends_on: [ build ]
+
 volumes:
 - name: docs
   temp: {}
-
-
 
 
 
