@@ -18,7 +18,7 @@ Nous avons deux API :
 Nous avons effectué ce choix car nous risquons de posséder plusieurs dizaines de lancers que l'API pourra retourner. Ainsi, l'utilisation d'une API GRPC permettra de répondre à ce besoin en améliorant les performances de l'utilisation de cette dernière.
 
 
-## Requirements
+## Contraintes techniques
 
 Afin de pouvoir build le projet, il faut utiliser le framework .NET et Asp.Net en version 6.0.
 
@@ -30,13 +30,13 @@ Les NuGet que nous utilisons pour ce projet sont :
 
 
 
-## Getting started
+## Premier pas
 
 Afin de pouvoir tester notre API (pour l'instant uniquement disponible en mode console), il vous suffit de lancer la solution APIDiceyProject.sln, puis de générer et lancer l'assembly `MyConsoleApp.csproj`
 
 
 
-## Where are we now?
+## Où en sommes-nous ?
 ---
 
 ### API REST
@@ -64,13 +64,13 @@ Afin de pouvoir tester notre API (pour l'instant uniquement disponible en mode c
 
 🔜 **Application console**
 
-## Roadmap
+## Objectifs
 
 * Court terme : Implémentation des contrôleurs sur les profils et les lancers
 
 * Long terme : Implémentation de l'API GRPC puis d'une API Gateway
 
-## Running the tests
+## Exécuter les tests
 
 Les tests sont situés dans **Api.UnitTests**. Ainsi, ouvrez le projet **Api.UnitTests** puis exécutez les. 
 
@@ -79,7 +79,7 @@ Les tests sont situés dans **Api.UnitTests**. Ainsi, ouvrez le projet **Api.Uni
 La documentation du projet avec les différents diagrammes UML est disponible sur notre **[wiki](https://codefirst.iut.uca.fr/git/louis.perret/APIDiceyProject/wiki)**.
 
 
-## Project Structure
+## Structure du projet
 
 Le projet est séparé en plusieurs assemblies afin de pouvoir gérer au mieux les dépendances, et éviter que par exemple, le modèle ait besoin des tests. Ce qui donne la structure suivante :
 
@@ -98,7 +98,7 @@ Le projet est séparé en plusieurs assemblies afin de pouvoir gérer au mieux l
 | ModelDTOExtensions | Assembly contenant nos méthodes d'extensions entre nos objets Model et DTO | Api.DTOs, Api.Model |
 | ModelEntitiesExtensions | Assembly contenant nos méthodes d'extensions entre nos objets Model et Entitues | Api.Model, Api.Entities |
 
-## Contributors 
+## Contributeurs
 
 Grienenberger Come, groupe PM B3
 
