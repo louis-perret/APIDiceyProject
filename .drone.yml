@@ -37,7 +37,7 @@ steps:
       - reportgenerator -reports:"**/coverage.cobertura.xml" -reporttypes:SonarQube -targetdir:"coveragereport"
       - dotnet publish APIDiceyProject.sln -c Release --no-restore -o CI_PROJECT_DIR/build/release
       - dotnet sonarscanner end /d:sonar.login=$${PLUGIN_SONAR_TOKEN}
-    secrets: [ SECRET_SONAR_LOGIN ]
+    secrets: [ APIDiceyProject_token ]
     settings:
       # accessible en ligne de commande par ${PLUGIN_SONAR_HOST}
       sonar_host: https://codefirst.iut.uca.fr/sonar/
