@@ -43,7 +43,7 @@ steps:
       sonar_host: https://codefirst.iut.uca.fr/sonar/
       # accessible en ligne de commande par ${PLUGIN_SONAR_TOKEN}
       sonar_token:
-        from_secret: SECRET_SONAR_LOGIN
+        from_secret: APIDiceyProject_token
     depends_on: [tests]
 
   - name: generate-and-deploy-docs
