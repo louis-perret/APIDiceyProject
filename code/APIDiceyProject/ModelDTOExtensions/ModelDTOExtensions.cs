@@ -27,6 +27,28 @@
         }
         #endregion
 
+        #region méthodes pour un Profile
+        /// <summary>
+        /// Convertit un Profile(DTOs) en Profile(Model)
+        /// </summary>
+        /// <param name="profile">Profile(DTOs) à convertir</param>
+        /// <returns> Profile(Model) créé à partir de l'Entity</returns>
+        public static Api.Model.Profile ToModel(this Api.DTOs.Profile profile)
+        {
+            return new Api.Model.SimpleProfile(profile.Id, profile.Name, profile.Surname);
+        }
+
+        /// <summary>
+        /// Convertit un Profile(Model) en Profile(DTOs)
+        /// </summary>
+        /// <param name="profile">Profile(Model) à convertir</param>
+        /// <returns>Profile(DTOs) créé à partir de l'Entity</returns>
+        public static Api.DTOs.Profile ToDto(this Api.Model.Profile profile)
+        {
+            return new Api.DTOs.Profile(profile.Id, profile.Name, profile.Surname);
+        }
+        #endregion
+
         #region méthodes pour une liste de Dice
         /// <summary>
         /// Convertit une liste de Dice (Model) en liste de Dice (DTO). 
