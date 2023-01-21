@@ -29,7 +29,7 @@ steps:
   - name: code-analysis
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dronesonarplugin-dotnet6
     commands:
-      - cd Sources/
+      - cd code/APIDiceyProject
       - dotnet restore APIDiceyProject.sln
       - dotnet sonarscanner begin /k:APIDiceyProject /d:sonar.host.url=$${PLUGIN_SONAR_HOST} /d:sonar.coverageReportPaths="coveragereport/SonarQube.xml" /d:sonar.coverage.exclusions="Tests/**" /d:sonar.login=$${PLUGIN_SONAR_TOKEN} 
       - dotnet build APIDiceyProject.sln -c Release --no-restore
