@@ -23,7 +23,7 @@ namespace ModelEntityExtensions
             return new Api.Model.SimpleDice(dice.NbFaces);
         }
 
-        /// <summary>
+        /// <summary>,M
         /// Convertit en Dice (Model) en Dice (Entity).
         /// </summary>
         /// <param name="dice"> Dice (Model) à convertir. </param>
