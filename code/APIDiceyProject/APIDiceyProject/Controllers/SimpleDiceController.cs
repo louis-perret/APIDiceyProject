@@ -1,6 +1,6 @@
 ﻿using Api.Services;
 
-namespace APIDiceyProject.Controllers
+namespace APIDiceyProject.Controllers.V1
 {
     /// <summary>
     /// Implémentation simple de AbstractDiceController.

@@ -1,11 +1,6 @@
 ﻿using Api.Model;
 using Api.Repositories.DiceRepository;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Services
 {
@@ -52,25 +47,25 @@ namespace Api.Services
 
         #region méthodes redéfinies
         /// <inheritdoc/>
-        public List<Dice> GetDices()
+        public async Task<List<Dice>> GetDices()
         {
-            return _diceRepository.GetDices();
+            return await _diceRepository.GetDices();
         }
 
         /// <inheritdoc/>
-        public Dice? GetDiceById(int id)
+        public async Task<Dice?> GetDiceById(int id)
         {
-            return _diceRepository.GetDiceById(id);
+            return await _diceRepository.GetDiceById(id);
         }
 
         /// <inheritdoc/>
-        public bool RemoveAllDices()
+        public async Task<bool> RemoveAllDices()
         {
             try
             {
-                _diceRepository.RemoveAllDices();
+               await _diceRepository.RemoveAllDices();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
@@ -79,28 +74,15 @@ namespace Api.Services
         }
 
         /// <inheritdoc/>
-        public bool AddDice(Dice dice)
+        public async Task<bool> AddDice(Dice dice)
         {
-            try
-            {
-                return _diceRepository.AddDice(dice);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return await _diceRepository.AddDice(dice);
         }
 
-        public bool RemoveDiceById(int id)
+        /// <inheritdoc/>
+        public async Task<bool> RemoveDiceById(int id)
         {
-            try
-            {
-                return _diceRepository.RemoveDiceById(id);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return await _diceRepository.RemoveDiceById(id);
         }
         #endregion
     }

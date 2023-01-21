@@ -1,12 +1,8 @@
-﻿using Api.EF;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Api.Model;
+﻿using Api.Model;
 using ModelEntityExtensions;
 using Microsoft.EntityFrameworkCore;
+using Api.EF;
+using Exceptions;
 
 namespace Api.Repositories.DiceRepository
 {
@@ -16,7 +12,7 @@ namespace Api.Repositories.DiceRepository
     public class AbstractDiceRepository : BaseRepository, IDiceRepository
     {
         #region constructeur
-        public AbstractDiceRepository() : base()
+        public AbstractDiceRepository(ApiDbContext context) : base(context)
         {
         }
         #endregion
@@ -24,15 +20,15 @@ namespace Api.Repositories.DiceRepository
         #region méthodes redéfinies
 
         /// <inheritdoc/>
-        public List<Dice> GetDices()
+        public async Task<List<Dice>> GetDices()
         {
-            return _context.dices.ToList().ToModel();
+            return (await _context.dices.ToListAsync()).ToModel();
         }
 
         /// <inheritdoc/>
-        public Dice? GetDiceById(int id)
+        public async Task<Dice?> GetDiceById(int id)
         {
-            var diceEntity = _context.dices.Where(dice => dice.NbFaces == id).FirstOrDefault();
+            var diceEntity = await _context.dices.Where(dice => dice.NbFaces == id).FirstOrDefaultAsync();
 
             if (diceEntity == null) return null;
 
@@ -40,54 +36,69 @@ namespace Api.Repositories.DiceRepository
         }
 
         /// <inheritdoc/>
-        public bool RemoveAllDices()
+        public async Task<bool> RemoveAllDices()
         {
+            //On tente de supprimer tout les dés de la base.
             try
             {
-                _context.dices.ExecuteDelete();
-                _context.SaveChanges();
+                await _context.dices.ExecuteDeleteAsync();
+                await _context.SaveChangesAsync();
             }
+            //Si l'action n'a pas pu être entreprise, on retourne faux
             catch (Exception)
             {
-                throw;
+                return false;
             }
 
+            //L'action s'est bien passé, on retourne vrai
             return true;
         }
 
-        public bool AddDice(Dice diceAdd)
+        /// <inheritdoc/>
+        public async Task<bool> AddDice(Dice diceAdd)
         {
-            try
+            //Si le dé à ajouter n'existe pas déjà
+            if (await _context.dices.Where(dice => dice.NbFaces == diceAdd.NbFaces).FirstOrDefaultAsync() == null && diceAdd.NbFaces >0)
             {
-                if (_context.dices.Where(dice => dice.NbFaces == diceAdd.NbFaces).FirstOrDefault()==null && diceAdd.NbFaces >0)
+                //On tente de l'enregistrer en base
+                try
                 {
-                    _context.dices.Add(diceAdd.ToEntity());
-                    _context.SaveChanges();
-                    return true;
+                    await _context.dices.AddAsync(diceAdd.ToEntity());
+                    await _context.SaveChangesAsync();
                 }
-                else 
-                    return false;
+                //Si l'enregistrement n'a pas réussi, on lance une exception
+                catch (Exception e)
+                {
+                    throw new EntityFrameworkException(e.Message);
+                }
+                return true;
             }
-            catch(Exception)
-            {
-                throw;
-            }
+            //Si le dé voulu existe déjà, on retourne faux
+            else return false;
         }
 
-        public bool RemoveDiceById(int id)
+        /// <inheritdoc/>
+        public async Task<bool> RemoveDiceById(int id)
         {
+            //On tente de supprimer le dé avec l'ID donné
             try
             {
-                var dice = _context.dices.Where(dice => dice.NbFaces == id).FirstOrDefault();
-                if (dice == null)
-                    return false;
-                _context.dices.Remove(dice);
-                _context.SaveChanges();
+                var dice = await _context.dices.Where(dice => dice.NbFaces == id).FirstOrDefaultAsync();
+                
+                //Si la base ne contient de dé avec l'identifiant donné, on retourne faux
+                if (dice == null) return false;
+
+                //On supprime et on sauvegarde la base
+                await Task.FromResult(_context.dices.Remove(dice));
+                await _context.SaveChangesAsync();
             }
-            catch(Exception)
+            //Si il y a une erreur durant l'opération, on lance une EntityFrameworkException
+            catch(Exception e)
             {
-                throw;
+                throw new EntityFrameworkException(e.Message);
             }
+
+            //Tout s'est bien bassé, on retourne vrai
             return true;
         }
 

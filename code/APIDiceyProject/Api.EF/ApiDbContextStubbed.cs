@@ -11,14 +11,14 @@ namespace Api.EF
     /// <summary>
     /// Implémentation de Api_DbContext, ajoutant des données à sa création.
     /// </summary>
-    public class Api_DbContext_Stubbed : Api_DbContext
+    public class ApiDbContextStubbed : ApiDbContext
     {
         #region constructeurs
-        public Api_DbContext_Stubbed()
+        public ApiDbContextStubbed()
         {
         }
 
-        public Api_DbContext_Stubbed(DbContextOptions<Api_DbContext> options) : base(options)
+        public ApiDbContextStubbed(DbContextOptions<ApiDbContext> options) : base(options)
         {
         }
         #endregion

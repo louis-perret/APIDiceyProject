@@ -12,7 +12,7 @@ namespace Api.EF
     /// <summary>
     /// DbContext de l'API.
     /// </summary>
-    public class Api_DbContext : DbContext
+    public class ApiDbContext : DbContext
     {
         #region attributs
         /// <summary>
@@ -22,17 +22,16 @@ namespace Api.EF
         #endregion
 
         #region constructeurs
-
         /// <summary>
         /// Constructeur vide.
         /// </summary>
-        public Api_DbContext() { }
+        public ApiDbContext() { }
 
         /// <summary>
         /// Constructeur avec options.
         /// </summary>
         /// <param name="options"> Options du DbContext. </param>
-        public Api_DbContext(DbContextOptions<Api_DbContext> options) : base(options) { }
+        public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options) { }
         #endregion
 
         #region méthodes redéfinies
