@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-option csharp_namespace = "ApiGRPCDiceyProject";
+option csharp_namespace = "ApiGRPCDiceyProject.Client";
 
 package throw;
 
