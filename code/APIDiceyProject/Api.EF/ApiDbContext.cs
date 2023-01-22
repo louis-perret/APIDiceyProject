@@ -19,6 +19,11 @@ namespace Api.EF
         /// Dés stockés en base.
         /// </summary>
         public DbSet<Dice> dices { get; set; }
+
+        /// <summary>
+        /// Lancers de dés stockés en base.
+        /// </summary>
+        public DbSet<Throw> throws { get; set; }
         #endregion
 
         #region constructeurs

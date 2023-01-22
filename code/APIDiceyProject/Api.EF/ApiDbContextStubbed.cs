@@ -36,6 +36,15 @@ namespace Api.EF
                 new Dice(5),
                 new Dice(6)
             );
+
+            builder.Entity<Throw>().HasData(
+                new Throw(1, 2),
+                new Throw(2, 2),
+                new Throw(4, 4),
+                new Throw(3, 4),
+                new Throw(3, 3),
+                new Throw(5, 6)
+            );
         }
         #endregion
     }
