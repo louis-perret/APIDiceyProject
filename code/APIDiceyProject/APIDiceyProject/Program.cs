@@ -46,7 +46,7 @@ options =>
          description.GroupName,
          new OpenApiInfo() 
             {
-                Title = $"Nikoumouk {description.ApiVersion}",
+                Title = $"APIDiceyProject {description.ApiVersion}",
                 Version = description.ApiVersion.ToString()
             });
     }
