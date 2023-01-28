@@ -42,34 +42,34 @@ namespace Api.Services
         #endregion
 
         #region méthodes
-        public Profile? AddProfile(Profile profile)
+        async public Task<Profile?> AddProfile(Profile profile)
         {
-            return _profileRepository.AddProfile(profile);
+            return await _profileRepository.AddProfile(profile);
         }
 
-        public Profile? GetProfileById(Guid id)
+        async public Task<Profile?> GetProfileById(Guid id)
         {
-            return _profileRepository.GetProfileById(id);
+            return await _profileRepository.GetProfileById(id);
         }
 
-        public List<Profile> GetProfilesByPage(int numPage, int nbByPage)
+        async public Task<List<Profile>> GetProfilesByPage(int numPage, int nbByPage)
         {
-            return _profileRepository.ProfilesByPage(numPage, nbByPage);
+            return await _profileRepository.ProfilesByPage(numPage, nbByPage);
         }
 
-        public bool RemoveAllProfiles()
+        async public Task<bool> RemoveAllProfiles()
         {
-            return _profileRepository.RemoveAllProfiles();
+            return await _profileRepository.RemoveAllProfiles();
         }
 
-        public bool RemoveProfileById(Guid id)
+        async public Task<bool> RemoveProfileById(Guid id)
         {
-            return _profileRepository.RemoveProfileById(id);
+            return await _profileRepository.RemoveProfileById(id);
         }
 
-        public bool UpdateProfile(Profile profile)
+        async public Task<bool> UpdateProfile(Profile profile)
         {
-            return _profileRepository.UpdateProfile(profile);
+            return await _profileRepository.UpdateProfile(profile);
         }
         #endregion
     }

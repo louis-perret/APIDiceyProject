@@ -18,14 +18,14 @@ namespace Api.Repositories.ProfileRepository
         }
         #endregion
 
-        public Profile? AddProfile(Profile profileAdd)
+        async public Task<Profile?> AddProfile(Profile profileAdd)
         {
             try
             {
-                if (_context.profiles.Where(profile=> profile.Id == profileAdd.Id).FirstOrDefault() == null)
+                if (await _context.profiles.Where(profile=> profile.Id == profileAdd.Id).FirstOrDefaultAsync() == null)
                 {
                     var prof = _context.profiles.Add(profileAdd.ToEntity());
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
                     return prof.Entity.ToModel();
                 }
                 else
@@ -38,25 +38,25 @@ namespace Api.Repositories.ProfileRepository
 
         }
 
-        public Profile? GetProfileById(Guid id)
+        async public Task<Profile?> GetProfileById(Guid id)
         {
-            return _context.profiles.Where(profile => profile.Id == id).FirstOrDefault()?.ToModel();
+            return  (await _context.profiles.Where(profile => profile.Id == id).FirstOrDefaultAsync())?.ToModel();
         }
 
-        public List<Profile> ProfilesByPage(int numPage, int nbByPage)
+        async public Task<List<Profile>> ProfilesByPage(int numPage, int nbByPage)
         {
-            return _context.profiles.Skip(nbByPage * (numPage-1))
+            return await _context.profiles.Skip(nbByPage * (numPage-1))
                     .Take(nbByPage)
                     .Select(profile => profile.ToModel())
-                    .ToList();
+                    .ToListAsync();
         }
 
-        public bool RemoveAllProfiles()
+        async public Task<bool> RemoveAllProfiles()
         {
             try
             {
-                _context.profiles.ExecuteDelete();
-                _context.SaveChanges();
+                await _context.profiles.ExecuteDeleteAsync();
+                await _context.SaveChangesAsync();
             }
             catch (Exception)
             {
@@ -66,15 +66,15 @@ namespace Api.Repositories.ProfileRepository
             return true;
         }
 
-        public bool RemoveProfileById(Guid id)
+        async public Task<bool> RemoveProfileById(Guid id)
         {
             try
             {
-                var profile = _context.profiles.Where(profile => profile.Id== id).FirstOrDefault();
+                var profile = await _context.profiles.Where(profile => profile.Id== id).FirstOrDefaultAsync();
                 if (profile == null)
                     return false;
                 _context.profiles.Remove(profile);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             catch (Exception)
             {
@@ -83,16 +83,16 @@ namespace Api.Repositories.ProfileRepository
             return true;
         }
 
-        public bool UpdateProfile(Profile profileAdd)
+        async public Task<bool> UpdateProfile(Profile profileAdd)
         {
             try
             {
-                var profile = _context.profiles.Where(profile => profile.Id == profileAdd.Id).FirstOrDefault();
+                var profile = await _context.profiles.Where(profile => profile.Id == profileAdd.Id).FirstOrDefaultAsync();
                 if (profile == null)
                     return false;
                 profile.Name = profileAdd.Name;
                 profile.Surname = profileAdd.Surname;
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             catch (Exception)
             {

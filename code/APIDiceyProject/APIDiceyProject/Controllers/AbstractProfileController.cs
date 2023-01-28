@@ -39,18 +39,19 @@ namespace APIDiceyProject.Controllers
 
         #region routes
         [HttpGet]
-        public IActionResult GetProfileByPage(int numPage, int nbByPage)
+        public async Task<IActionResult> GetProfileByPage(int numPage, int nbByPage)
         {
-            var modelProfiles = _profileService.GetProfilesByPage(numPage, nbByPage);
+            var modelProfiles = await _profileService.GetProfilesByPage(numPage, nbByPage);
+            
             return Ok(modelProfiles.ToDTO());
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetProfileById(Guid id)
+        async public Task<IActionResult> GetProfileById(Guid id)
         {
             try
             {
-                var profile = _profileService.GetProfileById(id);
+                var profile = await _profileService.GetProfileById(id);
                 if (profile == null)
                 {
                     return NotFound("There is no profile with this ID");
@@ -66,20 +67,20 @@ namespace APIDiceyProject.Controllers
         }
 
         [HttpDelete]
-        public IActionResult RemoveAllProfiles()
+        async public Task<IActionResult> RemoveAllProfiles()
         {
-            if (_profileService.RemoveAllProfiles()) return Ok();
+            if (await _profileService.RemoveAllProfiles()) return Ok();
 
             // logger
             return StatusCode(500);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult RemoveProfileById(Guid id)
+        async public Task<IActionResult> RemoveProfileById(Guid id)
         {
             try
             {
-                if (_profileService.RemoveProfileById(id))
+                if (await _profileService.RemoveProfileById(id))
                     return Ok();
                 else
                     return BadRequest("No profile with this ID exists");
@@ -91,11 +92,11 @@ namespace APIDiceyProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddProfile(Api.DTOs.Profile profile)
+        async public Task<IActionResult> AddProfile(Api.DTOs.Profile profile)
         {
             try
             {
-                var proAdded = _profileService.AddProfile(profile.ToModel());
+                var proAdded = await _profileService.AddProfile(profile.ToModel());
                 if (proAdded != null) return CreatedAtAction(nameof(GetProfileById), profile.Id, profile);
                 return BadRequest("A profile with this Id already exists");
             }
@@ -106,11 +107,11 @@ namespace APIDiceyProject.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateProfile(Api.DTOs.Profile profile)
+        async public Task<IActionResult> UpdateProfile(Api.DTOs.Profile profile)
         {
             try
             {
-                if(_profileService.UpdateProfile(profile.ToModel())) return StatusCode(204);
+                if(await _profileService.UpdateProfile(profile.ToModel())) return StatusCode(204);
                 return BadRequest("No profile found with this Id");
             }
             catch (Exception)
