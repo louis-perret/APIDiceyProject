@@ -8,10 +8,8 @@ namespace APIDiceyProject.Controllers.V1
     /// <summary>
     /// Controlleur abstrait pour les dés.
     /// </summary>
-    [ApiVersion("1.0")]
     [Produces("application/json")]
-    [Route("api/Dice")]
-    //[Route("api/v{version:apiVersion}/Dice")] => devrait fonctionner. Demander au prof comment faire.
+    [Route("api/v{version:apiVersion}/Dice")]
     [ApiController]
     public abstract class AbstractDiceController : ControllerBase
     {
