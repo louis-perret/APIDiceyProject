@@ -19,6 +19,8 @@ namespace Api.EF
         /// Dés stockés en base.
         /// </summary>
         public DbSet<Dice> dices { get; set; }
+
+        public DbSet<Profile> profiles { get; set; }
         #endregion
 
         #region constructeurs
