@@ -18,7 +18,6 @@ namespace Api.Entities
         /// Id du lancer.
         /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace Api.Entities
         /// <summary>
         /// Identifiant du dé lancé.
         /// </summary>
-        [Required]
+        [ForeignKey("Dice")]
         public int DiceId { get; set; }
         #endregion
 
@@ -41,8 +40,9 @@ namespace Api.Entities
         /// </summary>
         /// <param name="result">Résultat obtenu.</param>
         /// <param name="diceId">Dé avec lequel le résultat a été obtenu.</param>
-        public Throw(int result, int diceId)
+        public Throw(Guid id, int result, int diceId)
         {
+            Id = id;
             Result = result;
             DiceId = diceId;
         }

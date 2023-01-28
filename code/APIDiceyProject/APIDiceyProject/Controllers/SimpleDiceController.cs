@@ -1,4 +1,4 @@
-﻿using Api.Services;
+﻿using Api.Services.DiceService;
 
 namespace APIDiceyProject.Controllers.V1
 {

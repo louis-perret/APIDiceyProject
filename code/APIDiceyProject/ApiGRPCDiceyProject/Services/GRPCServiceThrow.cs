@@ -4,7 +4,7 @@ using ApiGRPCDiceyProject;
 
 namespace ApiGRPCDiceyProject.Services
 {
-	public class ServiceThrow : ThrowService.ThrowServiceBase
+	public class GRPCServiceThrow : ThrowService.ThrowServiceBase
 	{
         public override Task<Throw> GetThrowById(Request request, ServerCallContext context)
         {

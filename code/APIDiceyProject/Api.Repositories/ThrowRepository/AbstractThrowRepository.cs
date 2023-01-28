@@ -24,7 +24,7 @@ namespace Api.Repositories.ThrowRepository
         #endregion
 
         #region méthodes redéfinies
-        public async Task<Throw?> GetThrowByIdAsync(Guid id)
+        public async Task<Throw?> GetThrowById(Guid id)
         {
             var throwEntity = await _context.throws.Where(t => t.Id == id).FirstOrDefaultAsync();
             if (throwEntity == null) return null;

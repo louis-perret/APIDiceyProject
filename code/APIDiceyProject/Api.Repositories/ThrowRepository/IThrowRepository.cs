@@ -9,6 +9,6 @@ namespace Api.Repositories.ThrowRepository
 {
     public interface IThrowRepository
     {
-        public Task<Throw?> GetThrowByIdAsync(Guid id);
+        public Task<Throw?> GetThrowById(Guid id);
     }
 }

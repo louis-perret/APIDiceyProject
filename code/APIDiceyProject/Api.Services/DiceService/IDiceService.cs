@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Services
+namespace Api.Services.DiceService
 {
     /// <summary>
     /// Contrat définissant les méthodes que doit implémenter un DiceService.
