@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Services
+namespace Api.Services.ProfileFolder
 {
-    internal class SimpleProfileService : AbstractProfileService
+    public class SimpleProfileService : AbstractProfileService
     {
         public SimpleProfileService(ILogger<AbstractProfileService> logger, IProfileRepository diceRepository) : base(logger, diceRepository)
         {

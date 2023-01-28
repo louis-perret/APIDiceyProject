@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Services
+namespace Api.Services.ProfileFolder
 {
     public interface IProfileService
     {
@@ -36,7 +36,7 @@ namespace Api.Services
         /// <param name="profile"> Profile à enregistrer. </param>
         /// <returns> Le Profile créé, potentiellement null </returns>
         Task<Profile?> AddProfile(Profile profile);
-        
+
         /// <summary>
         /// Supprime un Profile via son Id
         /// </summary>

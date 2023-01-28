@@ -1,4 +1,4 @@
-﻿using Api.Services;
+﻿using Api.Services.ProfileFolder;
 using Microsoft.AspNetCore.Mvc;
 using ModelDTOExtensions;
 
@@ -8,8 +8,9 @@ namespace APIDiceyProject.Controllers
     /// Controller abstrait pour les Profile
     /// </summary>
     [ApiController]
-    [Route("[controller]")]
-    public class AbstractProfileController : ControllerBase
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/Profile")]
+    public abstract class AbstractProfileController : ControllerBase
     {
         #region attributs
         /// <summary>
@@ -20,7 +21,7 @@ namespace APIDiceyProject.Controllers
         /// <summary>
         /// Logger de la classe.
         /// </summary>
-        protected ILogger<AbstractDiceController>? _logger;
+        protected ILogger<AbstractProfileController>? _logger;
         #endregion
 
         #region constructeur
@@ -30,7 +31,7 @@ namespace APIDiceyProject.Controllers
         /// </summary>
         /// <param name="logger"> Logger de cette classe. </param>
         /// <param name="profileService"> Service contenant la logique CRUD des Profile. </param>
-        protected AbstractProfileController(ILogger<AbstractDiceController> logger, IProfileService profileService)
+        protected AbstractProfileController(ILogger<AbstractProfileController> logger, IProfileService profileService)
         {
             _profileService = profileService;
             _logger = logger;

@@ -1,4 +1,5 @@
-﻿using Api.Model;
+﻿using Api.EF;
+using Api.Model;
 using Microsoft.EntityFrameworkCore;
 using ModelEntityExtensions;
 using System;
@@ -12,7 +13,7 @@ namespace Api.Repositories.ProfileRepository
     public abstract class AbstractProfileRepository : BaseRepository, IProfileRepository
     {
         #region constructeurs
-        public AbstractProfileRepository() : base()
+        public AbstractProfileRepository(ApiDbContext context) : base(context)
         {
 
         }

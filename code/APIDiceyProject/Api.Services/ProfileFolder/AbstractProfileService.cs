@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Services
+namespace Api.Services.ProfileFolder
 {
     public abstract class AbstractProfileService : IProfileService
     {

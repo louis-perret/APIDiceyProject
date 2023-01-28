@@ -1,6 +1,8 @@
 using Api.EF;
 using Api.Repositories.DiceRepository;
-using Api.Services;
+using Api.Repositories.ProfileRepository;
+using Api.Services.DiceFolder;
+using Api.Services.ProfileFolder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
@@ -19,6 +21,10 @@ builder.Services.AddSwaggerGen();
 //Dépendances en cascade pour AbstractDiceController.
 builder.Services.AddTransient<IDiceService, SimpleDiceService>();
 builder.Services.AddTransient<IDiceRepository, SimpleDiceRepository>();
+
+//Dépendances en cascade pour AbstractProfileController
+builder.Services.AddTransient<IProfileService, SimpleProfileService>();
+builder.Services.AddTransient<IProfileRepository, SimpleProfileRepository>();
 
 //Dépendances pour BaseRepository
 builder.Services.AddDbContext<ApiDbContextStubbed>();
