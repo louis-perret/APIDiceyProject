@@ -42,34 +42,34 @@ namespace Api.Services
         #endregion
 
         #region méthodes
-        public bool AddProfile(Profile profile)
+        public Profile? AddProfile(Profile profile)
         {
-            throw new NotImplementedException();
+            return _profileRepository.AddProfile(profile);
         }
 
         public Profile? GetProfileById(Guid id)
         {
-            throw new NotImplementedException();
+            return _profileRepository.GetProfileById(id);
         }
 
         public List<Profile> GetProfilesByPage(int numPage, int nbByPage)
         {
-            throw new NotImplementedException();
+            return _profileRepository.ProfilesByPage(numPage, nbByPage);
         }
 
         public bool RemoveAllProfiles()
         {
-            throw new NotImplementedException();
+            return _profileRepository.RemoveAllProfiles();
         }
 
         public bool RemoveProfileById(Guid id)
         {
-            throw new NotImplementedException();
+            return _profileRepository.RemoveProfileById(id);
         }
 
         public bool UpdateProfile(Profile profile)
         {
-            throw new NotImplementedException();
+            return _profileRepository.UpdateProfile(profile);
         }
         #endregion
     }

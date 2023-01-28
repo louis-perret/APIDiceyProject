@@ -79,5 +79,36 @@
             return modelList;
         }
         #endregion
+
+        #region méthodes pour une liste de Profile
+        /// <summary>
+        /// Convertit une liste de Profile (Model) en liste de Profile (DTO). 
+        /// </summary>
+        /// <param name="profile"> Liste de Profile (Model) à convertir. </param>
+        /// <returns> Liste de Profile (DTO) créée à partir du modèle. </returns>
+        public static List<Api.DTOs.Profile> ToDTO(this List<Api.Model.Profile> profile)
+        {
+            var dtoList = new List<Api.DTOs.Profile>();
+
+            foreach (Api.Model.Profile modelProfile in profile) dtoList.Add(modelProfile.ToDto());
+
+            return dtoList;
+
+        }
+
+        /// <summary>
+        /// Convertit une liste de Profile (DTO) en liste de Profile (Model). 
+        /// </summary>
+        /// <param name="profile"> Liste de Profile (DTO) à convertir. </param>
+        /// <returns> Liste de Profile (Model) créée à partir du modèle. </returns>
+        public static List<Api.Model.Profile> ToModel(this List<Api.DTOs.Profile> profile)
+        {
+            var modelList = new List<Api.Model.Profile>();
+
+            foreach (Api.DTOs.Profile dtoProfile in profile) modelList.Add(dtoProfile.ToModel());
+
+            return modelList;
+        }
+        #endregion
     }
 }

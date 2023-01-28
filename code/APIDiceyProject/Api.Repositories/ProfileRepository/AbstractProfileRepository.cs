@@ -18,18 +18,18 @@ namespace Api.Repositories.ProfileRepository
         }
         #endregion
 
-        public bool AddProfile(Profile profileAdd)
+        public Profile? AddProfile(Profile profileAdd)
         {
             try
             {
                 if (_context.profiles.Where(profile=> profile.Id == profileAdd.Id).FirstOrDefault() == null)
                 {
-                    _context.profiles.Add(profileAdd.ToEntity());
+                    var prof = _context.profiles.Add(profileAdd.ToEntity());
                     _context.SaveChanges();
-                    return true;
+                    return prof.Entity.ToModel();
                 }
                 else
-                    return false;
+                    return null;
             }
             catch (Exception)
             {

@@ -41,7 +41,7 @@ namespace Api.Repositories.ProfileRepository
         /// </summary>
         /// <param name="profile">Le profil à ajouter</param>
         /// <returns>true si le profil a pu être ajouté, false sinon</returns>
-        bool AddProfile(Profile profile);
+        Profile? AddProfile(Profile profile);
 
         /// <summary>
         /// Méthode qui change un profil en base
