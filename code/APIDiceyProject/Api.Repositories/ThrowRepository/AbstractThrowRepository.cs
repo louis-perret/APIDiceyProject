@@ -10,13 +10,24 @@ using System.Threading.Tasks;
 
 namespace Api.Repositories.ThrowRepository
 {
-    public class AbstractThrowRepository : BaseRepository, IThrowRepository
+    /// <summary>
+    /// Définit la logique du contrat de IThrowRepository.
+    /// </summary>
+    public abstract class AbstractThrowRepository : BaseRepository, IThrowRepository
     {
         #region attributs
+        /// <summary>
+        /// Repository pour pouvoir récupérer des dés pour chaque lancer.
+        /// </summary>
         private IDiceRepository _diceRepository;
         #endregion
 
         #region constructeur
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="context">DbContext pour accéder à la base de données.</param>
+        /// <param name="diceRepository">DiceRepository pour récupérer des dés.</param>
         public AbstractThrowRepository(ApiDbContext context, IDiceRepository diceRepository) : base(context)
         {
             this._diceRepository = diceRepository;
@@ -24,6 +35,8 @@ namespace Api.Repositories.ThrowRepository
         #endregion
 
         #region méthodes redéfinies
+
+        /// <inheritdoc/>
         public async Task<Throw?> GetThrowById(Guid id)
         {
             var throwEntity = await _context.throws.Where(t => t.Id == id).FirstOrDefaultAsync();

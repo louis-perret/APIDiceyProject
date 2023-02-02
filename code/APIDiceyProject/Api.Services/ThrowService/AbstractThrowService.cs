@@ -9,9 +9,15 @@ using System.Threading.Tasks;
 
 namespace Api.Services.ThrowService
 {
-    public class AbstractThrowService : IThrowService
+    /// <summary>
+    /// Service abstrait pour les lancers.
+    /// </summary>
+    public abstract class AbstractThrowService : IThrowService
     {
         #region attributs
+        /// <summary>
+        /// Repository gérant la logique des lancers en base.
+        /// </summary>
         private IThrowRepository _throwRepository;
         /// <summary>
         /// Logger de la classe.
@@ -24,7 +30,7 @@ namespace Api.Services.ThrowService
         /// <summary>
         /// Constructeur à un argument.
         /// </summary>
-        /// <param name="throwRepository"> Repository gérant la logique des throw en base. </param>
+        /// <param name="throwRepository"> Repository gérant la logique des lancers en base. </param>
         protected AbstractThrowService(IThrowRepository throwRepository)
         {
             _throwRepository = throwRepository;
@@ -34,7 +40,7 @@ namespace Api.Services.ThrowService
         /// Constructeur complet.
         /// </summary>
         /// <param name="logger"> Logger de la classe. </param>
-        /// <param name="diceRepository"> Repository gérant la logique des dés en base. </param>
+        /// <param name="diceRepository"> Repository gérant la logique des lancers en base. </param>
         protected AbstractThrowService(ILogger<AbstractThrowService> logger, IThrowRepository throwRepository) : this(throwRepository)
         {
             _logger = logger;
@@ -42,9 +48,9 @@ namespace Api.Services.ThrowService
 
         #endregion
 
-
         #region méthodes redéfinies
 
+        /// <inheritdoc/>
         public async Task<Throw?> GetThrowById(Guid id)
         {
             return await _throwRepository.GetThrowById(id);       
