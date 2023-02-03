@@ -23,7 +23,7 @@ namespace ModelEntityExtensions
             return new Api.Model.SimpleDice(dice.NbFaces);
         }
 
-        /// <summary>
+        /// <summary>,M
         /// Convertit en Dice (Model) en Dice (Entity).
         /// </summary>
         /// <param name="dice"> Dice (Model) à convertir. </param>
@@ -84,6 +84,14 @@ namespace ModelEntityExtensions
 
             return entityList;
         }
+        #endregion
+
+        #region extensions Throw
+        /*public static Api.Model.Throw.Throw toModel(this Api.Entities.Throw throwEntity, Api.Entities.Dice dice)
+        {
+            new Api.Model.Throw.Throw(throwEntity.Result, )
+        }*/
+
         #endregion
     }
 }

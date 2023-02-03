@@ -1,4 +1,4 @@
-﻿using Api.Services.DiceFolder;
+using Api.Services.DiceFolder;
 
 namespace APIDiceyProject.Controllers.DiceFolder
 {

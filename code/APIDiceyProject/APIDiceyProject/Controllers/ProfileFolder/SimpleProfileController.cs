@@ -5,7 +5,7 @@ namespace APIDiceyProject.Controllers.ProfileFolder
 {
     public class SimpleProfileController : AbstractProfileController
     {
-        protected SimpleProfileController(ILogger<AbstractProfileController> logger, IProfileService profileService) : base(logger, profileService)
+        public SimpleProfileController(ILogger<AbstractProfileController> logger, IProfileService profileService) : base(logger, profileService)
         {
         }
     }

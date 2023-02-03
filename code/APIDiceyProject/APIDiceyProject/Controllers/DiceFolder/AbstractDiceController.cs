@@ -25,7 +25,7 @@ namespace APIDiceyProject.Controllers.DiceFolder
         /// </summary>
         protected ILogger<AbstractDiceController>? _logger;
         #endregion
-
+         
         #region constructeur
         /// <summary>
         /// Constructeur complet.

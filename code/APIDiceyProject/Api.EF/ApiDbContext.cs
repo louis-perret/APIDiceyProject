@@ -20,7 +20,13 @@ namespace Api.EF
         /// </summary>
         public DbSet<Dice> dices { get; set; }
 
+        /// <summary>
+        /// Lancers de dés stockés en base.
+        /// </summary>
+        public DbSet<Throw> throws { get; set; }
+
         public DbSet<Profile> profiles { get; set; }
+
         #endregion
 
         #region constructeurs
