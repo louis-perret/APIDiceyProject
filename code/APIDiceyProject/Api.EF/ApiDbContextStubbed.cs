@@ -37,6 +37,12 @@ namespace Api.EF
                 new Dice(6)
             );
 
+            builder.Entity<Profile>().HasData(
+                new Profile(Guid.NewGuid(), "Perret", "Louis"),
+                new Profile(Guid.NewGuid(), "Grienenberger", "Côme"),
+                new Profile(Guid.NewGuid(), "Malvezin", "Neitah")
+            );
+
             builder.Entity<Throw>().HasData(
                 new Throw(Guid.NewGuid(),1, 2),
                 new Throw(Guid.NewGuid(), 2, 2),

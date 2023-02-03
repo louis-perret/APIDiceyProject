@@ -34,6 +34,28 @@ namespace ModelEntityExtensions
         }
         #endregion
 
+        #region extensions Profile
+        /// <summary>
+        /// Convertit un Profile(Entity) en Profile(Model)
+        /// </summary>
+        /// <param name="profile">Profile(Entity) à convertir</param>
+        /// <returns> Profile(Model) créé à partir de l'Entity</returns>
+        public static Api.Model.Profile ToModel(this Api.Entities.Profile profile)
+        {
+            return new Api.Model.SimpleProfile(profile.Id, profile.Name, profile.Surname);
+        }
+
+        /// <summary>
+        /// Convertit un Profile(Model) en Profile(Entity)
+        /// </summary>
+        /// <param name="profile">Profile(Model) à convertir</param>
+        /// <returns>Profile(Entity) créé à partir de l'Entity</returns>
+        public static Api.Entities.Profile ToEntity(this Api.Model.Profile profile)
+        {
+            return new Api.Entities.Profile(profile.Id, profile.Name, profile.Surname);
+        }
+        #endregion
+
         #region extensions pour les listes.
         /// <summary>
         /// Convertit une list de Dice (Entity) en liste de Dice (Model).

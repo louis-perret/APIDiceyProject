@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Services.DiceService
+namespace Api.Services.DiceFolder
 {
     /// <summary>
     /// Implémentation simple de AbstractDiceService.

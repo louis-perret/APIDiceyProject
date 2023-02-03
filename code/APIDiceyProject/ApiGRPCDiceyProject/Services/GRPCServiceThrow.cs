@@ -2,7 +2,6 @@
 using Grpc.Core;
 using ApiGRPCDiceyProject;
 using Api.Services.ThrowService;
-using Api.Services.DiceService;
 using ApiGRPCDiceyProject.ExtensionsMethods;
 using Microsoft.AspNetCore.Components;
 
