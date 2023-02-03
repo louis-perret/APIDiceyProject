@@ -7,8 +7,16 @@ using System.Threading.Tasks;
 
 namespace Api.Repositories.ThrowRepository
 {
+    /// <summary>
+    /// Contrat pour les ThrowRepository.
+    /// </summary>
     public interface IThrowRepository
     {
-        public Task<Throw?> GetThrowByIdAsync(Guid id);
+        /// <summary>
+        /// Récupère un lancer par son id.
+        /// </summary>
+        /// <param name="id">Id du lancer à récupérer.</param>
+        /// <returns>Le lancer voulu</returns>
+        public Task<Throw?> GetThrowById(Guid id);
     }
 }

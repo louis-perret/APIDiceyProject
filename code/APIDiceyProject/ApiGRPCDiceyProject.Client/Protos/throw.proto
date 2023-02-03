@@ -1,0 +1,28 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ApiGRPCDiceyProject";
+
+package throw;
+
+// Service GRPC permettant de gérer les requêtes en lien avec les lancers (Throw).
+service ThrowService {
+    rpc GetThrowById (Request) returns (Throw) { }
+}
+
+// Message envoyé par le client
+message Request {
+    // Id du lancer voulu
+    string search_id = 1;
+}
+
+// Message renvoyé par l'api
+message Throw {
+    // Id du lancer voulu
+    string throw_id = 1; 
+    // Id du dé utilisé pour effectué le lancer
+    string idDice = 2;
+    // Résultat obtenu
+    int32 result = 3;
+}
+
+

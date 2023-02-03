@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -12,7 +12,7 @@
     <None Remove="Google.Protobuf" />
     <None Remove="Grpc.Tools" />
     <None Remove="Protos\" />
-    <None Remove="Protos\greet.proto" />
+    <None Remove="Protos\throw.proto" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Grpc.Net.Client" Version="2.51.0" />
@@ -23,9 +23,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Protos\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Protobuf Include="Protos\greet.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\throw.proto" GrpcServices="Client" />
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-﻿using Api.Services;
+﻿using Api.Services.DiceService;
 using Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using ModelDTOExtensions;
@@ -26,7 +26,7 @@ namespace APIDiceyProject.Controllers.V1
         /// </summary>
         protected ILogger<AbstractDiceController>? _logger;
         #endregion
-
+         
         #region constructeur
         /// <summary>
         /// Constructeur complet.

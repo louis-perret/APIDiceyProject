@@ -1,6 +1,6 @@
 using Api.EF;
 using Api.Repositories.DiceRepository;
-using Api.Services;
+using Api.Services.DiceService;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 

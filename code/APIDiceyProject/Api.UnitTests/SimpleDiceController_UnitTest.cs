@@ -1,9 +1,10 @@
 ﻿using Api.Model;
-using Api.Services;
+using Api.Services.DiceService;
 using APIDiceyProject.Controllers.V1;
 using Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging.Abstractions;
 using ModelDTOExtensions;
 using Moq;

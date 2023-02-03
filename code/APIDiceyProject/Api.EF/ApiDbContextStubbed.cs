@@ -38,12 +38,12 @@ namespace Api.EF
             );
 
             builder.Entity<Throw>().HasData(
-                new Throw(1, 2),
-                new Throw(2, 2),
-                new Throw(4, 4),
-                new Throw(3, 4),
-                new Throw(3, 3),
-                new Throw(5, 6)
+                new Throw(Guid.NewGuid(),1, 2),
+                new Throw(Guid.NewGuid(), 2, 2),
+                new Throw(Guid.NewGuid(), 4, 4),
+                new Throw(Guid.NewGuid(), 3, 4),
+                new Throw(Guid.NewGuid(), 3, 3),
+                new Throw(Guid.NewGuid(), 5, 6)
             );
         }
         #endregion

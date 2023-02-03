@@ -2,7 +2,7 @@
 using Api.Repositories.DiceRepository;
 using Microsoft.Extensions.Logging;
 
-namespace Api.Services
+namespace Api.Services.DiceService
 {
     /// <summary>
     /// Service abstrait pour les Dés.
@@ -63,13 +63,13 @@ namespace Api.Services
         {
             try
             {
-               await _diceRepository.RemoveAllDices();
+                await _diceRepository.RemoveAllDices();
             }
             catch (Exception)
             {
                 throw;
             }
-                
+
             return true;
         }
 
