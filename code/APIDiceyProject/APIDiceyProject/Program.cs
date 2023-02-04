@@ -33,6 +33,11 @@ builder.Services.AddScoped<ApiDbContext, ApiDbContextStubbed>();
 //Versionnage de l'API
 builder.Services.AddApiVersioning(v => v.ApiVersionReader = new UrlSegmentApiVersionReader());
 
+builder.Services.AddMvc(options =>
+{
+    options.SuppressAsyncSuffixInActionNames = false;
+});
+
 builder.Services.AddVersionedApiExplorer(o =>
 {
     o.GroupNameFormat = "'v'VVV";

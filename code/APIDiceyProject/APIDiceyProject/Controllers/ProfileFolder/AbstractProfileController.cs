@@ -152,7 +152,7 @@ namespace APIDiceyProject.Controllers
                 {
                     _logger?.Log(LogLevel.Information, "AddProfile : Profile ajouté avec profile = {0}", profile.ToString());
 
-                    return CreatedAtAction(nameof(GetProfileById), profile.Id, profile);
+                    return CreatedAtAction(nameof(GetProfileByPage), proAdded.Id, proAdded);
                 }
                 _logger?.Log(LogLevel.Information, "AddProfile : Profile non ajouté car existe déjà avec id = {0}", profile.Id);
 
