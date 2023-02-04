@@ -56,6 +56,11 @@ namespace Api.Services.ThrowService
             return await _throwRepository.GetThrowById(id);       
         }
 
+        public Task<List<Throw>> GetThrowByProfileId(Guid idProfile)
+        {
+            return null; 
+        }
+
         #endregion
 
     }

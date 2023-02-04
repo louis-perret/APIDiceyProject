@@ -18,5 +18,7 @@ namespace Api.Services.ThrowService
         /// <param name="id">Id du lancer à récupérer.</param>
         /// <returns>Le lancer voulu</returns>
         public Task<Throw?> GetThrowById(Guid id);
+
+        public Task<List<Throw>> GetThrowByProfileId(Guid idProfile);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Api.EF;
 using Api.Repositories.DiceRepository;
+using Api.Repositories.ProfileRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Api.Repositories.ThrowRepository
     public class SimpleThrowRepository : AbstractThrowRepository
     {
         /// <inheritdoc/>
-        public SimpleThrowRepository(ApiDbContext context, IDiceRepository diceRepository) : base(context,  diceRepository)
+        public SimpleThrowRepository(ApiDbContext context, IDiceRepository diceRepository, IProfileRepository profileRepository) : base(context,  diceRepository, profileRepository)
         {
         }
     }

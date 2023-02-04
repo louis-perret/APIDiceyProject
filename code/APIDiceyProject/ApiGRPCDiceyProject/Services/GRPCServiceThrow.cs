@@ -11,7 +11,7 @@ namespace ApiGRPCDiceyProject.Services
     /// Service GRPC permettant de gérer les requêtes en lien avec les lancers (Throw).
     /// </summary>
 	public class GRPCServiceThrow : ThrowService.ThrowServiceBase
-	{
+    {
         #region attributs
         /// <summary>
         /// Service contenant la logique CRUD des lancers.
@@ -38,7 +38,7 @@ namespace ApiGRPCDiceyProject.Services
             Logger = logger;
         }
         #endregion
-       
+
         #region routes
         /// <summary>
         /// Récupère un lancer suivant son id.
@@ -46,16 +46,27 @@ namespace ApiGRPCDiceyProject.Services
         /// <param name="request">Message provenant du client.</param>
         /// <param name="context"></param>
         /// <returns>Un objet Throw correpondant à l'id.</returns>
-        public override async Task<Throw> GetThrowById(Request request, ServerCallContext context)
+        public override async Task<Throw> GetThrowById(RequestGetThrowById request, ServerCallContext context)
         {
             var t = await ThrowService.GetThrowById(new Guid(request.SearchId));
-            if(t == null)
+            if (t == null)
             {
-                Logger?.LogInformation("GetThrowsById : requête effectuée avec succès. Dé d'ID " + request.SearchId + " demandé par l'utilisateur n'existe pas en base.");
+                Logger?.LogInformation("GetThrowById : requête effectuée avec succès. Throw d'ID " + request.SearchId + " demandé par l'utilisateur n'existe pas en base.");
                 throw new RpcException(new Status(StatusCode.NotFound, "No Throw with this exist in our database. Try wwith another."));
             }
 
             return t.ToDTO();
+        }
+
+        public override Task<ListThrows> GetThrowByProfilId(RequestGetThrowByProfilId request, ServerCallContext context)
+        {
+            if (request.NumPages <= 0 || request.NbElements <= 0)
+            {
+                Logger?.LogInformation("GetThrowsByProfilId : numéro de page = ${0}, nombre d'éléments = ${1}. Un de ces paramètres est inférieur où égale à zéro. Requête annulée.", request.NumPages, request.NbElements);
+                throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid argument, page number and number of elements must be superior to 0."));
+            }
+
+            return null;
         }
         #endregion
     }
