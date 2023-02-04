@@ -47,14 +47,19 @@ namespace Api.Services.ProfileFolder
             return await _profileRepository.AddProfile(profile);
         }
 
+        public async Task<int> getNbProfiles()
+        {
+            return await _profileRepository.getNbProfiles();
+        }
+
         async public Task<Profile?> GetProfileById(Guid id)
         {
             return await _profileRepository.GetProfileById(id);
         }
 
-        async public Task<List<Profile>> GetProfilesByPage(int numPage, int nbByPage)
+        async public Task<List<Profile>> GetProfilesByPage(int numPage, int nbByPage, string subString)
         {
-            return await _profileRepository.ProfilesByPage(numPage, nbByPage);
+            return await _profileRepository.ProfilesByPage(numPage, nbByPage,subString);
         }
 
         async public Task<bool> RemoveAllProfiles()
