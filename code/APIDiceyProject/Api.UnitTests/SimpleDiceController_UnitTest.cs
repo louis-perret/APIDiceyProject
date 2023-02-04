@@ -1,6 +1,6 @@
 ﻿using Api.Model;
-using Api.Services.DiceService;
-using APIDiceyProject.Controllers.V1;
+using Api.Services.DiceFolder;
+using APIDiceyProject.Controllers.DiceFolder;
 using Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

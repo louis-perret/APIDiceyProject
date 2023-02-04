@@ -1,17 +1,16 @@
-﻿using Api.Services.DiceService;
+﻿using Api.Services.DiceFolder;
 using Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using ModelDTOExtensions;
 
-namespace APIDiceyProject.Controllers.V1
+namespace APIDiceyProject.Controllers.DiceFolder
 {
     /// <summary>
     /// Controlleur abstrait pour les dés.
     /// </summary>
     [ApiVersion("1.0")]
     [Produces("application/json")]
-    [Route("api/Dice")]
-    //[Route("api/v{version:apiVersion}/Dice")] => devrait fonctionner. Demander au prof comment faire.
+    [Route("api/v{version:apiVersion}/Dice")]
     [ApiController]
     public abstract class AbstractDiceController : ControllerBase
     {
@@ -56,7 +55,7 @@ namespace APIDiceyProject.Controllers.V1
             _logger?.LogInformation("GetDices : requête effectuée avec succès. List de dés de taille " + dices.Count() + " retournée.");
             return Ok(dices.ToDTO());
         }
-        
+
         /// <summary>
         /// Récupère un dé en fonction de son nombre de faces.
         /// </summary>
@@ -66,7 +65,7 @@ namespace APIDiceyProject.Controllers.V1
         public async Task<IActionResult> GetDiceById(int id)
         {
             var dice = await _diceService.GetDiceById(id);
-            if(dice == null)
+            if (dice == null)
             {
                 _logger?.LogInformation("GetDicesById : requête effectuée avec succès. Dé d'ID " + id + " demandé par l'utilisateur n'existe pas en base.");
                 return NotFound("There is already a dice with this number of faces");
@@ -118,7 +117,7 @@ namespace APIDiceyProject.Controllers.V1
             catch (EntityFrameworkException)
             {
                 _logger?.LogError("RemoveDiceById : Erreur EntityFramework. Le dé d'identifiant " + id + " n'a pas pu être supprimé.");
-                return Problem("Could not remove the dice with the given id from the database", statusCode:500);
+                return Problem("Could not remove the dice with the given id from the database", statusCode: 500);
             }
         }
 
@@ -142,10 +141,10 @@ namespace APIDiceyProject.Controllers.V1
 
                 return BadRequest("No dice with this number of faces exists");
             }
-            catch(EntityFrameworkException)
+            catch (EntityFrameworkException)
             {
                 _logger?.LogError("AddDice : Erreur EntityFramework. Le dé d'identifiant " + dice.NbFaces + " n'a pas pu être ajouté.");
-                return Problem("Could not insert given object in database.", statusCode: 500);   
+                return Problem("Could not insert given object in database.", statusCode: 500);
             }
 
         }

@@ -24,6 +24,9 @@ namespace Api.EF
         /// Lancers de dés stockés en base.
         /// </summary>
         public DbSet<Throw> throws { get; set; }
+
+        public DbSet<Profile> profiles { get; set; }
+
         #endregion
 
         #region constructeurs
