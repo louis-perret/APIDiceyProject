@@ -48,9 +48,11 @@ namespace APIDiceyProject.Controllers
                 if (numPage > 0 && nbByPage > 0)
                 {
                     var modelProfiles = await _profileService.GetProfilesByPage(numPage, nbByPage, subString);
+                    _logger?.Log(LogLevel.Information, "GetProfileByPage : Requête en base faite avec numPage = {0}, nbByPage = {1}, subString = {2}", numPage, nbByPage, subString);
 
                     return Ok(modelProfiles.ToDTO());
                 }
+                _logger?.Log(LogLevel.Information, "GetProfileByPage : Problème dans les arguments avec numPage = {0}, nbByPage = {1}, subString = {2}", numPage, nbByPage, subString);
 
                 return BadRequest("Please give a page number and a number of elements by page both superior to 0");
             }
@@ -65,14 +67,18 @@ namespace APIDiceyProject.Controllers
         [HttpGet("{id}")]
         async public Task<IActionResult> GetProfileById(Guid id)
         {
-            _logger?.Log(LogLevel.Information, "GetProfileById : Entrée dans la méthode avec id = {}", id);
+            _logger?.Log(LogLevel.Information, "GetProfileById : Entrée dans la méthode avec id = {0}", id);
             try
             {
                 var profile = await _profileService.GetProfileById(id);
                 if (profile == null)
                 {
+                    _logger?.Log(LogLevel.Information, "GetProfileById : Aucun profil n'a été trouvé avec id = {0}", id);
+
                     return NotFound("There is no profile with this ID");
                 }
+                _logger?.Log(LogLevel.Information, "GetProfileById : Retour du profil avec id = {0}", id);
+
                 return Ok(profile.ToDto());
             }
             #region exceptions
@@ -90,8 +96,13 @@ namespace APIDiceyProject.Controllers
             try
             {
                 _logger?.Log(LogLevel.Information, "RemoveAllProfiles : Entrée dans la méthode");
-                await _profileService.RemoveAllProfiles(); 
-                return Ok();
+                if (await _profileService.RemoveAllProfiles())
+                {
+                    _logger?.Log(LogLevel.Information, "RemoveAllProfiles : Tous les profils ont été supprimés");
+                    return Ok();
+                }
+                _logger?.Log(LogLevel.Information, "RemoveAllProfiles : Un problème a empêché de supprimer tous les profils");
+                return Problem("The profiles couldn't be removed");
             }
             catch (Exception ex)
             {
@@ -103,13 +114,19 @@ namespace APIDiceyProject.Controllers
         [HttpDelete("{id}")]
         async public Task<IActionResult> RemoveProfileById(Guid id)
         {
-            _logger?.Log(LogLevel.Information, "RemoveProfileById : Entrée dans la méthode avec id = {}",id);
+            _logger?.Log(LogLevel.Information, "RemoveProfileById : Entrée dans la méthode avec id = {0}",id);
             try
             {
                 if (await _profileService.RemoveProfileById(id))
+                {
+                    _logger?.Log(LogLevel.Information, "RemoveProfileById : Profil supprimé avec id = {0}", id);
                     return Ok();
+                }
                 else
+                {
+                    _logger?.Log(LogLevel.Information, "RemoveProfileById : Aucun profil supprimé car aucun avec id = {0}", id);
                     return BadRequest("No profile with this ID exists");
+                }
             }
             catch (Exception e)
             {
@@ -121,11 +138,18 @@ namespace APIDiceyProject.Controllers
         [HttpPost]
         async public Task<IActionResult> AddProfile(Api.DTOs.Profile profile)
         {
-            _logger?.Log(LogLevel.Information,"AddProfile : Entrée dans la méthode avec profile = ",profile.ToString());
+            _logger?.Log(LogLevel.Information,"AddProfile : Entrée dans la méthode avec profile = {0}",profile.ToString());
             try
             {
                 var proAdded = await _profileService.AddProfile(profile.ToModel());
-                if (proAdded != null) return CreatedAtAction(nameof(GetProfileById), profile.Id, profile);
+                if (proAdded != null) 
+                {
+                    _logger?.Log(LogLevel.Information, "AddProfile : Profile ajouté avec profile = {0}", profile.ToString());
+
+                    return CreatedAtAction(nameof(GetProfileById), profile.Id, profile);
+                }
+                _logger?.Log(LogLevel.Information, "AddProfile : Profile non ajouté car existe déjà avec id = {0}", profile.Id);
+
                 return BadRequest("A profile with this Id already exists");
             }
             catch (Exception e)
@@ -138,10 +162,16 @@ namespace APIDiceyProject.Controllers
         [HttpPut]
         async public Task<IActionResult> UpdateProfile(Api.DTOs.Profile profile)
         {
-            _logger?.Log(LogLevel.Information, "UpdateProfile : Entrée dans la méthode avec profile = ", profile.ToString());
+            _logger?.Log(LogLevel.Information, "UpdateProfile : Entrée dans la méthode avec profile = {0}", profile.ToString());
             try
             {
-                if(await _profileService.UpdateProfile(profile.ToModel())) return StatusCode(204);
+                if (await _profileService.UpdateProfile(profile.ToModel()))
+                {
+                    _logger?.Log(LogLevel.Information, "UpdateProfile : Update du Profile avec profile = {0}", profile.ToString());
+                    return StatusCode(204);
+                }
+                _logger?.Log(LogLevel.Information, "UpdateProfile : Profile pas ajouté car aucun profile en base avec id = {0}", profile.Id);
+
                 return BadRequest("No profile found with this Id");
             }
             catch (Exception e)
