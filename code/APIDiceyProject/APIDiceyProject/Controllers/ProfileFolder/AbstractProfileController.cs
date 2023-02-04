@@ -16,7 +16,7 @@ namespace APIDiceyProject.Controllers
         /// <summary>
         /// Service contenant la logique CRUD des Profile.
         /// </summary>
-        private IProfileService _profileService;
+        private readonly IProfileService _profileService;
 
         /// <summary>
         /// Logger de la classe.
@@ -62,11 +62,13 @@ namespace APIDiceyProject.Controllers
 
                 return BadRequest("Please give a page number and a number of elements by page both superior to 0");
             }
+            #region Exception 
             catch (Exception ex)
             {
                 _logger?.LogError("GetProfileByPage avec numPage = {0}, nbByPage = {1}, subString = {2} : " + ex.StackTrace, numPage, nbByPage, subString);
                 return Problem(ex.Message, statusCode:500);
             }
+            #endregion
         }
 
 

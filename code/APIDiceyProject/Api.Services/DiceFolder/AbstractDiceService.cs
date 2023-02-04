@@ -13,13 +13,13 @@ namespace Api.Services.DiceFolder
         /// <summary>
         /// Repository gérant la logique des dés en base.
         /// </summary>
-        private IDiceRepository _diceRepository;
+        private readonly IDiceRepository _diceRepository;
 
 
         /// <summary>
         /// Logger de la classe.
         /// </summary>
-        private ILogger<AbstractDiceService>? _logger;
+        private readonly ILogger<AbstractDiceService>? _logger;
         #endregion
 
         #region constructeurs

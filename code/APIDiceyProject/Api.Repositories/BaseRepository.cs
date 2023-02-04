@@ -21,7 +21,7 @@ namespace Api.Repositories
         /// <summary>
         /// Constructeur instanciant l'Api_DbContext voulu.
         /// </summary>
-        public BaseRepository(ApiDbContext context)
+        protected BaseRepository(ApiDbContext context)
         {
             _context = context;
         }

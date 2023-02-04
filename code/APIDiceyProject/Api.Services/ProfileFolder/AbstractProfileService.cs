@@ -15,13 +15,13 @@ namespace Api.Services.ProfileFolder
         /// <summary>
         /// Repository gérant la logique des dés en base.
         /// </summary>
-        private IProfileRepository _profileRepository;
+        private readonly IProfileRepository _profileRepository;
 
 
         /// <summary>
         /// Logger de la classe.
         /// </summary>
-        private ILogger<AbstractProfileService>? _logger;
+        private readonly ILogger<AbstractProfileService>? _logger;
         #endregion
 
         #region constructeurs
