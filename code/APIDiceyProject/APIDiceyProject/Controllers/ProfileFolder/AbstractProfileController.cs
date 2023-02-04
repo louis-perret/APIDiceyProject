@@ -42,22 +42,30 @@ namespace APIDiceyProject.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProfileByPage(int numPage = 1, int nbByPage = 10, string subString = "")
         {
-
-            if (numPage > 0 && nbByPage > 0)
+            try
             {
-                var modelProfiles = await _profileService.GetProfilesByPage(numPage, nbByPage,subString);
+                _logger?.Log(LogLevel.Information, "GetProfileByPage : Entrée dans la méthode avec numPage = {0}, nbByPage = {1}, subString = {2}", numPage, nbByPage, subString);
+                if (numPage > 0 && nbByPage > 0)
+                {
+                    var modelProfiles = await _profileService.GetProfilesByPage(numPage, nbByPage, subString);
 
-                return Ok(modelProfiles.ToDTO());
+                    return Ok(modelProfiles.ToDTO());
+                }
+
+                return BadRequest("Please give a page number and a number of elements by page both superior to 0");
             }
-
-            return BadRequest("Please give a page number and a number of elements by page both superior to 0");
+            catch (Exception ex)
+            {
+                _logger?.LogError(ex.StackTrace);
+                return StatusCode(500,ex.Message);
+            }
         }
-
 
 
         [HttpGet("{id}")]
         async public Task<IActionResult> GetProfileById(Guid id)
         {
+            _logger?.Log(LogLevel.Information, "GetProfileById : Entrée dans la méthode avec id = {}", id);
             try
             {
                 var profile = await _profileService.GetProfileById(id);
@@ -70,7 +78,8 @@ namespace APIDiceyProject.Controllers
             #region exceptions
             catch (Exception e)
             {
-                return StatusCode(500, "An error has occured");
+                _logger?.LogError(e.StackTrace);
+                return StatusCode(500, e.Message);
             }
             #endregion
         }
@@ -78,15 +87,23 @@ namespace APIDiceyProject.Controllers
         [HttpDelete]
         async public Task<IActionResult> RemoveAllProfiles()
         {
-            if (await _profileService.RemoveAllProfiles()) return Ok();
-
-            // logger
-            return StatusCode(500);
+            try
+            {
+                _logger?.Log(LogLevel.Information, "RemoveAllProfiles : Entrée dans la méthode");
+                await _profileService.RemoveAllProfiles(); 
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger?.LogError(ex.StackTrace);
+                return StatusCode(500,ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]
         async public Task<IActionResult> RemoveProfileById(Guid id)
         {
+            _logger?.Log(LogLevel.Information, "RemoveProfileById : Entrée dans la méthode avec id = {}",id);
             try
             {
                 if (await _profileService.RemoveProfileById(id))
@@ -94,38 +111,43 @@ namespace APIDiceyProject.Controllers
                 else
                     return BadRequest("No profile with this ID exists");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return StatusCode(500);
+                _logger?.LogError(e.StackTrace);
+                return StatusCode(500, e.Message);
             }
         }
 
         [HttpPost]
         async public Task<IActionResult> AddProfile(Api.DTOs.Profile profile)
         {
+            _logger?.Log(LogLevel.Information,"AddProfile : Entrée dans la méthode avec profile = ",profile.ToString());
             try
             {
                 var proAdded = await _profileService.AddProfile(profile.ToModel());
                 if (proAdded != null) return CreatedAtAction(nameof(GetProfileById), profile.Id, profile);
                 return BadRequest("A profile with this Id already exists");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return StatusCode(500);
+                _logger?.LogError(e.StackTrace);
+                return StatusCode(500, e.Message);
             }
         }
 
         [HttpPut]
         async public Task<IActionResult> UpdateProfile(Api.DTOs.Profile profile)
         {
+            _logger?.Log(LogLevel.Information, "UpdateProfile : Entrée dans la méthode avec profile = ", profile.ToString());
             try
             {
                 if(await _profileService.UpdateProfile(profile.ToModel())) return StatusCode(204);
                 return BadRequest("No profile found with this Id");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return StatusCode(500);
+                _logger?.LogError(e.StackTrace);
+                return StatusCode(500, e.Message);
             }
         }
     #endregion
