@@ -1,0 +1,890 @@
+{
+	"info": {
+		"_postman_id": "928cd752-5bf0-46d2-834e-301988ade4b3",
+		"name": "Rest DiceyProject API Gateway",
+		"description": "# Introduction\n\nThis postman collection serves as a complement to our codefirst project containing all the source code and other documentation needed to understand the project.\n\n[Read the docs, get the source code and launch the project](https://codefirst.iut.uca.fr/git/louis.perret/APIDiceyProject.).\n\n# Overview\n\nUse the postman collection to visit every route from our REST API.\n\n# Error Codes\n\nTODO\n\n# Rate limit\n\n?",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24331780"
+	},
+	"item": [
+		{
+			"name": "https://localhost:7047/api/v1/Dice",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:7047/api/v1/Dice",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7047",
+					"path": [
+						"api",
+						"v1",
+						"Dice"
+					]
+				},
+				"description": "Get all dice"
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:7047/api/v1/Dice",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7047",
+							"path": [
+								"api",
+								"v1",
+								"Dice"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    nbFaces : X\r\n}\r\n{\r\n    nbFaces : Y\r\n}"
+				},
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:7047/api/v1/Dice",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7047",
+							"path": [
+								"api",
+								"v1",
+								"Dice"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Feb 2023 09:36:46 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"nbFaces\": 1\n    },\n    {\n        \"nbFaces\": 5\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "https://localhost:7047/api/v1/Profile/{id}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:7047/api/v1/Profile/{{getDiceId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7047",
+					"path": [
+						"api",
+						"v1",
+						"Profile",
+						"{{getDiceId}}"
+					]
+				},
+				"description": "Get a specific profile"
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:7047/api/v1/Profile/{id}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7047",
+							"path": [
+								"api",
+								"v1",
+								"Profile",
+								"{id}"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "https://localhost:7047/api/v1/Dice/{id}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:7047/api/v1/Dice/{id}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7047",
+					"path": [
+						"api",
+						"v1",
+						"Dice",
+						"{id}"
+					]
+				},
+				"description": "Get a specific dice"
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:7047/api/v1/Dice/{id}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7047",
+							"path": [
+								"api",
+								"v1",
+								"Dice",
+								"{id}"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "https://localhost:7047/api/v1/Profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:7047/api/v1/Profile?numPage=1&nbByPage=10",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7047",
+					"path": [
+						"api",
+						"v1",
+						"Profile"
+					],
+					"query": [
+						{
+							"key": "numPage",
+							"value": "1"
+						},
+						{
+							"key": "nbByPage",
+							"value": "10"
+						}
+					]
+				},
+				"description": "Get all profiles"
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:7047/api/v1/Profile",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7047",
+							"path": [
+								"api",
+								"v1",
+								"Profile"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"GUID\",\n        \"name\": \"X\",\n        \"surname\": \"Y\"\n    },\n    {\n        \"id\": \"GUID\",\n        \"name\": \"X\",\n        \"surname\": \"Y\"\n    },\n    {\n        \"id\": \"GUID\",\n        \"name\": \"X\",\n        \"surname\": \"Y\"\n    }\n]"
+				},
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:7047/api/v1/Profile?numPage=1&nbByPage=10",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7047",
+							"path": [
+								"api",
+								"v1",
+								"Profile"
+							],
+							"query": [
+								{
+									"key": "numPage",
+									"value": "1"
+								},
+								{
+									"key": "nbByPage",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "251"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Feb 2023 10:08:57 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"98b76d55-e413-4ad0-97ab-bed373a13a65\",\n        \"name\": \"Grienenberger\",\n        \"surname\": \"Côme\"\n    },\n    {\n        \"id\": \"b5dab26f-6975-483c-8bb6-1cd9b19190a0\",\n        \"name\": \"Perret\",\n        \"surname\": \"Louis\"\n    },\n    {\n        \"id\": \"bd68c485-c883-44c5-a235-9190d3049d4a\",\n        \"name\": \"Malvezin\",\n        \"surname\": \"Neitah\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "https://localhost:7047/api/v1/Dice",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nbFaces\": X\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7047/api/v1/Dice",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7047",
+					"path": [
+						"api",
+						"v1",
+						"Dice"
+					]
+				},
+				"description": "Create a dice"
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:7047/api/v1/Dice",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7047",
+							"path": [
+								"api",
+								"v1",
+								"Dice"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"nbFaces\" : X\r\n}"
+				},
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nbFaces\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7047/api/v1/Dice",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7047",
+							"path": [
+								"api",
+								"v1",
+								"Dice"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "13"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 04 Feb 2023 09:31:59 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Location",
+							"value": "https://localhost:7190/api/v1/Dice"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"nbFaces\": 5\n}"
+				}
+			]
+		},
+		{
+			"name": "https://localhost:7047/api/v1/Profile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"GUID\",\r\n  \"name\": \"User\",\r\n  \"surname\": \"OurFirstUser!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7047/api/v1/Profile",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7047",
+					"path": [
+						"api",
+						"v1",
+						"Profile"
+					]
+				},
+				"description": "Create a profile"
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:7047/api/v1/Profile",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7047",
+							"path": [
+								"api",
+								"v1",
+								"Profile"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "https://localhost:7047/api/v1/Profile",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:7047/api/v1/Profile",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7047",
+					"path": [
+						"api",
+						"v1",
+						"Profile"
+					]
+				},
+				"description": "Update a profile"
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:7047/api/v1/Profile",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7047",
+							"path": [
+								"api",
+								"v1",
+								"Profile"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "https://localhost:7047/api/v1/Profile",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:7047/api/v1/Profile",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7047",
+					"path": [
+						"api",
+						"v1",
+						"Profile"
+					]
+				},
+				"description": "Delete all profiles"
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:7047/api/v1/Profile",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7047",
+							"path": [
+								"api",
+								"v1",
+								"Profile"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "https://localhost:7047/api/v1/Dice/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:7047/api/v1/Dice/{id}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7047",
+					"path": [
+						"api",
+						"v1",
+						"Dice",
+						"{id}"
+					]
+				},
+				"description": "Delete a specific dice"
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:7047/api/v1/Dice/{id}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7047",
+							"path": [
+								"api",
+								"v1",
+								"Dice",
+								"{id}"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "https://localhost:7047/api/v1/Dice",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:7047/api/v1/Dice",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7047",
+					"path": [
+						"api",
+						"v1",
+						"Dice"
+					]
+				},
+				"description": "Delete all dice"
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:7047/api/v1/Dice",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7047",
+							"path": [
+								"api",
+								"v1",
+								"Dice"
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"GUID\",\n        \"name\": \"X\",\n        \"surname\": \"Y\"\n    },\n    {\n        \"id\": \"GUID\",\n        \"name\": \"A\",\n        \"surname\": \"B\"\n    },\n    {\n        \"id\": \"GUID\",\n        \"name\": \"C\",\n        \"surname\": \"D\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "https://localhost:7047/api/v1/Profile/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:7047/api/v1/Profile/{{deleteDiceId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7047",
+					"path": [
+						"api",
+						"v1",
+						"Profile",
+						"{{deleteDiceId}}"
+					]
+				},
+				"description": "Delete a specific profile"
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:7047/api/v1/Profile/{id}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7047",
+							"path": [
+								"api",
+								"v1",
+								"Profile",
+								"{id}"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "getDiceId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "deleteDiceId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "getProfileId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "deleteProfileId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
