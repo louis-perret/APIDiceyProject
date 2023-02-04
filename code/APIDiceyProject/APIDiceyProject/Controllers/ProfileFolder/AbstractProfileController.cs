@@ -64,8 +64,8 @@ namespace APIDiceyProject.Controllers
             }
             catch (Exception ex)
             {
-                _logger?.LogError(ex.StackTrace);
-                return StatusCode(500,ex.Message);
+                _logger?.LogError("GetProfileByPage avec numPage = {0}, nbByPage = {1}, subString = {2} : " + ex.StackTrace, numPage, nbByPage, subString);
+                return Problem(ex.Message, statusCode:500);
             }
         }
 
@@ -83,7 +83,7 @@ namespace APIDiceyProject.Controllers
 
                     return NotFound("There is no profile with this ID");
                 }
-                _logger?.Log(LogLevel.Information, "GetProfileById : Retour du profil avec id = {0}", id);
+                _logger?.Log(LogLevel.Information, "GetProfileById Retour du profil avec id = {0} : ", id);
 
                 return Ok(profile.ToDto());
             }
@@ -112,8 +112,8 @@ namespace APIDiceyProject.Controllers
             }
             catch (Exception ex)
             {
-                _logger?.LogError(ex.StackTrace);
-                return StatusCode(500,ex.Message);
+                _logger?.LogError("RemoveAllProfiles : " + ex.StackTrace);
+                return Problem(ex.Message,statusCode:500) ;
             }
         }
 
@@ -136,8 +136,8 @@ namespace APIDiceyProject.Controllers
             }
             catch (Exception e)
             {
-                _logger?.LogError(e.StackTrace);
-                return StatusCode(500, e.Message);
+                _logger?.LogError("RemoveProfileById avec id = {0} : " + e.StackTrace,id);
+                return Problem(e.Message, statusCode:500) ;
             }
         }
 
@@ -160,8 +160,8 @@ namespace APIDiceyProject.Controllers
             }
             catch (Exception e)
             {
-                _logger?.LogError(e.StackTrace);
-                return StatusCode(500, e.Message);
+                _logger?.LogError("AddProfile avec profile = {0} : " + e.StackTrace, profile.ToString());
+                return Problem(e.Message, statusCode: 500);
             }
         }
 
@@ -182,8 +182,8 @@ namespace APIDiceyProject.Controllers
             }
             catch (Exception e)
             {
-                _logger?.LogError(e.StackTrace);
-                return StatusCode(500, e.Message);
+                _logger?.LogError("UpdateProfile avec profile = {0} : " + e.StackTrace, profile.ToString());
+                return Problem(e.Message, statusCode: 500);
             }
         }
     #endregion
