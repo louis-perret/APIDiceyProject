@@ -38,6 +38,12 @@ namespace Api.Repositories.ProfileRepository
         Task<bool> RemoveProfileById(Guid id);
 
         /// <summary>
+        /// Méthode qui retourne le nombre de profils dans la base
+        /// </summary>
+        /// <returns>le nombre de profils dans la base</returns>
+        Task<int> getNbProfiles();
+
+        /// <summary>
         /// Méthode qui ajoute un profil en base
         /// </summary>
         /// <param name="profile">Le profil à ajouter</param>

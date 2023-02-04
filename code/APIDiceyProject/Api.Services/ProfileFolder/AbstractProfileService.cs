@@ -47,6 +47,11 @@ namespace Api.Services.ProfileFolder
             return await _profileRepository.AddProfile(profile);
         }
 
+        public async Task<int> getNbProfiles()
+        {
+            return await _profileRepository.getNbProfiles();
+        }
+
         async public Task<Profile?> GetProfileById(Guid id)
         {
             return await _profileRepository.GetProfileById(id);

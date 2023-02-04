@@ -51,6 +51,6 @@ namespace Api.Services.ProfileFolder
         /// <param name="profile">le Profile avec les informations mises à jour</param>
         /// <returns>true si le Profile a pu être updaté, false sinon</returns>
         Task<bool> UpdateProfile(Profile profile);
-
+        Task<int> getNbProfiles();
     }
 }

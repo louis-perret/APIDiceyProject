@@ -39,6 +39,11 @@ namespace Api.Repositories.ProfileRepository
 
         }
 
+        public async Task<int> getNbProfiles()
+        {
+            return await _context.profiles.CountAsync();
+        }
+
         async public Task<Profile?> GetProfileById(Guid id)
         {
             return  (await _context.profiles.Where(profile => profile.Id == id).FirstOrDefaultAsync())?.ToModel();

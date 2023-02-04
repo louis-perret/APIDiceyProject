@@ -50,7 +50,13 @@ namespace APIDiceyProject.Controllers
                     var modelProfiles = await _profileService.GetProfilesByPage(numPage, nbByPage, subString);
                     _logger?.Log(LogLevel.Information, "GetProfileByPage : Requête en base faite avec numPage = {0}, nbByPage = {1}, subString = {2}", numPage, nbByPage, subString);
 
-                    return Ok(modelProfiles.ToDTO());
+                    return Ok(new
+                    {
+                        Profiles = modelProfiles.ToDTO(),
+                        PageNumber = numPage,
+                        NbElementsByPage=nbByPage,
+                        numberOfElements = _profileService.getNbProfiles().Result
+                    });
                 }
                 _logger?.Log(LogLevel.Information, "GetProfileByPage : Problème dans les arguments avec numPage = {0}, nbByPage = {1}, subString = {2}", numPage, nbByPage, subString);
 
