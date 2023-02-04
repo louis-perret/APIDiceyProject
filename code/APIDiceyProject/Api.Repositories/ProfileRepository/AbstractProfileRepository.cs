@@ -13,12 +13,12 @@ namespace Api.Repositories.ProfileRepository
     public abstract class AbstractProfileRepository : BaseRepository, IProfileRepository
     {
         #region constructeurs
-        public AbstractProfileRepository(ApiDbContext context) : base(context)
+        protected AbstractProfileRepository(ApiDbContext context) : base(context)
         {
-
         }
         #endregion
 
+        #region méthodes redéfinies
         async public Task<Profile?> AddProfile(Profile profileAdd)
         {
             try
@@ -108,4 +108,5 @@ namespace Api.Repositories.ProfileRepository
             return true;
         }
     }
+    #endregion
 }

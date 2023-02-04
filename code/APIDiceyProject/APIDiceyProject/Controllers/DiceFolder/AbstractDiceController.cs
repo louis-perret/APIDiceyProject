@@ -18,7 +18,7 @@ namespace APIDiceyProject.Controllers.DiceFolder
         /// <summary>
         /// Service contenant la logique CRUD des dés.
         /// </summary>
-        private IDiceService _diceService;
+        private readonly IDiceService _diceService;
 
         /// <summary>
         /// Logger de la classe.
@@ -52,7 +52,7 @@ namespace APIDiceyProject.Controllers.DiceFolder
         {
             var dices = await _diceService.GetDices();
 
-            _logger?.LogInformation("GetDices : requête effectuée avec succès. List de dés de taille " + dices.Count() + " retournée.");
+            _logger?.LogInformation("GetDices : requête effectuée avec succès. List de dés de taille " + dices.Count + " retournée.");
             return Ok(dices.ToDTO());
         }
 
