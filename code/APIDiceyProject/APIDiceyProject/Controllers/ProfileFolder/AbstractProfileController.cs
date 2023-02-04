@@ -40,12 +40,20 @@ namespace APIDiceyProject.Controllers
 
         #region routes
         [HttpGet]
-        public async Task<IActionResult> GetProfileByPage(int numPage, int nbByPage)
+        public async Task<IActionResult> GetProfileByPage(int numPage = 1, int nbByPage = 10, string subString = "")
         {
-            var modelProfiles = await _profileService.GetProfilesByPage(numPage, nbByPage);
-            
-            return Ok(modelProfiles.ToDTO());
+
+            if (numPage > 0 && nbByPage > 0)
+            {
+                var modelProfiles = await _profileService.GetProfilesByPage(numPage, nbByPage,subString);
+
+                return Ok(modelProfiles.ToDTO());
+            }
+
+            return BadRequest("Please give a page number and a number of elements by page both superior to 0");
         }
+
+
 
         [HttpGet("{id}")]
         async public Task<IActionResult> GetProfileById(Guid id)

@@ -14,9 +14,10 @@ namespace Api.Services.ProfileFolder
         /// </summary>
         /// <param name="numPage">Numéro de la page à récupérer</param>
         /// <param name="nbByPage">Nombre de profils de la page à récupérer</param>
+        /// <param name="subString">la substring à trouver dans la chaîne nom+prénom</param>
         /// <returns>Liste des Profile récupérés</returns>
-        Task<List<Profile>> GetProfilesByPage(int numPage, int nbByPage);
-
+        Task<List<Profile>> GetProfilesByPage(int numPage, int nbByPage,string subString);
+        
         /// <summary>
         /// Récupère un Profile avec son Id.
         /// </summary>
