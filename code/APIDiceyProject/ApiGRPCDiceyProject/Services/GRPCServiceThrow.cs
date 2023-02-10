@@ -60,10 +60,21 @@ namespace ApiGRPCDiceyProject.Services
 
         public override Task<ListThrows> GetThrowByProfilId(RequestGetThrowByProfilId request, ServerCallContext context)
         {
+
             if (request.NumPages <= 0 || request.NbElements <= 0)
             {
-                Logger?.LogInformation("GetThrowsByProfilId : numéro de page = ${0}, nombre d'éléments = ${1}. Un de ces paramètres est inférieur où égale à zéro. Requête annulée.", request.NumPages, request.NbElements);
+                Logger?.LogInformation("GetThrowsByProfilId : id du profile = ${0}, numéro de page = ${1}, nombre d'éléments = ${2}. Un de ces paramètres est inférieur où égale à zéro. Requête annulée.", request.ProfilId, request.NumPages, request.NbElements);
                 throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid argument, page number and number of elements must be superior to 0."));
+            }
+
+            var throws = ThrowService.GetThrowByProfileId(Guid.Parse(request.ProfilId));
+            if(throws == null)
+            {
+                Logger?.LogInformation("GetThrowsByProfilId : id du profile = ${0}, numéro de page = ${1}, nombre d'éléments = ${2}.Aucun throw retournée -> Id du profil incorrecte.", request.ProfilId, request.NumPages, request.NbElements);
+            }
+            else
+            {
+                Logger?.LogInformation("GetThrowsByProfilId : id du profile = ${0}, numéro de page = ${1}, nombre d'éléments = ${2}. Méthode exécutée correctement et qui a retourné des éléments.", request.ProfilId, request.NumPages, request.NbElements);
             }
 
             return null;

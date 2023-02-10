@@ -31,6 +31,11 @@ namespace Api.Entities
         /// </summary>
         [ForeignKey("Dice")]
         public int DiceId { get; set; }
+
+        public Guid ProfileId { get; set; }
+
+        [ForeignKey("ProfilId")]
+        public Profile Profile { get; set; }
         #endregion
 
         #region constructeurs
@@ -40,11 +45,12 @@ namespace Api.Entities
         /// </summary>
         /// <param name="result">Résultat obtenu.</param>
         /// <param name="diceId">Dé avec lequel le résultat a été obtenu.</param>
-        public Throw(Guid id, int result, int diceId)
+        public Throw(Guid id, int result, int diceId, Guid profileId)
         {
             Id = id;
             Result = result;
             DiceId = diceId;
+            ProfileId = profileId;
         }
         #endregion
     }

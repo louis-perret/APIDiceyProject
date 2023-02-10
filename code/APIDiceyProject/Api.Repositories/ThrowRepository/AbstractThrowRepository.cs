@@ -3,6 +3,7 @@ using Api.Model.Throw;
 using Api.Repositories.DiceRepository;
 using Api.Repositories.ProfileRepository;
 using Microsoft.EntityFrameworkCore;
+using ModelEntityExtensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,10 +46,10 @@ namespace Api.Repositories.ThrowRepository
         {
             var throwEntity = await _context.throws.Where(t => t.Id == id).FirstOrDefaultAsync();
             if (throwEntity == null) return null;
-            return new Throw(throwEntity.Result, await _diceRepository.GetDiceById(throwEntity.DiceId), throwEntity.Id);
+            return throwEntity.ToModel(await _diceRepository.GetDiceById(throwEntity.DiceId));
         }
 
-        public Task<List<Throw>>? GetThrowByProfileId(Guid idProfile)
+        public async Task<List<Throw>>? GetThrowByProfileId(Guid idProfile)
         {
             var profile = _profileRepository.GetProfileById(idProfile);
             if(profile == null)
@@ -56,7 +57,13 @@ namespace Api.Repositories.ThrowRepository
                 return null;
             }
 
-            return null;
+            var throws = await _context.throws.Where(t => t.ProfileId == idProfile).ToListAsync();
+            var result = new List<Api.Model.Throw.Throw>();
+            foreach (var t in throws)
+            {
+                result.Add(t.ToModel(await _diceRepository.GetDiceById(t.DiceId)));
+            }
+            return result;
         }
 
         #endregion

@@ -35,5 +35,5 @@ message RequestGetThrowByProfilId {
 
 // Réponse de l'API après que GetThrowByProfilId a été appelée
 message ListThrows {
-    repeated Throw throw = 1;
+    repeated Throw throws = 1;
 }

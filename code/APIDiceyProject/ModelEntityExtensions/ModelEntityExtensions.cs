@@ -87,11 +87,17 @@ namespace ModelEntityExtensions
         #endregion
 
         #region extensions Throw
-        /*public static Api.Model.Throw.Throw toModel(this Api.Entities.Throw throwEntity, Api.Entities.Dice dice)
+        public static Api.Model.Throw.Throw ToModel(this Api.Entities.Throw throwEntity, Api.Model.Dice dice)
         {
-            new Api.Model.Throw.Throw(throwEntity.Result, )
-        }*/
+            return new Api.Model.Throw.Throw(throwEntity.Result, dice, throwEntity.Id);
+        }
+        #endregion
 
+        #region extensions liste Throw
+        public static List<Api.Model.Throw.Throw> ToModels(this List<Api.Entities.Throw> throwEntities, Api.Model.Dice dice)
+        {
+            return throwEntities.Select(t => t.ToModel(dice)).ToList();
+        }
         #endregion
     }
 }
