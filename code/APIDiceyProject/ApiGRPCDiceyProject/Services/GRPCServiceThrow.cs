@@ -58,7 +58,7 @@ namespace ApiGRPCDiceyProject.Services
             return t.ToDTO();
         }
 
-        public override Task<ListThrows> GetThrowByProfilId(RequestGetThrowByProfilId request, ServerCallContext context)
+        public override async Task<ListThrows> GetThrowByProfilId(RequestGetThrowByProfilId request, ServerCallContext context)
         {
 
             if (request.NumPages <= 0 || request.NbElements <= 0)
@@ -67,17 +67,20 @@ namespace ApiGRPCDiceyProject.Services
                 throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid argument, page number and number of elements must be superior to 0."));
             }
 
-            var throws = ThrowService.GetThrowByProfileId(Guid.Parse(request.ProfilId));
+            var throws = await ThrowService.GetThrowByProfileId(Guid.Parse(request.ProfilId));
             if(throws == null)
             {
                 Logger?.LogInformation("GetThrowsByProfilId : id du profile = ${0}, numéro de page = ${1}, nombre d'éléments = ${2}.Aucun throw retournée -> Id du profil incorrecte.", request.ProfilId, request.NumPages, request.NbElements);
+                return new ListThrows();
             }
             else
             {
                 Logger?.LogInformation("GetThrowsByProfilId : id du profile = ${0}, numéro de page = ${1}, nombre d'éléments = ${2}. Méthode exécutée correctement et qui a retourné des éléments.", request.ProfilId, request.NumPages, request.NbElements);
             }
 
-            return null;
+            var response = new ListThrows();
+            response.Throws.AddRange(throws.ToDTO());
+            return response;
         }
         #endregion
     }

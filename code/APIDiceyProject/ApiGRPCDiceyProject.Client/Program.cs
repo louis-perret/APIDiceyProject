@@ -9,9 +9,10 @@ var client = new ThrowService.ThrowServiceClient(channel);
 
 var searchedGuid = "cc6f9111-b174-4064-814b-ce7eb4169e80";
 var reply = await client.GetThrowByIdAsync(
-                  new Request() { SearchId = searchedGuid });
+                  new RequestGetThrowById() { SearchId = searchedGuid });
 
 
 Console.WriteLine($"Retrieved throw: {reply.ThrowId} with resultat : {reply.Result} with a dice with {reply.IdDice} faces" );
+
 Console.WriteLine("Press any key to exit...");
 Console.ReadKey();

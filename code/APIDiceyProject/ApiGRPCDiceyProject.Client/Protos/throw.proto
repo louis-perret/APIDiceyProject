@@ -6,16 +6,17 @@ package throw;
 
 // Service GRPC permettant de gérer les requêtes en lien avec les lancers (Throw).
 service ThrowService {
-    rpc GetThrowById (Request) returns (Throw) { }
+    rpc GetThrowById (RequestGetThrowById) returns (Throw) { }
+    rpc GetThrowByProfilId(RequestGetThrowByProfilId) returns (ListThrows) {}
 }
 
-// Message envoyé par le client
-message Request {
+// Message envoyé par le client pour GetThrowById
+message RequestGetThrowById {
     // Id du lancer voulu
     string search_id = 1;
 }
 
-// Message renvoyé par l'api
+// Réponse de l'API après que GetThrowById a été appelée
 message Throw {
     // Id du lancer voulu
     string throw_id = 1; 
@@ -25,4 +26,14 @@ message Throw {
     int32 result = 3;
 }
 
+// Message envoyé par le client pour GetThrowByProfilId
+message RequestGetThrowByProfilId {
+    string profil_id = 1;
+    int32 num_pages = 2;
+    int32 nb_elements = 3;
+}
 
+// Réponse de l'API après que GetThrowByProfilId a été appelée
+message ListThrows {
+    repeated Throw throws = 1;
+}
