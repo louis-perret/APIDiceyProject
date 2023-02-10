@@ -49,7 +49,7 @@ namespace Api.EF
 
             builder.Entity<Throw>().HasData(
                 new Throw(Guid.Parse("aa6f9111-b174-4064-814b-ce7eb4169e80"),1, 2, profile.Id),
-                new Throw(Guid.NewGuid(), 2, 2, profile.Id),
+                new Throw(Guid.Parse("dd6f9111-b174-4064-814b-ce7eb4169e80"), 2, 2, profile.Id),
                 new Throw(Guid.NewGuid(), 4, 4, profile2.Id),
                 new Throw(Guid.NewGuid(), 3, 4, profile2.Id),
                 new Throw(Guid.NewGuid(), 3, 3, profile3.Id),

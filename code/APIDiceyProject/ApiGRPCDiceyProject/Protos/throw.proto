@@ -9,6 +9,7 @@ service ThrowService {
     rpc GetThrowById (RequestGetThrowById) returns (Throw) {}
     rpc GetThrowByProfileId(RequestGetThrowByProfileId) returns (ListThrows) {}
     rpc AddThrow(RequestAddThrow) returns (Throw) {}
+    rpc RemoveThrow(RequestRemoveThrow) returns (ResponseRemoveThrow) {}
 }
 
 // Message envoyé par le client pour GetThrowById
@@ -53,4 +54,15 @@ message RequestAddThrow {
     int32 result = 2;
     // Id du profile qui a lancer le dé.
     string idProfile = 3;
+}
+
+// Message envoyé par le client pour RemoveThrow
+message RequestRemoveThrow {
+    // Id du lancer à supprimé
+    string id = 1;
+}
+
+message ResponseRemoveThrow {
+    // Résultat de la réquête
+    bool res = 1;
 }

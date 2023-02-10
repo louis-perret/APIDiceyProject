@@ -36,5 +36,12 @@ namespace Api.Services.ThrowService
         /// <param name="profileId">Joueur ayant lancé le dé.</param>
         /// <returns>L'id du lancer ajouté.</returns>
         public Task<Guid> AddThrow(int result, int nbFacesDe, Guid profileId);
+
+        /// <summary>
+        /// Supprime un lancer.
+        /// </summary>
+        /// <param name="id">Id du lancer à supprimer</param>
+        /// <returns>True si correctement effectué.</returns>
+        public Task<bool> RemoveThrow(Guid id); 
     }
 }

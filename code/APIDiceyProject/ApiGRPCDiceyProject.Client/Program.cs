@@ -70,6 +70,14 @@ while(loop)
                 await ExecuteRequestAddThrow(dice, result, profile);
                 break;
 
+            case 4:
+                ManageRemoveThrowMenu();
+                Console.WriteLine("Veuillez maitenant entrer l'id du lancer : ");
+                var id = ReadGuid();
+                if (id.Equals(KEYWORDTOEXIT)) break;
+                await ExecuteRequestRemoveThrow(id);
+                break;
+
             default:
                 loop = false;
                 break;
@@ -81,20 +89,21 @@ while(loop)
     }
 }
 
-/// Manage the main menu of the app.
+/// Gère le menu principal de l'application.
 int ManageMainMenu()
 {
-    int max = 3;
+    int max = 4;
     Console.WriteLine("\n\nBienvenue sur cette application console permettant de tester notre API GRPC sur les lancers de dés. " +
     "\n Deux choix s'offrent à vous : " +
         "\n\t 1. Rechercher un lancer avec son id " +
         "\n\t 2. Rechercher les lancers d'un joueur avec un système de pagination" +
         "\n\t 3. Ajouter un throw" + 
+        "\n\t 4. Supprimer un throw" + 
         "\n\t 0. Quitter l'application");
     return ReadChoice(0, max);
 }
 
-/// Manage the menu to execute the endpoint "GetThrowById" of the api.
+/// Gère le menu pour appeler la route GetThrowById de l'api GRPC.
 int ManageGetThrowByIdMenu()
 {
     int max = 2;
@@ -106,7 +115,7 @@ int ManageGetThrowByIdMenu()
     return ReadChoice(0, max);
 }
 
-/// Manage the menu to execute the endpoint "GetThrowByProfileId" of the api.
+/// Gère le menu pour appeler la route GetThrowByProfileId de l'api GRPC.
 int ManageGetThrowsByProfileIdMenu()
 {
     int max = 2;
@@ -118,6 +127,7 @@ int ManageGetThrowsByProfileIdMenu()
     return ReadChoice(0, max);
 }
 
+/// Gère le menu pour appeler la route AddThrow de l'api GRPC.
 void ManageAddThrowMenu()
 {
     Console.WriteLine("\n\nVous pouvez ajouter un lancer." +
@@ -126,7 +136,15 @@ void ManageAddThrowMenu()
         "\n\t Et l'id un joueur déjà existant dans la base : cc6f9111-b174-4064-814b-ce7eb4169e80");
 }
 
-/// Read an int from the console.
+/// Gère le menu pour appeler la route RemoveThrow de l'api GRPC.
+void ManageRemoveThrowMenu()
+{
+    Console.WriteLine("\n\nVous pouvez supprimer un lancer." +
+    "\n Pour vous aidez voici l'id de deux lancers insérés en base : " +
+    "\n 1 -> aa6f9111-b174-4064-814b-ce7eb4169e80 \n 2 -> dd6f9111-b174-4064-814b-ce7eb4169e80");
+}
+
+/// Lit un entier dans la console.
 int ReadInt()
 {
     int res = 0;
@@ -145,7 +163,7 @@ int ReadInt()
     return res;
 }
 
-/// Read the user's choice in menu.
+/// Lit le choix utilisateur du menu.
 int ReadChoice(int min, int max)
 {
     int res = 0;
@@ -165,7 +183,7 @@ int ReadChoice(int min, int max)
     return res;
 }
 
-/// Read the choosen id as Guid.
+/// Lit l'id choisi en tant que Guid;
 string ReadGuid()
 {
     Console.WriteLine("Nos id sont de types Guid, de la forme suivante : XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX");
@@ -173,7 +191,7 @@ string ReadGuid()
     return Console.ReadLine();
 }
 
-/// Execute the endpoint GetThrowById of the api.
+/// Exécute la route GetThrowById de l'api
 async Task ExecuteRequestToGetThrowById(string searchedId)
 {
     var reply = await client.GetThrowByIdAsync(
@@ -181,7 +199,7 @@ async Task ExecuteRequestToGetThrowById(string searchedId)
     DisplayThrow(reply);
 }
 
-/// Execute the endpoint GetThrowByProfileId of the api.
+/// Exécute la route GetThrowByProfileId de l'api
 async Task ExecuteRequestToGetThrowsByProfileId(string profileId, int numPage, int nbByPages)
 {
     var reply = await client.GetThrowByProfileIdAsync(new RequestGetThrowByProfileId() { ProfileId = profileId, NumPages = numPage, NbElements = nbByPages });
@@ -192,7 +210,7 @@ async Task ExecuteRequestToGetThrowsByProfileId(string profileId, int numPage, i
     }
 }
 
-/// Execute the endpoint AddThrow of the api.
+/// Exécute la route AddThrow de l'api
 async Task ExecuteRequestAddThrow(int dice, int result, string profile)
 {
     var reply = await client.AddThrowAsync(
@@ -203,5 +221,14 @@ async Task ExecuteRequestAddThrow(int dice, int result, string profile)
 /// Affiche le lancer renvoyer par l'API.
 void DisplayThrow(Throw t)
 {
-    Console.WriteLine($"Lancer créé : id : {t.ThrowId}, face obtenue : {t.Result} avec un dé à {t.IdDice} faces et un id de profile de {t.ProfileId}");
+    Console.WriteLine($"Lancer d'id : {t.ThrowId}, face obtenue : {t.Result} avec un dé à {t.IdDice} faces et un id de profile de {t.ProfileId}");
+}
+
+/// Exécute la route RemoveThrow de l'api
+async Task ExecuteRequestRemoveThrow(string id)
+{
+    var reply = await client.RemoveThrowAsync(
+                      new RequestRemoveThrow() { Id = id });
+    if (reply.Res) Console.WriteLine("Suppression avec succès !");
+    else Console.WriteLine("Problème au cours de la suppression !");
 }

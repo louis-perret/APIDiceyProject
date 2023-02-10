@@ -67,6 +67,12 @@ namespace Api.Services.ThrowService
         {
             return await _throwRepository.AddThrow(result, nbFacesDe, profileId);
         }
+
+        /// <inheritdoc/>
+        public async Task<bool> RemoveThrow(Guid id)
+        {
+            return await _throwRepository.RemoveThrow(id);
+        }
         #endregion
 
     }

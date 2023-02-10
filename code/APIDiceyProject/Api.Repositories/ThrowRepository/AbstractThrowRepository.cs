@@ -75,6 +75,16 @@ namespace Api.Repositories.ThrowRepository
             await _context.SaveChangesAsync();
             return t.Id;
         }
+
+        /// <inheritdoc/>
+        public async Task<bool> RemoveThrow(Guid id)
+        {
+            var t = _context.throws.FirstOrDefault(t => t.Id == id);
+            if (t == null) return false;
+            _context.throws.Remove(t);
+            await _context.SaveChangesAsync();
+            return true;
+        }
         #endregion
     }
 }
