@@ -18,6 +18,7 @@ namespace Api.Entities
         /// Id du lancer.
         /// </summary>
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
         /// <summary>
@@ -50,12 +51,23 @@ namespace Api.Entities
         /// <summary>
         /// Constructeur.
         /// </summary>
+        /// <param name="id">Id du lancer lui-même.</param>
         /// <param name="result">Résultat obtenu.</param>
         /// <param name="diceId">Dé avec lequel le résultat a été obtenu.</param>
         /// <param name="profileId">Identifiant du profil ayant créé le lancer.</param>
-        public Throw(Guid id, int result, int diceId, Guid profileId)
+        public Throw(Guid id, int result, int diceId, Guid profileId) : this(result, diceId, profileId)
         {
             Id = id;
+        }
+
+        /// <summary>
+        /// Constructeur.
+        /// </summary>
+        /// <param name="result">Résultat obtenu.</param>
+        /// <param name="diceId">Dé avec lequel le résultat a été obtenu.</param>
+        /// <param name="profileId">Identifiant du profil ayant créé le lancer.</param>
+        public Throw(int result, int diceId, Guid profileId)
+        {
             Result = result;
             DiceId = diceId;
             ProfileId = profileId;

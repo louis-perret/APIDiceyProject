@@ -4,6 +4,7 @@ using ApiGRPCDiceyProject;
 using Api.Services.ThrowService;
 using ApiGRPCDiceyProject.ExtensionsMethods;
 using Microsoft.AspNetCore.Components;
+using Api.Model.Throw;
 
 namespace ApiGRPCDiceyProject.Services
 {
@@ -102,6 +103,31 @@ namespace ApiGRPCDiceyProject.Services
                 Logger?.LogInformation("GetThrowByProfileId : Problème de format de l'id passé en paramètre, id = {0}", request.ProfileId);
                 throw new RpcException(new Status(StatusCode.InvalidArgument, "The id of the profile was incorrect"));
             }
+        }
+
+
+        /// <summary>
+        /// Ajoute un lancer dans la base de données.
+        /// </summary>
+        /// <param name="request">Message provenant du client.</param>
+        /// <param name="context"></param>
+        /// <returns>Le lancer ajouté.</returns>
+        public override async Task<Throw> AddThrow(RequestAddThrow request, ServerCallContext context)
+        {
+            try
+            {
+                if (request.IdDice <= 0) throw new RpcException(new Status(StatusCode.InvalidArgument, "The number of faces of the dice must be superior to 0."));
+                if (request.Result > 0 || request.Result <= request.IdDice) throw new RpcException(new Status(StatusCode.InvalidArgument, "The result of the dice must be superior to 0 and inferior to the number of faces of the dice."));
+                var res = await ThrowService.AddThrow(request.Result, request.IdDice, Guid.Parse(request.IdProfile));
+                Logger?.LogInformation("AddThrow : Effectué avec succès : id = {0}, result = {1}, id dé = {2}, id profil = {3}", res, request.Result, request.IdDice, request.IdProfile);
+                return new Throw() { ThrowId = res.ToString(), IdDice = request.IdDice, Result = request.Result };
+            }
+            catch (FormatException e)
+            {
+                Logger?.LogInformation("AddThrow : Problème de format de l'id passé en paramètre, id = {0}", request.IdProfile);
+                throw new RpcException(new Status(StatusCode.InvalidArgument, "The id of the profile was incorrect"));
+            }
+
         }
         #endregion
     }

@@ -27,5 +27,14 @@ namespace Api.Services.ThrowService
         /// <param name="nbByPage">Nombre d'éléments à retourner.</param>
         /// <returns>Une liste de lancers.</returns>
         public Task<List<Throw>> GetThrowByProfileId(Guid idProfile, int numPage, int nbByPage);
+
+        /// <summary>
+        /// Ajoute un lancer.
+        /// </summary>
+        /// <param name="result">Résultat du lancer.</param>
+        /// <param name="nbFacesDe">Dé lancé.</param>
+        /// <param name="profileId">Joueur ayant lancé le dé.</param>
+        /// <returns>L'id du lancer ajouté.</returns>
+        public Task<Guid> AddThrow(int result, int nbFacesDe, Guid profileId);
     }
 }

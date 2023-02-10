@@ -25,6 +25,12 @@ namespace Api.Model.Throw
         /// Dé lancé.
         /// </summary>
         public Dice Dice { get; private set; }
+
+        /// <summary>
+        /// Id du profil qui a lancé le dé.
+        /// </summary>
+        public Guid ProfileId { get; private set; }
+
         #endregion
 
         #region constructeurs
@@ -34,12 +40,19 @@ namespace Api.Model.Throw
         /// </summary>
         /// <param name="result">Résultat obtenu.</param>
         /// <param name="dice">Dé avec lequel le résultat a été obtenu.</param>
-        public Throw(int result, Dice dice, Guid id)
+        public Throw(int result, Dice dice, Guid id, Guid profileId)
         {
             Id = id;
             Result = result;
             Dice = dice;
+            ProfileId = profileId;
         }
+
+        public Throw(int result, Dice dice, Guid profileId) : this(result, dice, Guid.Empty, profileId)
+        {
+        }
+
+
         #endregion
     }
 }

@@ -6,8 +6,9 @@ package throw;
 
 // Service GRPC permettant de gérer les requêtes en lien avec les lancers (Throw).
 service ThrowService {
-    rpc GetThrowById (RequestGetThrowById) returns (Throw) { }
+    rpc GetThrowById (RequestGetThrowById) returns (Throw) {}
     rpc GetThrowByProfileId(RequestGetThrowByProfileId) returns (ListThrows) {}
+    rpc AddThrow(RequestAddThrow) returns (Throw) {}
 }
 
 // Message envoyé par le client pour GetThrowById
@@ -21,9 +22,11 @@ message Throw {
     // Id du lancer voulu
     string throw_id = 1; 
     // Id du dé utilisé pour effectué le lancer
-    string idDice = 2;
+    int32 idDice = 2;
     // Résultat obtenu
     int32 result = 3;
+    // Id du profil qui a effectué le lancer.
+    string profile_id = 4;
 }
 
 // Message envoyé par le client pour GetThrowByProfilId
@@ -36,4 +39,14 @@ message RequestGetThrowByProfileId {
 // Réponse de l'API après que GetThrowByProfilId a été appelée
 message ListThrows {
     repeated Throw throws = 1;
+}
+
+// Message envoyé par le client pour AddThrow
+message RequestAddThrow {
+    // Id du dé utilisé pour effectué le lancer
+    int32 idDice = 1;
+    // Résultat obtenu
+    int32 result = 2;
+    // Id du profile qui a lancer le dé.
+    string idProfile = 3;
 }

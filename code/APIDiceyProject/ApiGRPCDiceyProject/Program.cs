@@ -17,6 +17,7 @@ builder.Services.AddScoped<ApiDbContext, ApiDbContextStubbed>();
 // Add services to the container.
 builder.Services.AddGrpc();
 builder.Services.AddScoped<IDiceRepository, SimpleDiceRepository>();
+builder.Services.AddScoped<IProfileRepository, SimpleProfileRepository>();
 builder.Services.AddScoped<IThrowRepository, SimpleThrowRepository>();
 builder.Services.AddScoped<IThrowService, SimpleThrowService>();
 

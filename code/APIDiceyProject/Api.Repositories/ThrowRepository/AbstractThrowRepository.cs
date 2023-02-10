@@ -1,4 +1,5 @@
 ﻿using Api.EF;
+using Api.Entities;
 using Api.Model.Throw;
 using Api.Repositories.DiceRepository;
 using Api.Repositories.ProfileRepository;
@@ -22,6 +23,8 @@ namespace Api.Repositories.ThrowRepository
         /// Repository pour pouvoir récupérer des dés pour chaque lancer.
         /// </summary>
         private IDiceRepository _diceRepository;
+
+        private IProfileRepository _profileRepository;
         #endregion
 
         #region constructeur
@@ -30,16 +33,17 @@ namespace Api.Repositories.ThrowRepository
         /// </summary>
         /// <param name="context">DbContext pour accéder à la base de données.</param>
         /// <param name="diceRepository">DiceRepository pour récupérer des dés.</param>
-        public AbstractThrowRepository(ApiDbContext context, IDiceRepository diceRepository) : base(context)
+        public AbstractThrowRepository(ApiDbContext context, IDiceRepository diceRepository, IProfileRepository profileRepository) : base(context)
         {
             this._diceRepository = diceRepository;
+            this._profileRepository = profileRepository;
         }
         #endregion
 
         #region méthodes redéfinies
 
         /// <inheritdoc/>
-        public async Task<Throw?> GetThrowById(Guid id)
+        public async Task<Model.Throw.Throw?> GetThrowById(Guid id)
         {
             var throwEntity = await _context.throws.Where(t => t.Id == id).FirstOrDefaultAsync();
             if (throwEntity == null) return null;
@@ -47,7 +51,7 @@ namespace Api.Repositories.ThrowRepository
         }
 
         /// <inheritdoc/>
-        public async Task<List<Throw>>? GetThrowByProfileId(Guid idProfile, int numPage, int nbByPage)
+        public async Task<List<Model.Throw.Throw>>? GetThrowByProfileId(Guid idProfile, int numPage, int nbByPage)
         {
             var throws = await _context.throws.Where(t => t.ProfileId == idProfile)
                 .Skip((numPage-1) * nbByPage)
@@ -62,6 +66,15 @@ namespace Api.Repositories.ThrowRepository
             return result;
         }
 
+        /// <inheritdoc/>
+        public async Task<Guid> AddThrow(int result, int nbFacesDe, Guid profileId)
+        {
+            var t = new Entities.Throw(result, nbFacesDe, profileId);
+            await _context.throws.AddAsync(t);
+            await _profileRepository.AddThrow(result, nbFacesDe, profileId);
+            await _context.SaveChangesAsync();
+            return t.Id;
+        }
         #endregion
     }
 }
