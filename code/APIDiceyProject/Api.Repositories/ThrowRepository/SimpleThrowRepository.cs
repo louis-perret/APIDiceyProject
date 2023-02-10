@@ -15,7 +15,7 @@ namespace Api.Repositories.ThrowRepository
     public class SimpleThrowRepository : AbstractThrowRepository
     {
         /// <inheritdoc/>
-        public SimpleThrowRepository(ApiDbContext context, IDiceRepository diceRepository, IProfileRepository profileRepository) : base(context,  diceRepository, profileRepository)
+        public SimpleThrowRepository(ApiDbContext context, IDiceRepository diceRepository) : base(context,  diceRepository)
         {
         }
     }

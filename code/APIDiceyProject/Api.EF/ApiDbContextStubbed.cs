@@ -37,7 +37,7 @@ namespace Api.EF
                 new Dice(6)
             );
 
-            var profile = new Profile(Guid.NewGuid(), "Perret", "Louis");
+            var profile = new Profile(Guid.Parse("cc6f9111-b174-4064-814b-ce7eb4169e80"), "Perret", "Louis");
             var profile2 = new Profile(Guid.NewGuid(), "Grienenberger", "Côme");
             var profile3 = new Profile(Guid.NewGuid(), "Malvezin", "Neitah");
 
@@ -48,7 +48,7 @@ namespace Api.EF
             );
 
             builder.Entity<Throw>().HasData(
-                new Throw(Guid.NewGuid(),1, 2, profile.Id),
+                new Throw(Guid.Parse("aa6f9111-b174-4064-814b-ce7eb4169e80"),1, 2, profile.Id),
                 new Throw(Guid.NewGuid(), 2, 2, profile.Id),
                 new Throw(Guid.NewGuid(), 4, 4, profile2.Id),
                 new Throw(Guid.NewGuid(), 3, 4, profile2.Id),

@@ -27,14 +27,21 @@ namespace Api.Entities
         public int Result { get; set; }
 
         /// <summary>
-        /// Identifiant du dé lancé.
+        /// Identifiant du dé lancer.
         /// </summary>
         [ForeignKey("Dice")]
         public int DiceId { get; set; }
 
+        /// <summary>
+        /// Identifiant du profil ayant créé le lancer.
+        /// </summary>
+        [Required]
         public Guid ProfileId { get; set; }
 
-        [ForeignKey("ProfilId")]
+        /// <summary>
+        /// Profile ayant créé le lancer.
+        /// </summary>
+        [ForeignKey("ProfileId")]
         public Profile Profile { get; set; }
         #endregion
 
@@ -45,6 +52,7 @@ namespace Api.Entities
         /// </summary>
         /// <param name="result">Résultat obtenu.</param>
         /// <param name="diceId">Dé avec lequel le résultat a été obtenu.</param>
+        /// <param name="profileId">Identifiant du profil ayant créé le lancer.</param>
         public Throw(Guid id, int result, int diceId, Guid profileId)
         {
             Id = id;

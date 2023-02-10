@@ -22,8 +22,6 @@ namespace Api.Repositories.ThrowRepository
         /// Repository pour pouvoir récupérer des dés pour chaque lancer.
         /// </summary>
         private IDiceRepository _diceRepository;
-
-        private IProfileRepository _profileRepository;
         #endregion
 
         #region constructeur
@@ -32,10 +30,9 @@ namespace Api.Repositories.ThrowRepository
         /// </summary>
         /// <param name="context">DbContext pour accéder à la base de données.</param>
         /// <param name="diceRepository">DiceRepository pour récupérer des dés.</param>
-        public AbstractThrowRepository(ApiDbContext context, IDiceRepository diceRepository, IProfileRepository profileRepository) : base(context)
+        public AbstractThrowRepository(ApiDbContext context, IDiceRepository diceRepository) : base(context)
         {
             this._diceRepository = diceRepository;
-            this._profileRepository = profileRepository;
         }
         #endregion
 
@@ -49,15 +46,14 @@ namespace Api.Repositories.ThrowRepository
             return throwEntity.ToModel(await _diceRepository.GetDiceById(throwEntity.DiceId));
         }
 
-        public async Task<List<Throw>>? GetThrowByProfileId(Guid idProfile)
+        /// <inheritdoc/>
+        public async Task<List<Throw>>? GetThrowByProfileId(Guid idProfile, int numPage, int nbByPage)
         {
-            var profile = _profileRepository.GetProfileById(idProfile);
-            if(profile == null)
-            {
-                return null;
-            }
+            var throws = await _context.throws.Where(t => t.ProfileId == idProfile)
+                .Skip((numPage-1) * nbByPage)
+                .Take(nbByPage)
+                .ToListAsync();
 
-            var throws = await _context.throws.Where(t => t.ProfileId == idProfile).ToListAsync();
             var result = new List<Api.Model.Throw.Throw>();
             foreach (var t in throws)
             {

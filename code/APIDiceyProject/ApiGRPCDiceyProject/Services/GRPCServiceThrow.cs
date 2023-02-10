@@ -48,39 +48,60 @@ namespace ApiGRPCDiceyProject.Services
         /// <returns>Un objet Throw correpondant à l'id.</returns>
         public override async Task<Throw> GetThrowById(RequestGetThrowById request, ServerCallContext context)
         {
-            var t = await ThrowService.GetThrowById(new Guid(request.SearchId));
-            if (t == null)
+            try
             {
-                Logger?.LogInformation("GetThrowById : requête effectuée avec succès. Throw d'ID " + request.SearchId + " demandé par l'utilisateur n'existe pas en base.");
-                throw new RpcException(new Status(StatusCode.NotFound, "No Throw with this exist in our database. Try wwith another."));
-            }
+                var t = await ThrowService.GetThrowById(new Guid(request.SearchedId));
+                if (t == null)
+                {
+                    Logger?.LogInformation("GetThrowById : requête effectuée avec succès. Throw d'ID " + request.SearchedId + " demandé par l'utilisateur n'existe pas en base.");
+                    throw new RpcException(new Status(StatusCode.NotFound, "No Throw with this exist in our database. Try wwith another."));
+                }
 
-            return t.ToDTO();
+                return t.ToDTO();
+            }
+            catch(FormatException e)
+            {
+                Logger?.LogInformation("GetThrowById : Problème de format de l'id passé en paramètre, id = {0}", request.SearchedId);
+                throw new RpcException(new Status(StatusCode.InvalidArgument, "The id of the wanted throw was incorrect"));
+            }
         }
 
-        public override async Task<ListThrows> GetThrowByProfilId(RequestGetThrowByProfilId request, ServerCallContext context)
+        /// <summary>
+        /// Récupère les lancers d'un joueur avec un système de pagination.
+        /// </summary>
+        /// <param name="request">Message provenant du client.</param>
+        /// <param name="context"></param>
+        /// <returns>Une liste de lancers.</returns>
+        public override async Task<ListThrows> GetThrowByProfileId(RequestGetThrowByProfileId request, ServerCallContext context)
         {
-
-            if (request.NumPages <= 0 || request.NbElements <= 0)
+            try
             {
-                Logger?.LogInformation("GetThrowsByProfilId : id du profile = ${0}, numéro de page = ${1}, nombre d'éléments = ${2}. Un de ces paramètres est inférieur où égale à zéro. Requête annulée.", request.ProfilId, request.NumPages, request.NbElements);
-                throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid argument, page number and number of elements must be superior to 0."));
-            }
+                if (request.NumPages <= 0 || request.NbElements <= 0)
+                {
+                    Logger?.LogInformation("GetThrowsByProfilId : id du profile = {0}, numéro de page = {1}, nombre d'éléments = {2}. Un de ces paramètres est inférieur où égale à zéro. Requête annulée.", request.ProfileId, request.NumPages, request.NbElements);
+                    throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid argument, page number and number of elements must be superior to 0."));
+                }
 
-            var throws = await ThrowService.GetThrowByProfileId(Guid.Parse(request.ProfilId));
-            if(throws == null)
-            {
-                Logger?.LogInformation("GetThrowsByProfilId : id du profile = ${0}, numéro de page = ${1}, nombre d'éléments = ${2}.Aucun throw retournée -> Id du profil incorrecte.", request.ProfilId, request.NumPages, request.NbElements);
-                return new ListThrows();
-            }
-            else
-            {
-                Logger?.LogInformation("GetThrowsByProfilId : id du profile = ${0}, numéro de page = ${1}, nombre d'éléments = ${2}. Méthode exécutée correctement et qui a retourné des éléments.", request.ProfilId, request.NumPages, request.NbElements);
-            }
+                var throws = await ThrowService.GetThrowByProfileId(Guid.Parse(request.ProfileId), request.NumPages, request.NbElements);
+                if (throws == null)
+                {
+                    Logger?.LogInformation("GetThrowsByProfilId : id du profile = {0}, numéro de page = {1}, nombre d'éléments = {2}.Aucun throw retournée -> Id du profil incorrecte.", request.ProfileId, request.NumPages, request.NbElements);
+                    return new ListThrows();
+                }
+                else
+                {
+                    Logger?.LogInformation("GetThrowsByProfilId : id du profile = {0}, numéro de page = {1}, nombre d'éléments = {2}. Méthode exécutée correctement et qui a retourné des éléments.", request.ProfileId, request.NumPages, request.NbElements);
+                }
 
-            var response = new ListThrows();
-            response.Throws.AddRange(throws.ToDTO());
-            return response;
+                var response = new ListThrows();
+                response.Throws.AddRange(throws.ToDTO());
+                return response;
+            }
+            catch (FormatException e)
+            {
+                Logger?.LogInformation("GetThrowByProfileId : Problème de format de l'id passé en paramètre, id = {0}", request.ProfileId);
+                throw new RpcException(new Status(StatusCode.InvalidArgument, "The id of the profile was incorrect"));
+            }
         }
         #endregion
     }

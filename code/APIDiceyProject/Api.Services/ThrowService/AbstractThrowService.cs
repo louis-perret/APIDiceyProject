@@ -56,9 +56,10 @@ namespace Api.Services.ThrowService
             return await _throwRepository.GetThrowById(id);       
         }
 
-        public async Task<List<Throw>> GetThrowByProfileId(Guid idProfile)
+        /// <inheritdoc/>
+        public async Task<List<Throw>> GetThrowByProfileId(Guid idProfile, int numPage, int nbByPage)
         {
-            return await _throwRepository.GetThrowByProfileId(idProfile); 
+            return await _throwRepository.GetThrowByProfileId(idProfile, numPage, nbByPage); 
         }
 
         #endregion
