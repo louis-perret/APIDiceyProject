@@ -80,7 +80,7 @@ steps:
     image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
     environment:
         IMAGENAME: hub.codefirst.iut.uca.fr/louis.perret/apidiceyproject
-        CONTAINERNAME: diceymage
+        CONTAINERNAME: apidiceyproject
         COMMAND: create
         OVERWRITE: true
 
