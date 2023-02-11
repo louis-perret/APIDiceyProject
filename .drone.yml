@@ -87,7 +87,7 @@ steps:
 
 volumes:
 - name: docs
-  temp: {}
+  temp: { }
 
 
 
