@@ -68,7 +68,7 @@ steps:
        dockerfile: code/APIDiceyProject/Dockerfile
        context: code/APIDiceyProject/
        registry: hub.codefirst.iut.uca.fr
-       repo: hub.codefirst.iut.uca.fr/louis.perret/apidiceyProject
+       repo: hub.codefirst.iut.uca.fr/louis.perret/apidiceyproject
        username:
          from_secret: SECRET_REGISTRY_USERNAME
        password:
