@@ -30,6 +30,8 @@ builder.Services.AddTransient<IProfileRepository, SimpleProfileRepository>();
 builder.Services.AddDbContext<ApiDbContextStubbed>();
 builder.Services.AddScoped<ApiDbContext, ApiDbContextStubbed>();
 
+
+
 //Versionnage de l'API
 builder.Services.AddApiVersioning(v => v.ApiVersionReader = new UrlSegmentApiVersionReader());
 
@@ -65,6 +67,14 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<DbContext>();
+    //context.Database.EnsureDeleted();
+    context.Database.EnsureCreated();
+    //context.Database.Migrate();
 }
 
 app.UseHttpsRedirection();
