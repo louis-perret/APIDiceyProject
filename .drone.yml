@@ -87,7 +87,7 @@ steps:
          from_secret: SECRET_REGISTRY_USERNAME
        password:
          from_secret: SECRET_REGISTRY_PASSWORD
-    depends_on: [ rest-api-image ]
+    depends_on: [ tests ]
 
   # container deployment
   - name: deploy-container
@@ -97,7 +97,7 @@ steps:
         CONTAINERNAME: apidiceyproject
         COMMAND: create
         OVERWRITE: true
-    depends_on: [ gateway-api-image ]
+    depends_on: [ gateway-api-image, rest-api-image ]
 
 volumes:
 - name: docs
