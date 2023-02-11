@@ -25,13 +25,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelDTOExtensions", "Model
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelEntityExtensions", "ModelEntityExtensions\ModelEntityExtensions.csproj", "{82A4E896-85D3-42E4-8387-969149A281C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exceptions", "Exceptions\Exceptions.csproj", "{E6E89183-CCCD-4B8B-9299-1E611A3B92B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exceptions", "Exceptions\Exceptions.csproj", "{E6E89183-CCCD-4B8B-9299-1E611A3B92B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.UnitTests", "Api.UnitTests\Api.UnitTests.csproj", "{4507FBC6-52A1-478F-84A2-F1917A779A19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.UnitTests", "Api.UnitTests\Api.UnitTests.csproj", "{4507FBC6-52A1-478F-84A2-F1917A779A19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGRPCDiceyProject", "ApiGRPCDiceyProject\ApiGRPCDiceyProject.csproj", "{C201B84A-1266-4786-B5D3-110F6AB3C7AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGRPCDiceyProject", "ApiGRPCDiceyProject\ApiGRPCDiceyProject.csproj", "{C201B84A-1266-4786-B5D3-110F6AB3C7AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGRPCDiceyProject.Client", "ApiGRPCDiceyProject.Client\ApiGRPCDiceyProject.Client.csproj", "{DCB7CE30-6905-4E58-B5B4-383A5AA36A37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGRPCDiceyProject.Client", "ApiGRPCDiceyProject.Client\ApiGRPCDiceyProject.Client.csproj", "{DCB7CE30-6905-4E58-B5B4-383A5AA36A37}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Gateway", "Api.Gateway\Api.Gateway.csproj", "{4AE82851-F297-499D-921D-1A1057C39719}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,10 @@ Global
 		{DCB7CE30-6905-4E58-B5B4-383A5AA36A37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCB7CE30-6905-4E58-B5B4-383A5AA36A37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCB7CE30-6905-4E58-B5B4-383A5AA36A37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AE82851-F297-499D-921D-1A1057C39719}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AE82851-F297-499D-921D-1A1057C39719}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AE82851-F297-499D-921D-1A1057C39719}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AE82851-F297-499D-921D-1A1057C39719}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
