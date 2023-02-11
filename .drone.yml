@@ -61,6 +61,19 @@ steps:
         - master
     depends_on: [ build ]
 
+# docker image build
+  - name: docker-build-and-push
+    image: plugins/docker
+    settings:
+       dockerfile: code/APIDiceyProject/Dockerfile
+       context: code/APIDiceyProject/
+       registry: hub.codefirst.iut.uca.fr
+       repo: hub.codefirst.iut.uca.fr/my.login/myRepository
+       username:
+         from_secret: SECRET_REGISTRY_USERNAME
+       password:
+         from_secret: SECRET_REGISTRY_PASSWORD
+
 volumes:
 - name: docs
   temp: {}
