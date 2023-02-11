@@ -13,7 +13,7 @@
         /// <returns> Le Throw (Dto) créé à partir du Model. </returns> 
         public static Throw ToDTO(this Api.Model.Throw.Throw t)
         {
-            return new Throw() { ThrowId = t.Id.ToString(), IdDice = t.Dice.NbFaces.ToString(),  Result = t.Result };
+            return new Throw() { ThrowId = t.Id.ToString(), IdDice = t.Dice.NbFaces,  Result = t.Result, ProfileId = t.ProfileId.ToString() };
         }
         #endregion
 
