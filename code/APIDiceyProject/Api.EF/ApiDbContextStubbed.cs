@@ -37,19 +37,23 @@ namespace Api.EF
                 new Dice(6)
             );
 
+            var profile = new Profile(Guid.Parse("cc6f9111-b174-4064-814b-ce7eb4169e80"), "Perret", "Louis");
+            var profile2 = new Profile(Guid.NewGuid(), "Grienenberger", "Côme");
+            var profile3 = new Profile(Guid.NewGuid(), "Malvezin", "Neitah");
+
             builder.Entity<Profile>().HasData(
-                new Profile(Guid.NewGuid(), "Perret", "Louis"),
-                new Profile(Guid.NewGuid(), "Grienenberger", "Côme"),
-                new Profile(Guid.NewGuid(), "Malvezin", "Neitah")
+              profile,
+              profile2,
+              profile3
             );
 
             builder.Entity<Throw>().HasData(
-                new Throw(Guid.NewGuid(),1, 2),
-                new Throw(Guid.NewGuid(), 2, 2),
-                new Throw(Guid.NewGuid(), 4, 4),
-                new Throw(Guid.NewGuid(), 3, 4),
-                new Throw(Guid.NewGuid(), 3, 3),
-                new Throw(Guid.NewGuid(), 5, 6)
+                new Throw(Guid.Parse("aa6f9111-b174-4064-814b-ce7eb4169e80"),1, 2, profile.Id),
+                new Throw(Guid.Parse("dd6f9111-b174-4064-814b-ce7eb4169e80"), 2, 2, profile.Id),
+                new Throw(Guid.NewGuid(), 4, 4, profile2.Id),
+                new Throw(Guid.NewGuid(), 3, 4, profile2.Id),
+                new Throw(Guid.NewGuid(), 3, 3, profile3.Id),
+                new Throw(Guid.NewGuid(), 5, 6, profile3.Id)
             );
         }
         #endregion

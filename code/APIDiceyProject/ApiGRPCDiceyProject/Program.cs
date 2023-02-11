@@ -1,5 +1,6 @@
 ﻿using Api.EF;
 using Api.Repositories.DiceRepository;
+using Api.Repositories.ProfileRepository;
 using Api.Repositories.ThrowRepository;
 using Api.Services.ThrowService;
 using ApiGRPCDiceyProject.Services;
@@ -16,6 +17,7 @@ builder.Services.AddScoped<ApiDbContext, ApiDbContextStubbed>();
 // Add services to the container.
 builder.Services.AddGrpc();
 builder.Services.AddScoped<IDiceRepository, SimpleDiceRepository>();
+builder.Services.AddScoped<IProfileRepository, SimpleProfileRepository>();
 builder.Services.AddScoped<IThrowRepository, SimpleThrowRepository>();
 builder.Services.AddScoped<IThrowService, SimpleThrowService>();
 
