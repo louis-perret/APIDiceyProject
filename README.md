@@ -2,7 +2,7 @@
 
 # APIDiceyProject
 
-| [Introduction](#introduction) | [Contraintes technique](#contraintes-techniques) | [Premier pas](#premier-pas) | [Où en sommes nous ?](#où-en-sommes-nous-?) | [Objectifs](#objectifs) | [Exécuter les tests](#exécuter-les-tests) | [Documentation](#documentation) | [Structure du projet](#structure-du-projet) | [Contributors](#contributors) | 
+| [Introduction](#introduction) | [Contraintes technique](#contraintes-technique) | [Premiers pas](#premiers-pas) | [Où en sommes nous ?](#ou-en-sommes-nous-?) | [Objectifs](#objectifs) | [Exécuter les tests](#executer-les-tests) | [Documentation](#documentation) | [Structure du projet](#structure-du-projet) | [Contributors](#contributors) | 
 
 ---
 
@@ -18,7 +18,7 @@ Nous avons deux API :
 Nous avons effectué ce choix car nous risquons de posséder plusieurs dizaines de lancers que l'API pourra retourner. Ainsi, l'utilisation d'une API GRPC permettra de répondre à ce besoin en améliorant les performances de l'utilisation de cette dernière.
 
 
-## Contraintes techniques
+## Contraintes technique
 
 Afin de pouvoir build le projet, il faut utiliser le framework .NET et Asp.Net en version 6.0.
 
@@ -30,7 +30,7 @@ Les NuGet que nous utilisons pour ce projet sont :
 
 
 
-## Premier pas
+## Premiers pas
 
 Voici la liste des étapes pour tester notre API dans son intégralité : 
 
