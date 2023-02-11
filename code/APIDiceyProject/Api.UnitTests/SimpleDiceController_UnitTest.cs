@@ -78,7 +78,7 @@ public class SimpleDiceController_UnitTest
         };
         yield return new object[]
         {
-            1, 404, "There is already a dice with this number of faces", null
+            1, 404, "There is no dice with this number of faces", null
         };
     }
 
@@ -195,7 +195,7 @@ public class SimpleDiceController_UnitTest
 
         yield return new object[]
         {
-            new DTOs.Dice(2), 400, "No dice with this number of faces exists", false, false
+            new DTOs.Dice(2), 400, "There is already a dice with this number of faces", false, false
         };
 
         yield return new object[]
