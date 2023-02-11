@@ -7,25 +7,25 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["APIDiceyProject/APIDiceyProject.csproj", "APIDiceyProject/"]
-COPY ["Api.Model/Api.Model.csproj", "Api.Model/"]
-COPY ["ModelDTOExtensions/ModelDTOExtensions.csproj", "ModelDTOExtensions/"]
+COPY ["APIRESTDiceyProject/APIRESTDiceyProject.csproj", "APIRESTDiceyProject/"]
 COPY ["Api.DTOs/Api.DTOs.csproj", "Api.DTOs/"]
-COPY ["Exceptions/Exceptions.csproj", "Exceptions/"]
+COPY ["Api.Model/Api.Model.csproj", "Api.Model/"]
 COPY ["Api.Services/Api.Services.csproj", "Api.Services/"]
 COPY ["Api.Repositories/Api.Repositories.csproj", "Api.Repositories/"]
-COPY ["ModelEntityExtensions/ModelEntityExtensions.csproj", "ModelEntityExtensions/"]
-COPY ["Api.Entities/Api.Entities.csproj", "Api.Entities/"]
 COPY ["Api.EF/Api.EF.csproj", "Api.EF/"]
-RUN dotnet restore "APIDiceyProject/APIDiceyProject.csproj"
+COPY ["Api.Entities/Api.Entities.csproj", "Api.Entities/"]
+COPY ["Exceptions/Exceptions.csproj", "Exceptions/"]
+COPY ["ModelEntityExtensions/ModelEntityExtensions.csproj", "ModelEntityExtensions/"]
+COPY ["ModelDTOExtensions/ModelDTOExtensions.csproj", "ModelDTOExtensions/"]
+RUN dotnet restore "APIRESTDiceyProject/APIRESTDiceyProject.csproj"
 COPY . .
-WORKDIR "/src/APIDiceyProject"
-RUN dotnet build "APIDiceyProject.csproj" -c Release -o /app/build
+WORKDIR "/src/APIRESTDiceyProject"
+RUN dotnet build "APIRESTDiceyProject.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "APIDiceyProject.csproj" -c Release -o /app/publish
+RUN dotnet publish "APIRESTDiceyProject.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "APIDiceyProject.dll"]
+ENTRYPOINT ["dotnet", "APIRESTDiceyProject.dll"]
