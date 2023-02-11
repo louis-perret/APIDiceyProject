@@ -87,7 +87,7 @@ namespace ApiGRPCDiceyProject.Services
                 if (throws == null)
                 {
                     Logger?.LogInformation("GetThrowsByProfilId : id du profile = {0}, numéro de page = {1}, nombre d'éléments = {2}.Aucun throw retournée -> Id du profil incorrecte.", request.ProfileId, request.NumPages, request.NbElements);
-                    return new ListThrows();
+                    throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid argument, This profile id doesn't exists"));
                 }
                 else
                 {
