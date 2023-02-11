@@ -14,8 +14,9 @@ namespace Api.Repositories.ProfileRepository
         /// </summary>
         /// <param name="numPage">Page de laquelle on veut les profils</param>
         /// <param name="nbByPage">Nombre de profils par page</param>
-        /// <returns></returns>
-        Task<List<Profile>> ProfilesByPage(int numPage, int nbByPage);
+        /// <param name="subString">la substring à trouver dans la chaîne nom+prénom</param>
+        /// <returns>la liste des profils correspondant aux critères</returns>
+        Task<List<Profile>> ProfilesByPage(int numPage, int nbByPage,string subString);
 
         /// <summary>
         /// Méthode qui retourne un profil via son ID
@@ -37,6 +38,12 @@ namespace Api.Repositories.ProfileRepository
         Task<bool> RemoveProfileById(Guid id);
 
         /// <summary>
+        /// Méthode qui retourne le nombre de profils dans la base
+        /// </summary>
+        /// <returns>le nombre de profils dans la base</returns>
+        Task<int> getNbProfiles();
+
+        /// <summary>
         /// Méthode qui ajoute un profil en base
         /// </summary>
         /// <param name="profile">Le profil à ajouter</param>
@@ -47,7 +54,7 @@ namespace Api.Repositories.ProfileRepository
         /// Méthode qui change un profil en base
         /// </summary>
         /// <param name="profile">Le profil à modifier</param>
-        /// <returns></returns>
+        /// <returns>booleen à true si le profil a pu être modifié, faux sinon</returns>
         Task<bool> UpdateProfile(Profile profile);
     }
 }       

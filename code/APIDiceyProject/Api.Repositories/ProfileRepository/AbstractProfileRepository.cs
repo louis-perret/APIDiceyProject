@@ -13,12 +13,12 @@ namespace Api.Repositories.ProfileRepository
     public abstract class AbstractProfileRepository : BaseRepository, IProfileRepository
     {
         #region constructeurs
-        public AbstractProfileRepository(ApiDbContext context) : base(context)
+        protected AbstractProfileRepository(ApiDbContext context) : base(context)
         {
-
         }
         #endregion
 
+        #region méthodes redéfinies
         async public Task<Profile?> AddProfile(Profile profileAdd)
         {
             try
@@ -39,14 +39,20 @@ namespace Api.Repositories.ProfileRepository
 
         }
 
+        public async Task<int> getNbProfiles()
+        {
+            return await _context.profiles.CountAsync();
+        }
+
         async public Task<Profile?> GetProfileById(Guid id)
         {
             return  (await _context.profiles.Where(profile => profile.Id == id).FirstOrDefaultAsync())?.ToModel();
         }
 
-        async public Task<List<Profile>> ProfilesByPage(int numPage, int nbByPage)
+        async public Task<List<Profile>> ProfilesByPage(int numPage, int nbByPage, string subString)
         {
-            return await _context.profiles.Skip(nbByPage * (numPage-1))
+            return await _context.profiles.Where(profile => (profile.Name + profile.Surname).Contains(subString) || (profile.Surname + profile.Name).Contains(subString))
+                    .Skip(nbByPage * (numPage-1))
                     .Take(nbByPage)
                     .Select(profile => profile.ToModel())
                     .ToListAsync();
@@ -102,4 +108,5 @@ namespace Api.Repositories.ProfileRepository
             return true;
         }
     }
+    #endregion
 }

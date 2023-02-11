@@ -24,7 +24,7 @@ namespace Api.Model
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException(nameof(Name));
+                    throw new ArgumentNullException("Player name.");
                 }
                 _name = value;
             }
@@ -58,11 +58,11 @@ namespace Api.Model
         /// <param name="name">player's name</param>
         /// <param name="surname">player's surname</param>
         /// <exception cref="ArgumentException"></exception>
-        public Profile(Guid id, string name, string surname)
+        protected Profile(Guid id, string name, string surname)
         {
+            _name = name;
+            _surname = surname;
             Id = id;
-            Name = name;
-            Surname = surname;
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Api.Model
         /// </summary>
         /// <param name="name">player's name</param>
         /// <param name="surname">player's surname</param>
-        public Profile(string name, string surname) : this(Guid.Empty, name, surname)
+        protected Profile(string name, string surname) : this(Guid.Empty, name, surname)
         {
         }
 
