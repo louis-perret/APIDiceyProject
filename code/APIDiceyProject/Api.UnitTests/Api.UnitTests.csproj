@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Grpc.Core.Testing" Version="2.46.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
@@ -18,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\APIDiceyProject\APIDiceyProject.csproj" />
     <ProjectReference Include="..\Api.Services\Api.Services.csproj" />
+    <ProjectReference Include="..\APIRESTDiceyProject\APIRESTDiceyProject.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Moq" />

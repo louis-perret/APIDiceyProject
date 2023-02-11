@@ -18,15 +18,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//Dépendances en cascade pour AbstractDiceController.
+//Dï¿½pendances en cascade pour AbstractDiceController.
 builder.Services.AddTransient<IDiceService, SimpleDiceService>();
 builder.Services.AddTransient<IDiceRepository, SimpleDiceRepository>();
 
-//Dépendances en cascade pour AbstractProfileController
+//Dï¿½pendances en cascade pour AbstractProfileController
 builder.Services.AddTransient<IProfileService, SimpleProfileService>();
 builder.Services.AddTransient<IProfileRepository, SimpleProfileRepository>();
 
-//Dépendances pour BaseRepository
+//Dï¿½pendances pour BaseRepository
 builder.Services.AddDbContext<ApiDbContextStubbed>();
 builder.Services.AddScoped<ApiDbContext, ApiDbContextStubbed>();
 

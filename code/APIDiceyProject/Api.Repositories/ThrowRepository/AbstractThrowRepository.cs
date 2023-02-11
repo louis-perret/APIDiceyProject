@@ -51,8 +51,9 @@ namespace Api.Repositories.ThrowRepository
         }
 
         /// <inheritdoc/>
-        public async Task<List<Model.Throw.Throw>>? GetThrowByProfileId(Guid idProfile, int numPage, int nbByPage)
+        public async Task<List<Model.Throw.Throw>?> GetThrowByProfileId(Guid idProfile, int numPage, int nbByPage)
         {
+            if (_profileRepository.GetProfileById(idProfile) == null) return null;
             var throws = await _context.throws.Where(t => t.ProfileId == idProfile)
                 .Skip((numPage-1) * nbByPage)
                 .Take(nbByPage)

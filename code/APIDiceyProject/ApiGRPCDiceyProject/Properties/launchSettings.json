@@ -2,7 +2,7 @@
   "profiles": {
     "ApiGRPCDiceyProject": {
       "commandName": "Project",
-      "applicationUrl": "http://localhost:5038;https://localhost:7088",
+      "applicationUrl": "http://localhost:5038;https://localhost:6969",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
