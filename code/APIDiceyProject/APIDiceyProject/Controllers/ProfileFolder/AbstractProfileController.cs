@@ -133,7 +133,7 @@ namespace APIDiceyProject.Controllers
                 else
                 {
                     _logger?.Log(LogLevel.Information, "RemoveProfileById : Aucun profil supprimé car aucun avec id = {0}", id);
-                    return BadRequest("No profile with this ID exists");
+                    return NotFound("No profile with this ID exists");
                 }
             }
             catch (Exception e)
@@ -180,7 +180,7 @@ namespace APIDiceyProject.Controllers
                 }
                 _logger?.Log(LogLevel.Information, "UpdateProfile : Profile pas ajouté car aucun profile en base avec id = {0}", profile.Id);
 
-                return BadRequest("No profile found with this Id");
+                return NotFound("No profile found with this Id");
             }
             catch (Exception e)
             {

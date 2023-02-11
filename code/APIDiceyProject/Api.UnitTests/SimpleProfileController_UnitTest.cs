@@ -26,6 +26,7 @@ namespace Api.UnitTests
         /// </summary>
         private static AbstractProfileController _profileController;
 
+        #region init tests
         /// <summary>
         /// Initialise notre contrôleur avant chaque test.
         /// </summary>
@@ -82,7 +83,7 @@ namespace Api.UnitTests
         private Profile? SimulatedAddProfile(Profile profile)
         {
             var myProfile = CreateDatasetProfile().Where(innerProfile => innerProfile.Id == profile.Id).FirstOrDefault();
-            if (profile == null)
+            if (myProfile == null)
             {
                 return profile;
             }
@@ -119,12 +120,13 @@ namespace Api.UnitTests
                 new SimpleProfile(Guid.Parse("dcce4943-25ea-4929-a23a-427fd0a62cb7"),"Malvezin","Neitah"),
             };
         }
+        #endregion
 
-
+        #region tests get
         /// <summary>
         /// Jeu de données pour notre test sur la méthode GetProfileByPage.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>la liste des params du test</returns>
         private static IEnumerable<object[]> Test_GetData_GetProfileByPage()
         {
             yield return new object[]
@@ -177,7 +179,16 @@ namespace Api.UnitTests
             };
         }
 
-        
+        /// <summary>
+        /// Test de la méthode GetProfileByPage
+        /// </summary>
+        /// <param name="numPage">numéro de la page</param>
+        /// <param name="nbByPage">Nombre d'éléments de chaque page</param>
+        /// <param name="expectedStatusCode">Code de retour de la requête attendu</param>
+        /// <param name="expectedMessageError">Message d'erreur de la requête attendu (string.empty si pas d'erreur)</param>
+        /// <param name="answer">Résulatat attendu si résultat attendu</param>
+        /// <param name="substr">substring de filtrage</param>
+        /// <returns></returns>
         [TestMethod]
         [DynamicData(nameof(Test_GetData_GetProfileByPage), DynamicDataSourceType.Method)]
         public async Task UT_GetProfileByPage(int numPage, int nbByPage, int expectedStatusCode, string expectedMessageError, dynamic answer,string substr) 
@@ -197,7 +208,10 @@ namespace Api.UnitTests
             }
         }
 
-
+        /// <summary>
+        /// Jeu de données pour notre test sur la méthode GetProfileById.
+        /// </summary>
+        /// <returns>la liste des params du test</returns>
         private static IEnumerable<object[]> Test_GetData_GetProfileById()
         {
             yield return new object[]
@@ -216,6 +230,14 @@ namespace Api.UnitTests
             };
         }
 
+        /// <summary>
+        /// Test de la méthode GetProfileById
+        /// </summary>
+        /// <param name="id">Id du profil recherché</param>
+        /// <param name="expectedStatusCode">code de retour attendu de la requête</param>
+        /// <param name="expectedMessageError">message d'erreur attendu s'il y en a un, string.empty sinon</param>
+        /// <param name="expected">Résultat attendu</param>
+        /// <returns></returns>
         [TestMethod]
         [DynamicData(nameof(Test_GetData_GetProfileById), DynamicDataSourceType.Method)]
         public async Task UT_GetProfileById(Guid id, int expectedStatusCode, string expectedMessageError, Model.Profile expected)
@@ -233,7 +255,14 @@ namespace Api.UnitTests
                 Assert.AreEqual((result.Value as DTOs.Profile)?.ToModel(), expected);
             }
         }
+        #endregion
 
+        #region tests remove
+
+        /// <summary>
+        /// test de la méthodeRemoveAllProfiles
+        /// </summary>
+        /// <returns></returns>
         [TestMethod]
         public async Task UT_RemoveAllProfiles()
         {
@@ -242,6 +271,10 @@ namespace Api.UnitTests
             Assert.AreEqual(200, result.StatusCode);
         }
 
+        /// <summary>
+        /// Jeu de données pour notre test sur la méthode RemoveProfileById.
+        /// </summary>
+        /// <returns>la liste des params du test</returns>
         private static IEnumerable<object[]> Test_GetData_RemoveProfileById()
         {
             yield return new object[]
@@ -253,10 +286,17 @@ namespace Api.UnitTests
             yield return new object[]
             {
                 Guid.Parse("6af0ae0f-ab3a-4604-810a-9517d8f6a741"),
-                400,
+                404,
                 "No profile with this ID exists",
             };
         }
+        /// <summary>
+        /// Test de la méthode RemoveProfileById
+        /// </summary>
+        /// <param name="id">Id du Profile à supprimer</param>
+        /// <param name="expectedStatusCode">Code de retour de la méthode attendu</param>
+        /// <param name="expectedMessageError">Message d'erreur attendu s'il y en a un, string.empty sinon</param>
+        /// <returns></returns>
         [TestMethod]
         [DynamicData(nameof(Test_GetData_RemoveProfileById), DynamicDataSourceType.Method)]
         public async Task UT_RemoveProfileById(Guid id, int expectedStatusCode, string expectedMessageError)
@@ -274,5 +314,109 @@ namespace Api.UnitTests
                 Assert.AreEqual(expectedMessageError, result.Value as string);
             }
         }
+        #endregion
+
+        #region test add
+        /// <summary>
+        /// Jeu de données pour notre test sur la méthode AddProfile.
+        /// </summary>
+        /// <returns>la liste des params du test</returns>
+        private static IEnumerable<object[]> Test_GetData_AddProfile()
+        {
+            yield return new object[]
+            {
+                new DTOs.Profile(Guid.Parse("6af0ae0f-fb3a-4604-810a-9517d8f6a741"),"Loulou","Perret"),
+                400,
+                "A profile with this Id already exists"
+            };
+            yield return new object[]
+            {
+                new DTOs.Profile(Guid.Parse("6af8ae0a-fb3a-4604-810a-9517d8f6a741"),"Mwa","Sémwa"),
+                201,
+                string.Empty,
+            };
+        }
+
+        /// <summary>
+        /// Test de la méthode AddProfile
+        /// </summary>
+        /// <param name="prof">le Profile à ajouter</param>
+        /// <param name="expectedStatusCode">Code de retour attendu</param>
+        /// <param name="expectedMessageError">Message d'erreur attendu s'il y en a un, string.empty sinon</param>
+        /// <returns></returns>
+        [TestMethod]
+        [DynamicData(nameof(Test_GetData_AddProfile), DynamicDataSourceType.Method)]
+        public async Task UT_AddProfile(DTOs.Profile prof, int expectedStatusCode, string expectedMessageError)
+        {
+            if (expectedStatusCode == 201)
+            {
+                var result = (await _profileController.AddProfile(prof)) as CreatedAtActionResult;
+                Assert.IsNotNull(result);
+                Assert.AreEqual(expectedStatusCode, result.StatusCode);
+                Assert.AreEqual("GetProfileByPage", result.ActionName);
+            }
+            else
+            {
+                var result = (await _profileController.AddProfile(prof)) as ObjectResult;
+                Assert.IsNotNull(result);
+                Assert.AreEqual(expectedStatusCode, result.StatusCode);
+                Assert.AreEqual(expectedMessageError, result.Value as string);
+            }
+        }
+        #endregion
+
+        #region tests update
+        /// <summary>
+        /// Jeu de données pour notre test sur la méthode UpdateProfile.
+        /// </summary>
+        /// <returns>la liste des params du test</returns>
+        private static IEnumerable<object[]> Test_GetData_UpdateProfile()
+        {
+            yield return new object[]
+            {
+                new DTOs.Profile(Guid.Parse("6af0ae0f-fb3a-4604-810a-9517d8f6a741"),"Loulou","Perret"),
+                204,
+                string.Empty
+            };
+            yield return new object[]
+            {
+                new DTOs.Profile(Guid.Parse("6af0ae0f-fb3a-4604-810a-9517d8f6a741"),"Louis","Perret"),
+                204,
+                string.Empty
+            };
+            yield return new object[]
+            {
+                new DTOs.Profile(Guid.Parse("6af8ae0f-fb3a-4604-810a-9517d8f6a741"),"Louis","Perret"),
+                404,
+                "No profile found with this Id",
+            };
+        }
+
+        /// <summary>
+        /// Test de la méthode UpdateProfile
+        /// </summary>
+        /// <param name="prof">le Profile à mettre à jour</param>
+        /// <param name="expectedStatusCode">code de retour attendu de la méthode</param>
+        /// <param name="expectedMessageError">message d'erreur attendu s'il y en a un, string.empty sinon</param>
+        /// <returns></returns>
+        [TestMethod]
+        [DynamicData(nameof(Test_GetData_UpdateProfile), DynamicDataSourceType.Method)]
+        public async Task UT_UpdateProfile(DTOs.Profile prof, int expectedStatusCode, string expectedMessageError)
+        {
+            if (expectedStatusCode == 204)
+            {
+                var result = (await _profileController.UpdateProfile(prof)) as StatusCodeResult;
+                Assert.IsNotNull(result);
+                Assert.AreEqual(expectedStatusCode, result.StatusCode);
+            }
+            else
+            {
+                var result = (await _profileController.UpdateProfile(prof)) as ObjectResult;
+                Assert.IsNotNull(result);
+                Assert.AreEqual(expectedStatusCode, result.StatusCode);
+                Assert.AreEqual(expectedMessageError, result.Value as string);
+            }
+        }
+        #endregion
     }
 }
