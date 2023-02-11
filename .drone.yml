@@ -62,7 +62,7 @@ steps:
     depends_on: [ build ]
 
 # docker image build
-  - name: diceymage
+  - name: rest-api-image
     image: plugins/docker
     settings:
        dockerfile: code/APIDiceyProject/RestDockerfile
@@ -73,6 +73,20 @@ steps:
          from_secret: SECRET_REGISTRY_USERNAME
        password:
          from_secret: SECRET_REGISTRY_PASSWORD
+    depends_on: [ build ]
+
+    - name: gateway-api-image
+    image: plugins/docker
+    settings:
+       dockerfile: code/APIDiceyProject/GatewayDockerfile
+       context: code/APIDiceyProject/
+       registry: hub.codefirst.iut.uca.fr
+       repo: hub.codefirst.iut.uca.fr/louis.perret/apidiceyproject
+       username:
+         from_secret: SECRET_REGISTRY_USERNAME
+       password:
+         from_secret: SECRET_REGISTRY_PASSWORD
+    depends_on: [ rest-api-image ]
 
 
   # container deployment
@@ -83,7 +97,7 @@ steps:
         CONTAINERNAME: apidiceyproject
         COMMAND: create
         OVERWRITE: true
-    depends_on: [ diceymage ]
+    depends_on: [ gateway-api-image ]
 
 volumes:
 - name: docs
