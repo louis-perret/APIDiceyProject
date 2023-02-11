@@ -2,7 +2,7 @@
   "Routes": [
     {
       "UpstreamPathTemplate": "/api/v1/Dice",
-      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamHttpMethod": [ "Get", "Delete", "Post" ],
 
       "DownstreamPathTemplate": "/api/v1/Dice",
       "DownstreamScheme": "https",
@@ -12,8 +12,49 @@
           "Port": 7190
         }
       ]
+    },
 
+    {
+      "UpstreamPathTemplate": "/api/v1/Dice/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+
+      "DownstreamPathTemplate": "/api/v1/Dice/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7190
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/Profile",
+      "UpstreamHttpMethod": [ "Get", "Delete", "Post" ],
+
+      "DownstreamPathTemplate": "/api/v1/Profile",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7190
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/Profile/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+
+      "DownstreamPathTemplate": "/api/v1/Profile/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7190
+        }
+      ]
     }
+
+
   ],
 
 
