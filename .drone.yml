@@ -27,8 +27,12 @@ steps:
     depends_on: [build]
 
   - name: code-analysis
-    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dronesonarplugin-dotnet6
+    image: mcr.microsoft.com/dotnet/sdk:6.0
     commands:
+      - export PATH="$PATH:/root/.dotnet/tools"
+      - dotnet tool install --global dotnet-sonarscanner
+      - dotnet tool install --global dotnet-reportgenerator-globaltool
+      - apt-get update && apt-get install -y openjdk-17-jre
       - cd code/APIDiceyProject
       - dotnet restore APIDiceyProject.sln
       - dotnet sonarscanner begin /k:APIDiceyProject /d:sonar.host.url=$${PLUGIN_SONAR_HOST} /d:sonar.coverageReportPaths="coveragereport/SonarQube.xml" /d:sonar.coverage.exclusions="Tests/**" /d:sonar.login=$${PLUGIN_SONAR_TOKEN} 
