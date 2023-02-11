@@ -22,6 +22,7 @@
     <ProjectReference Include="..\APIDiceyProject\APIRESTDiceyProject.csproj" />
     <ProjectReference Include="..\Api.Services\Api.Services.csproj" />
     <ProjectReference Include="..\ApiGRPCDiceyProject\ApiGRPCDiceyProject.csproj" />
+    <ProjectReference Include="..\APIRESTDiceyProject\APIRESTDiceyProject.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Moq" />
