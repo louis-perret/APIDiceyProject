@@ -116,8 +116,18 @@ namespace ApiGRPCDiceyProject.Services
         {
             try
             {
-                if (request.IdDice <= 0) throw new RpcException(new Status(StatusCode.InvalidArgument, "The number of faces of the dice must be superior to 0."));
-                if (request.Result <= 0 || request.Result > request.IdDice) throw new RpcException(new Status(StatusCode.InvalidArgument, "The result of the dice must be superior to 0 and inferior to the number of faces of the dice."));
+                if (request.IdDice <= 0)
+                {
+                    Logger?.LogInformation("AddThrow : Annulée car nombre de faces du dé inférieur ou égale à 0, nbFaces = {0}", request.IdDice);
+                    throw new RpcException(new Status(StatusCode.InvalidArgument, "The number of faces of the dice must be superior to 0."));
+                }
+
+                if (request.Result <= 0 || request.Result > request.IdDice)
+                {
+                    Logger?.LogInformation("AddThrow : Annulée car résultat inférieur à 0 ou supérieur au nombre de faces du dé, résultat = {0}", request.Result);
+                    throw new RpcException(new Status(StatusCode.InvalidArgument, "The result of the dice must be superior to 0 and inferior to the number of faces of the dice."));
+                }
+
                 var res = await ThrowService.AddThrow(request.Result, request.IdDice, Guid.Parse(request.IdProfile));
                 Logger?.LogInformation("AddThrow : Effectué avec succès : id = {0}, result = {1}, id dé = {2}, id profil = {3}", res, request.Result, request.IdDice, request.IdProfile);
                 return new Throw() { ThrowId = res.ToString(), IdDice = request.IdDice, Result = request.Result, ProfileId = request.IdProfile };
@@ -141,7 +151,11 @@ namespace ApiGRPCDiceyProject.Services
             try
             {
                 var res = await ThrowService.RemoveThrow(Guid.Parse(request.Id));
-                if(!res) throw new RpcException(new Status(StatusCode.InvalidArgument, "This id corresponds to no throws in the database."));
+                if (!res)
+                {
+                    Logger?.LogInformation("RemoveThrow : Aucun throw supprimé car l'id passé en paramètre n'existe pas, id = {0}", request.Id);
+                    throw new RpcException(new Status(StatusCode.InvalidArgument, "This id corresponds to no throws in the database."));
+                }
                 return new ResponseRemoveThrow() { Res = res };
             }
             catch (FormatException e)
