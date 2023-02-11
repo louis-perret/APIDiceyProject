@@ -6,7 +6,7 @@ using Microsoft.Win32.SafeHandles;
 
 var httpHandler = new HttpClientHandler();
 httpHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
-using var channel = GrpcChannel.ForAddress("https://localhost:7088", new GrpcChannelOptions { HttpHandler = httpHandler });
+using var channel = GrpcChannel.ForAddress("https://localhost:6969", new GrpcChannelOptions { HttpHandler = httpHandler });
 var client = new ThrowService.ThrowServiceClient(channel);
 
 var KEYWORDTOEXIT = "No";

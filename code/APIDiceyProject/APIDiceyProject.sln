@@ -2,7 +2,7 @@
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIDiceyProject", "APIDiceyProject\APIDiceyProject.csproj", "{6C8C638A-5DCD-4A5C-97EA-F68D87B7C8E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIRESTDiceyProject", "APIRESTDiceyProject\APIRESTDiceyProject.csproj", "{6C8C638A-5DCD-4A5C-97EA-F68D87B7C8E6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Services", "Api.Services\Api.Services.csproj", "{E5CD4F77-CF2D-4E59-AA4B-64C110E1002B}"
 EndProject
@@ -32,6 +32,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGRPCDiceyProject", "ApiG
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGRPCDiceyProject.Client", "ApiGRPCDiceyProject.Client\ApiGRPCDiceyProject.Client.csproj", "{DCB7CE30-6905-4E58-B5B4-383A5AA36A37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGRPC.UnitTest", "ApiGRPC.UnitTest\ApiGRPC.UnitTest.csproj", "{3B934572-67A5-4F39-8379-237370231238}"
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Gateway", "Api.Gateway\Api.Gateway.csproj", "{4AE82851-F297-499D-921D-1A1057C39719}"
 EndProject
 Global
@@ -92,6 +93,10 @@ Global
 		{DCB7CE30-6905-4E58-B5B4-383A5AA36A37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCB7CE30-6905-4E58-B5B4-383A5AA36A37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCB7CE30-6905-4E58-B5B4-383A5AA36A37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B934572-67A5-4F39-8379-237370231238}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B934572-67A5-4F39-8379-237370231238}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B934572-67A5-4F39-8379-237370231238}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B934572-67A5-4F39-8379-237370231238}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4AE82851-F297-499D-921D-1A1057C39719}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4AE82851-F297-499D-921D-1A1057C39719}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AE82851-F297-499D-921D-1A1057C39719}.Release|Any CPU.ActiveCfg = Release|Any CPU
