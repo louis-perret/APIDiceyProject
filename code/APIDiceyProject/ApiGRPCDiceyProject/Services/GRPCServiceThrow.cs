@@ -51,7 +51,7 @@ namespace ApiGRPCDiceyProject.Services
         {
             try
             {
-                var t = await ThrowService.GetThrowById(new Guid(request.SearchedId));
+                var t = await ThrowService.GetThrowById(Guid.Parse(request.SearchedId));
                 if (t == null)
                 {
                     Logger?.LogInformation("GetThrowById : requête effectuée avec succès. Throw d'ID " + request.SearchedId + " demandé par l'utilisateur n'existe pas en base.");
