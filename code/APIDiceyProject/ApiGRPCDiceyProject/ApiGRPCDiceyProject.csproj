@@ -5,7 +5,9 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
+	<PropertyGroup>
+		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+	</PropertyGroup>
   <ItemGroup>
     <Protobuf Include="Protos\throw.proto" GrpcServices="Server" />
   </ItemGroup>
