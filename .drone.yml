@@ -62,7 +62,7 @@ steps:
     depends_on: [ build ]
 
 # docker image build
-  - name: docker-build-and-push
+  - name: diceymage
     image: plugins/docker
     settings:
        dockerfile: code/APIDiceyProject/Dockerfile
@@ -73,6 +73,16 @@ steps:
          from_secret: SECRET_REGISTRY_USERNAME
        password:
          from_secret: SECRET_REGISTRY_PASSWORD
+
+
+  # container deployment
+  - name: deploy-container
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+    environment:
+        IMAGENAME: hub.codefirst.iut.uca.fr/louis.perret/apidiceyproject
+        CONTAINERNAME: diceymage
+        COMMAND: create
+        OVERWRITE: true
 
 volumes:
 - name: docs
