@@ -1,4 +1,5 @@
 ﻿using Api.Model;
+using Api.Model.Throw;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,5 +57,14 @@ namespace Api.Repositories.ProfileRepository
         /// <param name="profile">Le profil à modifier</param>
         /// <returns>booleen à true si le profil a pu être modifié, faux sinon</returns>
         Task<bool> UpdateProfile(Profile profile);
+
+        /// <summary>
+        /// Ajoute un lancer à un profile.
+        /// </summary>
+        /// <param name="result">Résultat du lancer.</param>
+        /// <param name="nbFacesDe">Dé lancé.</param>
+        /// <param name="profileId">Joueur ayant lancé le dé.</param>
+        /// <returns>Id du lancer ajouté.</returns>
+        Task<bool> AddThrow(int result, int nbFacesDe, Guid profileId);
     }
 }       
