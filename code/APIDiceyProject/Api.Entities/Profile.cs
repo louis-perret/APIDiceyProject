@@ -31,6 +31,8 @@ namespace Api.Entities
             /// </summary>
             public string Surname { get; set; }
 
+            public ICollection<Throw> Throws { get; set; } = new List<Throw>();
+
             /// <summary>
             /// Constructor
             /// </summary>
