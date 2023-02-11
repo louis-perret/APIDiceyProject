@@ -65,7 +65,7 @@ steps:
   - name: diceymage
     image: plugins/docker
     settings:
-       dockerfile: code/APIDiceyProject/Dockerfile
+       dockerfile: code/APIDiceyProject/RestDockerfile
        context: code/APIDiceyProject/
        registry: hub.codefirst.iut.uca.fr
        repo: hub.codefirst.iut.uca.fr/louis.perret/apidiceyproject
