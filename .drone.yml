@@ -83,6 +83,7 @@ steps:
         CONTAINERNAME: apidiceyproject
         COMMAND: create
         OVERWRITE: true
+    depends_on: [ diceymage ]
 
 volumes:
 - name: docs
