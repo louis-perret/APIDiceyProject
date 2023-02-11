@@ -68,7 +68,7 @@ namespace APIDiceyProject.Controllers.DiceFolder
             if (dice == null)
             {
                 _logger?.LogInformation("GetDicesById : requête effectuée avec succès. Dé d'ID " + id + " demandé par l'utilisateur n'existe pas en base.");
-                return NotFound("There is already a dice with this number of faces");
+                return NotFound("There is no dice with this number of faces");
                 //Redirect? => question sur comment faire.
             }
 
@@ -139,7 +139,7 @@ namespace APIDiceyProject.Controllers.DiceFolder
 
                 _logger?.LogInformation("AddDice : requête effectuée avec succès. Le dé d'id " + dice.NbFaces + " existe déjà en base. Le dé n'a pu être ajouté.");
 
-                return BadRequest("No dice with this number of faces exists");
+                return BadRequest("There is already a dice with this number of faces");
             }
             catch (EntityFrameworkException)
             {
