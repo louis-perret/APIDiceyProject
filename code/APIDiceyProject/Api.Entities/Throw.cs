@@ -18,6 +18,7 @@ namespace Api.Entities
         /// Id du lancer.
         /// </summary>
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
         /// <summary>
@@ -27,10 +28,22 @@ namespace Api.Entities
         public int Result { get; set; }
 
         /// <summary>
-        /// Identifiant du dé lancé.
+        /// Identifiant du dé lancer.
         /// </summary>
         [ForeignKey("Dice")]
         public int DiceId { get; set; }
+
+        /// <summary>
+        /// Identifiant du profil ayant créé le lancer.
+        /// </summary>
+        [Required]
+        public Guid ProfileId { get; set; }
+
+        /// <summary>
+        /// Profile ayant créé le lancer.
+        /// </summary>
+        [ForeignKey("ProfileId")]
+        public Profile Profile { get; set; }
         #endregion
 
         #region constructeurs
@@ -38,13 +51,26 @@ namespace Api.Entities
         /// <summary>
         /// Constructeur.
         /// </summary>
+        /// <param name="id">Id du lancer lui-même.</param>
         /// <param name="result">Résultat obtenu.</param>
         /// <param name="diceId">Dé avec lequel le résultat a été obtenu.</param>
-        public Throw(Guid id, int result, int diceId)
+        /// <param name="profileId">Identifiant du profil ayant créé le lancer.</param>
+        public Throw(Guid id, int result, int diceId, Guid profileId) : this(result, diceId, profileId)
         {
             Id = id;
+        }
+
+        /// <summary>
+        /// Constructeur.
+        /// </summary>
+        /// <param name="result">Résultat obtenu.</param>
+        /// <param name="diceId">Dé avec lequel le résultat a été obtenu.</param>
+        /// <param name="profileId">Identifiant du profil ayant créé le lancer.</param>
+        public Throw(int result, int diceId, Guid profileId)
+        {
             Result = result;
             DiceId = diceId;
+            ProfileId = profileId;
         }
         #endregion
     }

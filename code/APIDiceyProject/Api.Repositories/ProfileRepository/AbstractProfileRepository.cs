@@ -1,5 +1,6 @@
 ﻿using Api.EF;
 using Api.Model;
+using Api.Model.Throw;
 using Microsoft.EntityFrameworkCore;
 using ModelEntityExtensions;
 using System;
@@ -42,6 +43,17 @@ namespace Api.Repositories.ProfileRepository
         public async Task<int> getNbProfiles()
         {
             return await _context.profiles.CountAsync();
+        }
+
+
+        /// <inheritdoc/>
+        public async Task<bool> AddThrow(int result, int nbFacesDe, Guid profileId)
+        {
+            var t = new Entities.Throw(result, nbFacesDe, profileId);
+            var profile = await _context.profiles.FindAsync(t.ProfileId);
+            if (profile == null) return false;
+            profile.Throws.Add(t);
+            return true;
         }
 
         async public Task<Profile?> GetProfileById(Guid id)

@@ -46,26 +46,28 @@ https://documenter.getpostman.com/view/24331780/2s935oKiHW#c68e5320-c4b9-4ae9-aa
 
 - ✅ Contrôleur dé
 
-- 🔜 Contrôleur profil
+- ✅ Contrôleur profil
 
 - 🔜 Contrôleur session
 
 ### API GRPC
 
-- 🔜 Contrôleur lancers de profil
+- ✅ Contrôleur lancers de profil
 
 - 🔜 Contrôleur lancers de session
 
 
 🔜 Les **Tests unitaires** sur les contrôleurs
 
-🔜 Versionnage des API
+✅ Versionnage des API
 
-🔜 **Logs** de l'application
+✅ **Logs** de l'application
 
-🔜 API Gateway
+✅ API Gateway
 
-🔜 **Application console**
+✅ **Application console** pour l'API GRPC
+
+✅ Collection Postman pour l'API gateway
 
 ## Objectifs
 
