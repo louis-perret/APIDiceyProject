@@ -2,7 +2,7 @@
 
 # APIDiceyProject
 
-| [Introduction](#introduction) | [Requirements](#requirements) | [Getting started](#getting-started) | [Where are we now ?](#where-are-we-now) | [Roadmap](#roadmap) | [Running the tests](#running-the-tests) | [Documentation](#documentation) | [Project structure](#project-structure) | [Contributors](#contributors) | 
+| [Introduction](#introduction) | [Contraintes technique](#contraintes-techniques) | [Premier pas](#premier-pas) | [Où en sommes nous ?](#où-en-sommes-nous-?) | [Objectifs](#objectifs) | [Exécuter les tests](#exécuter-les-tests) | [Documentation](#documentation) | [Structure du projet](#structure-du-projet) | [Contributors](#contributors) | 
 
 ---
 
@@ -68,6 +68,10 @@ https://documenter.getpostman.com/view/24331780/2s935oKiHW#c68e5320-c4b9-4ae9-aa
 ✅ **Application console** pour l'API GRPC
 
 ✅ Collection Postman pour l'API gateway
+
+✅ Déploiement Docker
+
+✅ Documentation
 
 ## Objectifs
 
