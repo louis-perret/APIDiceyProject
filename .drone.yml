@@ -65,9 +65,47 @@ steps:
         - master
     depends_on: [ build ]
 
+# docker image build
+  - name: rest-api-image
+    image: plugins/docker
+    settings:
+       dockerfile: code/APIDiceyProject/RestDockerfile
+       context: code/APIDiceyProject/
+       registry: hub.codefirst.iut.uca.fr
+       repo: hub.codefirst.iut.uca.fr/louis.perret/apidiceyproject
+       username:
+         from_secret: SECRET_REGISTRY_USERNAME
+       password:
+         from_secret: SECRET_REGISTRY_PASSWORD
+    depends_on: [ tests ]
+
+# docker image build
+  - name: gateway-api-image
+    image: plugins/docker
+    settings:
+       dockerfile: code/APIDiceyProject/GatewayDockerfile
+       context: code/APIDiceyProject/
+       registry: hub.codefirst.iut.uca.fr
+       repo: hub.codefirst.iut.uca.fr/louis.perret/apidiceyproject
+       username:
+         from_secret: SECRET_REGISTRY_USERNAME
+       password:
+         from_secret: SECRET_REGISTRY_PASSWORD
+    depends_on: [ tests ]
+
+  # container deployment
+  - name: deploy-container
+    image: hub.codefirst.iut.uca.fr/thomas.bellembois/codefirst-dockerproxy-clientdrone:latest
+    environment:
+        IMAGENAME: hub.codefirst.iut.uca.fr/louis.perret/apidiceyproject
+        CONTAINERNAME: apidiceyproject
+        COMMAND: create
+        OVERWRITE: true
+    depends_on: [ gateway-api-image, rest-api-image ]
+
 volumes:
 - name: docs
-  temp: {}
+  temp: { }
 
 
 
