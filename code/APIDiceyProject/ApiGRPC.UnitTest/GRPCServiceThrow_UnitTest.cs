@@ -1,8 +1,7 @@
-ï»¿using Api.Model;
+using Api.Model;
 using Api.Model.Throw;
 using Api.Services.DiceFolder;
 using Api.Services.ThrowService;
-using APIDiceyProject.Controllers.DiceFolder;
 using ApiGRPCDiceyProject;
 using ApiGRPCDiceyProject.Services;
 using Grpc.Core;
@@ -14,6 +13,7 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Throw = Api.Model.Throw.Throw;
@@ -25,12 +25,12 @@ namespace Api.UnitTests
     {
 
         /// <summary>
-        /// ContrÃ´leur Ã  tester.
+        /// Contrôleur à tester.
         /// </summary>
         private static GRPCServiceThrow _throwController;
 
         /// <summary>
-        /// Initialise notre contrÃ´leur avant chaque test.
+        /// Initialise notre contrôleur avant chaque test.
         /// </summary>
         [TestInitialize]
         public void Init()
@@ -49,7 +49,7 @@ namespace Api.UnitTests
         }
 
         /// <summary>
-        /// Jeu de donnÃ©es pour notre test sur la mÃ©thode GetThrowById
+        /// Jeu de données pour notre test sur la méthode GetThrowById
         /// </summary>
         /// <returns></returns>
         private static IEnumerable<object[]> Test_GetData_GetThrowById()
@@ -236,7 +236,7 @@ namespace Api.UnitTests
                 "aa6f9111--814b-ce7eb4169e80", true
             };
         }
-        
+
         [TestMethod]
         [DynamicData(nameof(Test_GetData_RemoveThrow), DynamicDataSourceType.Method)]
         public void UT_RemoveThrow(string id, bool isThrowRpcException)
@@ -255,7 +255,7 @@ namespace Api.UnitTests
 
             if (isThrowRpcException)
             {
-                Assert.ThrowsException<AggregateException>(() => _throwController.RemoveThrow(new RequestRemoveThrow() { Id = id}, context).Result);
+                Assert.ThrowsException<AggregateException>(() => _throwController.RemoveThrow(new RequestRemoveThrow() { Id = id }, context).Result);
             }
             else
             {
@@ -266,7 +266,7 @@ namespace Api.UnitTests
         }
 
         /// <summary>
-        /// CrÃ©er une liste de donnÃ©es pour venir simuler notre base de donnÃ©es.
+        /// Créer une liste de données pour venir simuler notre base de données.
         /// </summary>
         /// <returns></returns>
         private static List<Model.Throw.Throw> CreateDatasetThrow()
@@ -284,14 +284,14 @@ namespace Api.UnitTests
 
         private static List<Model.Throw.Throw>? SimulatedGetThrowByProfileId(Guid id, int numPage, int nbByPage)
         {
-            var profile = new List<Model.Profile>() { 
-                new SimpleProfile(Guid.Parse("cc6f9111-b174-4064-814b-ce7eb4169e80"), "Louis", "Perret"), 
-                new SimpleProfile(Guid.Parse("ac6f9111-b174-4064-814b-ce7eb4169e80"), "Louis2", "Perret2") 
+            var profile = new List<Model.Profile>() {
+                new SimpleProfile(Guid.Parse("cc6f9111-b174-4064-814b-ce7eb4169e80"), "Louis", "Perret"),
+                new SimpleProfile(Guid.Parse("ac6f9111-b174-4064-814b-ce7eb4169e80"), "Louis2", "Perret2")
             };
 
             if (profile.Where(p => p.Id.Equals(id)).FirstOrDefault() == null) return null;
             var throws = CreateDatasetThrow();
-            var result = throws.Where(t => t.ProfileId == id).Skip((numPage-1)*nbByPage).Take(nbByPage).ToList();
+            var result = throws.Where(t => t.ProfileId == id).Skip((numPage - 1) * nbByPage).Take(nbByPage).ToList();
             return result;
         }
 
@@ -299,7 +299,7 @@ namespace Api.UnitTests
         {
             var throws = CreateDatasetThrow();
             var guid = Guid.NewGuid();
-            throws.Add(new Throw(result, new SimpleDice(idDice),guid, idProfile));
+            throws.Add(new Throw(result, new SimpleDice(idDice), guid, idProfile));
             return guid;
         }
 
