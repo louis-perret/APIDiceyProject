@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "928cd752-5bf0-46d2-834e-301988ade4b3",
-		"name": "Rest DiceyProject API Gateway",
+		"_postman_id": "645572e2-90c5-41f4-8507-8a94c14eba07",
+		"name": "Rest DiceyProject API Gateway Copy",
 		"description": "# Introduction\n\nThis postman collection serves as a complement to our codefirst project containing all the source code and other documentation needed to understand the project.\n\n[Read the docs, get the source code and launch the project](https://codefirst.iut.uca.fr/git/louis.perret/APIDiceyProject.).\n\n# Overview\n\nUse the postman collection to visit every route from our REST API.\n\n# Error Codes\n\nTODO\n\n# Rate limit\n\n?",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "24331780"
@@ -40,10 +40,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "https://localhost:7047/api/v1/Dice",
 							"protocol": "https",
@@ -76,10 +72,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "https://localhost:7047/api/v1/Dice",
 							"protocol": "https",
@@ -133,7 +125,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://localhost:7047/api/v1/Profile/{{getDiceId}}",
+					"raw": "https://localhost:7047/api/v1/Profile/{{getProfileId}}",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -143,7 +135,7 @@
 						"api",
 						"v1",
 						"Profile",
-						"{{getDiceId}}"
+						"{{getProfileId}}"
 					]
 				},
 				"description": "Get a specific profile"
@@ -154,10 +146,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "https://localhost:7047/api/v1/Profile/{id}",
 							"protocol": "https",
@@ -173,8 +161,8 @@
 							]
 						}
 					},
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
 					"body": ""
 				}
@@ -193,7 +181,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://localhost:7047/api/v1/Dice/{id}",
+					"raw": "https://localhost:7047/api/v1/Dice/{{getDiceId}}",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -203,7 +191,7 @@
 						"api",
 						"v1",
 						"Dice",
-						"{id}"
+						"{{getDiceId}}"
 					]
 				},
 				"description": "Get a specific dice"
@@ -214,10 +202,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "https://localhost:7047/api/v1/Dice/{id}",
 							"protocol": "https",
@@ -233,8 +217,8 @@
 							]
 						}
 					},
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
 					"body": ""
 				}
@@ -283,10 +267,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "https://localhost:7047/api/v1/Profile",
 							"protocol": "https",
@@ -319,10 +299,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "https://localhost:7047/api/v1/Profile?numPage=1&nbByPage=10",
 							"protocol": "https",
@@ -380,7 +356,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nbFaces\": X\r\n}",
+					"raw": "{\r\n  \"nbFaces\": 15\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -504,7 +480,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"id\": \"GUID\",\r\n  \"name\": \"User\",\r\n  \"surname\": \"OurFirstUser!\"\r\n}",
+					"raw": "{\r\n  \"id\": \"2d5a739f-4af3-4d1e-93d7-e986100c21b1\",\r\n  \"name\": \"OfTheWood\",\r\n  \"surname\": \"MickMick\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -550,8 +526,8 @@
 							]
 						}
 					},
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
 					"body": ""
 				}
@@ -564,7 +540,12 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\r\n  \"id\": \"2d5a739f-4af3-4d1e-93d7-e986100c21b1\",\r\n  \"name\": \"Dubois\",\r\n  \"surname\": \"Mickaël\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "https://localhost:7047/api/v1/Profile",
@@ -605,8 +586,8 @@
 							]
 						}
 					},
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
 					"body": ""
 				}
@@ -660,8 +641,8 @@
 							]
 						}
 					},
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
 					"body": ""
 				}
@@ -677,7 +658,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://localhost:7047/api/v1/Dice/{id}",
+					"raw": "https://localhost:7047/api/v1/Dice/{{deleteDiceId}}",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -687,7 +668,7 @@
 						"api",
 						"v1",
 						"Dice",
-						"{id}"
+						"{{deleteDiceId}}"
 					]
 				},
 				"description": "Delete a specific dice"
@@ -717,8 +698,8 @@
 							]
 						}
 					},
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
 					"body": ""
 				}
@@ -797,7 +778,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://localhost:7047/api/v1/Profile/{{deleteDiceId}}",
+					"raw": "https://localhost:7047/api/v1/Profile/{{deleteProfileId}}",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -807,7 +788,7 @@
 						"api",
 						"v1",
 						"Profile",
-						"{{deleteDiceId}}"
+						"{{deleteProfileId}}"
 					]
 				},
 				"description": "Delete a specific profile"
@@ -837,8 +818,8 @@
 							]
 						}
 					},
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
 					"body": ""
 				}
@@ -868,22 +849,22 @@
 	"variable": [
 		{
 			"key": "getDiceId",
-			"value": "1",
+			"value": "2",
 			"type": "string"
 		},
 		{
 			"key": "deleteDiceId",
-			"value": "1",
+			"value": "2",
 			"type": "string"
 		},
 		{
 			"key": "getProfileId",
-			"value": "",
+			"value": "cc6f9111-b174-4064-814b-ce7eb4169e80",
 			"type": "string"
 		},
 		{
 			"key": "deleteProfileId",
-			"value": "",
+			"value": "cc6f9111-b174-4064-814b-ce7eb4169e80",
 			"type": "string"
 		}
 	]
